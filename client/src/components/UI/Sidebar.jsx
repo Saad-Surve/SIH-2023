@@ -73,7 +73,7 @@ const Sidebar = () => {
       </button>
 
       {isSidebarOpen ? (
-        <nav className="mt-4 mr-auto">
+        <nav className="mt-4 w-full mr-auto">
           <ul>
             {sidebarItems.map((item, index) => (
               <li key={index} className="mt-2">
