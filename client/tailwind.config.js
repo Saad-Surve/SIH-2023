@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const {nextui} = require("@nextui-org/react");
+const { nextui } = require("@nextui-org/react");
 
 export default {
   content: [
@@ -8,7 +8,16 @@ export default {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#006AFF",
+        "text-black": "#040406",
+        "text-gray": "#585874",
+        "icon-gray": "#A8A8BD",
+        "header-black": "#16161D",
+        "background-gray": "#F1F1F4",
+      },
+    },
   },
-  plugins: [require("daisyui"),nextui()],
-}
+  plugins: [require("daisyui"), nextui()],
+};
