@@ -78,7 +78,7 @@ const Sidebar = () => {
             {sidebarItems.map((item, index) => (
               <li key={index} className="mt-2">
                 <Link to={item.path}>
-                  <div className="flex text-lg items-center text-icon-gray ml-4p-2">
+                  <div className="flex text-lg items-center text-icon-gray ml-4">
                     {item.icon}{" "}
                     <span className="ml-2 text-text-gray">{item.name}</span>
                   </div>
