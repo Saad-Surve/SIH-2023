@@ -5,6 +5,7 @@ const User = require('../models/User.model')
 const Lawyer = require('../models/Lawyer.model')
 const Admin = require('../models/Admin.model')
 const {generateToken} = require('../utils/utils')
+const Requests = require('../models/Requests.model')
 
 const registerUser = asyncHandler(async(req,res)=>{
     const { emailID, username , password } = req.body;
@@ -39,10 +40,7 @@ const registerUser = asyncHandler(async(req,res)=>{
 })
 
 const registerLawyer = asyncHandler(async(req,res)=>{
-    const { emailID, username , password, name, location,expertise, experience } = req.body;
-    // if(!emailID || !username || !password){
-    //     res.status(400).json({message:"Please add all fields"})
-    // }
+    const { emailID, username , password, name, location,expertise, experience,allowSharingOfData } = req.body;
     const lawyerExists = await Lawyer.findOne({emailID})
     if(lawyerExists){
         res.status(400).json({message:'User already exists'})
@@ -51,7 +49,7 @@ const registerLawyer = asyncHandler(async(req,res)=>{
     const salt = await bcrypt.genSalt()
     const hashedPassword = await bcrypt.hash(password,salt)
 
-    const user = await Lawyer.create({
+    const user = await Requests.create({
         emailID,
         username,
         password:hashedPassword,
@@ -59,7 +57,8 @@ const registerLawyer = asyncHandler(async(req,res)=>{
         location,
         expertise,
         experience,
-        idProof:`/uploads/idProof_${username}.png` 
+        idProof:`/idProof_${username}.png`,
+        allowSharingOfData:allowSharingOfData
     })
 
     if(user){

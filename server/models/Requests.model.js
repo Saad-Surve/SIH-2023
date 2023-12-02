@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const lawyerSchema = new Schema({
+const requestSchema = new Schema({
     emailID: {type: String, required: true, unique: true},
     username:{type:String, required:true},
     password:{type:String, required:true},
@@ -11,7 +11,7 @@ const lawyerSchema = new Schema({
     location:{type:String,required:true},
     allowSharingOfData:{type:Boolean,required:true,default:false}
 },{
-    collection:'Lawyers'
+    collection:'Requests'
 })
 
-module.exports = mongoose.model('Lawyers',lawyerSchema)
+module.exports = mongoose.model('Requests',requestSchema)
