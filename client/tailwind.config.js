@@ -20,5 +20,5 @@ export default {
       },
     },
   },
-  plugins: [daisyui(), nextui()],
+  plugins: [daisyui, nextui()],
 };
