@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const { nextui } = require("@nextui-org/react");
-const daisyui = require('daisyui')
+const daisyui = require("daisyui");
 
 export default {
   content: [
@@ -17,6 +17,7 @@ export default {
         "icon-gray": "#A8A8BD",
         "header-black": "#16161D",
         "background-gray": "#F1F1F4",
+        "light-blue": "#E5F0FF",
       },
     },
   },
