@@ -31,7 +31,7 @@ const Sidebar = () => {
     >
       <button
         // className="text-white p-4 focus:outline-none bg-red-500 flex ml-auto"
-        className={classNames("text-white p-4 focus:outline-none bg-red-500", {
+        className={classNames("text-white p-4 w-100 focus:outline-none bg-red-500", {
           "flex ml-auto": isSidebarOpen,
           "": !isSidebarOpen,
         })}
@@ -46,7 +46,7 @@ const Sidebar = () => {
             <li key={index}>
               <Link to={item.path} onClick={toggleSidebar}>
                 {isSidebarOpen ? (
-                  <div className="flex ">
+                  <div className="flex p-2">
                     {item.icon}{" "}
                     <span className="ml-2 bg-red-400">{item.name}</span>
                   </div>
