@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "../UI/Card";
+import Navbar from "../UI/navbar";
 const Documents = () => {
   const data = [
     {
@@ -51,7 +52,9 @@ const Documents = () => {
       image: "/images/nyaaydoot.png"
     },
   ]
-  return <div className=" p-10 h-min flex justify-center flex-col gap-6 flex-wrap grid grid-cols-3">
+  return <div className="flex flex-col">
+    <Navbar />                   
+    <div className=" p-10 h-min flex justify-center flex-col gap-6 flex-wrap grid grid-cols-3">
     {data.map((item,index )=>(
       <Card 
       key={index}
@@ -61,6 +64,7 @@ const Documents = () => {
       image={item.image}/>
     ))}
   </div>;
+  </div>
 };
 
 export default Documents;
