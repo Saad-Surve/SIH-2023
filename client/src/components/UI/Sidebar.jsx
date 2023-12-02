@@ -42,7 +42,7 @@ const Sidebar = () => {
   return (
     <div
       className={classNames(
-        "text-text-gray h-screen transition-all duration-300 flex flex-col bg-white",
+        "text-text-gray h-auto transition-all duration-300 flex flex-col bg-white ",
         {
           "w-16": !isSidebarOpen,
           "w-max": isSidebarOpen,
