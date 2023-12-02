@@ -1,12 +1,7 @@
-import React from 'react'
-import Card1 from '../UI/Card'
+import React from "react";
 
-export const Home = () => {
-  return (
-    <div>
-      Home
-      <Card1 />
-    </div>
+const Home = () => {
+  return <div>Home</div>;
+};
 
-  )
-}
+export default Home;
