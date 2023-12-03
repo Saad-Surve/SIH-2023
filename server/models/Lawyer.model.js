@@ -9,7 +9,13 @@ const lawyerSchema = new Schema({
     experience:{type:String, required:true},
     idProof:{type:String,required:true},
     location:{type:String,required:true},
-    allowSharingOfData:{type:Boolean,required:true,default:false}
+    allowSharingOfData:{type:Boolean,required:true,default:false},
+    articles:[
+        {type:mongoose.Schema.Types.ObjectId,ref:'Articles'}
+    ],
+    videos:[
+        {type:mongoose.Schema.Types.ObjectId,ref:'Videos'}
+    ],
 },{
     collection:'Lawyers'
 })

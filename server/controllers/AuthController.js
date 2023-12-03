@@ -57,7 +57,7 @@ const registerLawyer = asyncHandler(async(req,res)=>{
         location,
         expertise,
         experience,
-        idProof:`/idProof_${username}.png`,
+        idProof:`/idProofs/idProof_${username}.png`,
         allowSharingOfData:allowSharingOfData
     })
 

@@ -5,7 +5,7 @@ import { Icon } from '@iconify/react';
 
 const navbar = () => {
   return (
-    <div className=' p-4 pl-8 bg-red-500 top-0 sticky z-10 border-b-4 flex flex-row'>
+    <div className='bg-red-500 top-0 sticky z-10 border-b-4 flex flex-row'>
         <input type="text" placeholder='search' className='w-1/2 h-10 p-4 bg-gray-100 text-black rounded-lg border-inherit focus:outline-none text-base'/>
         <div className='w-full h-10 gap-2 flex flex-row justify-end items-center'>
         <Icon icon="mingcute:question-line" />

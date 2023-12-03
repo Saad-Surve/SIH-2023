@@ -5,9 +5,7 @@ const articleSchema = new Schema({
     postedOn:{type:Date,default:mongoose.now},
     headline:{type:String,required:true},
     content:{type:String, required:true},
-    thumbnail:{type:String,required:true}
-    
-
+    thumbnail:{type:String,required:true,default:'default_thumbnail.jpg'}
 },{
     collection:'Articles'
 })
