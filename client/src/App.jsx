@@ -8,6 +8,8 @@ import Directory from "./components/directory/Directory";
 import Community from "./components/community/Community";
 import Resources from "./components/resources/Resources";
 import Dashboard from "./components/dashboard/Dashboard";
+import RegisterUser from "./components/auth/RegisterUser";
+import RegisterLawyer from "./components/auth/RegisterLawyer";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
         path: "dashboard",
         element: <Dashboard />,
       },
+      {
+        path:"registerUser",
+        element:<RegisterUser />
+      },
+      {
+        path:"registerLawyer",
+        element:<RegisterLawyer />
+      }
     ],
   },
 ]);

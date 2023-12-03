@@ -24,7 +24,7 @@ const Sidebar = () => {
     },
     {
       name: "Legal Documents",
-      icon: <Icon className="w-8 h-8" icon="carbon:document" />,
+      icon: <Icon  />,
       path: "documents",
     },
     {
@@ -60,7 +60,7 @@ const Sidebar = () => {
         "text-text-gray h-screen  z-10 flex flex-col bg-white sticky top-0",
         {
           "w-auto px-2": !isSidebarOpen,
-          "w-max": isSidebarOpen,
+          "w-[20%]": isSidebarOpen,
         }
       )}
     >
