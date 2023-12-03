@@ -24,7 +24,7 @@ const Sidebar = () => {
     },
     {
       name: "Legal Documents",
-      icon: <Icon  />,
+      icon: <Icon className="w-8 h-8" icon="carbon:document" />,
       path: "documents",
     },
     {
@@ -54,7 +54,7 @@ const Sidebar = () => {
     },
   ];
 
-  return ( 
+  return (
     <div
       className={classNames(
         "text-text-gray h-screen  z-10 flex flex-col bg-white sticky top-0 bottom-0",
@@ -76,11 +76,11 @@ const Sidebar = () => {
       >
         {isSidebarOpen ? (
           <div className="flex w-full justify-between items-center">
-            <div className="flex items-center ">
+            <div className="flex items-center mr-4">
               <h1>Nyaaydoot</h1>
-              <Icon icon="octicon:law-24" className="ml-2 w-8 h-8" />
+              <Icon icon="octicon:law-24" className="ml-1 w-8 h-8" />
             </div>
-            <Icon icon="solar:arrow-left-linear" className="ml-8 w-8 h-8" />
+            <Icon icon="solar:arrow-left-linear" className="ml-2 w-8 h-8" />
           </div>
         ) : (
           <Icon icon="octicon:law-24" className="mx-auto" />

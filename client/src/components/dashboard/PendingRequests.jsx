@@ -53,7 +53,10 @@ const PendingRequests = () => {
             <span className="font-medium text-sm">{request.name}</span>
             <span className="text-sm">{request.type}</span>
           </div>
-          <Icon icon="pepicons-pencil:dots-y" className="ml-auto mr-6 h-6 w-6 hover:border-1 hover:bg-gray-200 hover:rounded-[50%] hover:p-1 hover:h-8 hover:w-8 hover:mr-5 " />
+          <Icon
+            icon="pepicons-pencil:dots-y"
+            className="ml-auto mr-6 h-6 w-6 hover:border-1 hover:bg-gray-200 hover:rounded-[50%] hover:p-1 hover:h-8 hover:w-8 hover:mr-5 "
+          />
         </div>
       ))}
     </div>

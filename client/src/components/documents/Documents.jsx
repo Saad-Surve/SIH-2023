@@ -66,7 +66,7 @@ const Documents = () => {
       image: "/images/nyaaydoot.png",
     },
   ];
-  return (
+  return ( 
     <div className="w-full scrollbar-hide">
       <Navbar />
       <div className="p-10 h-min justify-center flex-col gap-6 flex-wrap grid grid-cols-3 scrollbar-hide">
