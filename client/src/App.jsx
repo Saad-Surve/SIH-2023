@@ -10,6 +10,7 @@ import Resources from "./components/resources/Resources";
 import Dashboard from "./components/dashboard/Dashboard";
 import RegisterUser from "./components/auth/RegisterUser";
 import RegisterLawyer from "./components/auth/RegisterLawyer";
+import LawyerDashboard from "./components/lawyerDashboard/LawyerDashboard";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path:"registerLawyer",
         element:<RegisterLawyer />
+      },
+      {
+        path:"lawyerDashboard",
+        element:<LawyerDashboard />
       }
     ],
   },
