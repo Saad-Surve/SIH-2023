@@ -10,7 +10,6 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
-// import PostModal from "./PostModal";
 
 const PostTable = ({ rows }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -61,6 +60,52 @@ const PostTable = ({ rows }) => {
                 className="mr-6 h-6 w-6 text-icon-gray hover:text-text-gray hover:border-1 hover:bg-gray-200 hover:rounded-[50%] hover:p-1 hover:h-8 hover:w-8 hover:mr-5"
               />
               {/* <PostModal onOpen={onOpen}/> */}
+              <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+                <ModalContent>
+                  {(onClose) => (
+                    <>
+                      <ModalHeader className="flex flex-col gap-1">
+                        Modal Title
+                      </ModalHeader>
+                      <ModalBody>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Nullam pulvinar risus non risus hendrerit
+                          venenatis. Pellentesque sit amet hendrerit risus, sed
+                          porttitor quam.
+                        </p>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Nullam pulvinar risus non risus hendrerit
+                          venenatis. Pellentesque sit amet hendrerit risus, sed
+                          porttitor quam.
+                        </p>
+                        <p>
+                          Magna exercitation reprehenderit magna aute tempor
+                          cupidatat consequat elit dolor adipisicing. Mollit
+                          dolor eiusmod sunt ex incididunt cillum quis. Velit
+                          duis sit officia eiusmod Lorem aliqua enim laboris do
+                          dolor eiusmod. Et mollit incididunt nisi consectetur
+                          esse laborum eiusmod pariatur proident Lorem eiusmod
+                          et. Culpa deserunt nostrud ad veniam.
+                        </p>
+                      </ModalBody>
+                      <ModalFooter>
+                        <Button
+                          color="danger"
+                          variant="light"
+                          onPress={onClose}
+                        >
+                          Close
+                        </Button>
+                        <Button color="primary" onPress={onClose}>
+                          Action
+                        </Button>
+                      </ModalFooter>
+                    </>
+                  )}
+                </ModalContent>
+              </Modal>
             </td>
           </tr>
         ))}
