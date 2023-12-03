@@ -59,7 +59,7 @@ const Sidebar = () => {
       className={classNames(
         "text-text-gray h-screen  z-10 flex flex-col bg-white sticky top-0 transition-all ease-in-out duration-300",
         {
-          "w-16": !isSidebarOpen,
+          "w-auto px-2": !isSidebarOpen,
           "w-max": isSidebarOpen,
         }
       )}
