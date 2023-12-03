@@ -5,8 +5,8 @@ import classNames from "classnames";
 import "./styles/Sidebar.css";
 
 const Sidebar = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(0);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -54,10 +54,10 @@ const Sidebar = () => {
     },
   ];
 
-  return (
+  return ( 
     <div
       className={classNames(
-        "text-text-gray h-screen  z-10 flex flex-col bg-white sticky top-0",
+        "text-text-gray h-screen  z-10 flex flex-col bg-white sticky top-0 bottom-0",
         {
           "w-auto px-2": !isSidebarOpen,
           "w-[20%]": isSidebarOpen,
