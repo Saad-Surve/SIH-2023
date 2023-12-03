@@ -9,7 +9,7 @@ const navbar = () => {
         placeholder="Search"
         className="w-4/5 h-10 p-4 bg-gray-100 text-text-gray rounded-xl border-inherit focus:outline-none text-base"
       />
-      <div className="w-full h-10 gap-2 flex flex-row text-icon-gray justify-end items-center">
+      <div className="w-full h-10  gap-2 flex flex-row text-icon-gray justify-end items-center">
         <Icon icon="mingcute:question-line" className="w-6 h-6 hover:text-text-gray" />
         <Icon icon="material-symbols:settings-outline" className="w-6 h-6 hover:text-text-gray" />
         <Icon icon="ph:bell-bold" className="w-6 h-6 mr-2 hover:text-text-gray" />
