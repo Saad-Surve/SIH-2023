@@ -57,7 +57,7 @@ const Sidebar = () => {
   return (
     <div
       className={classNames(
-        "text-text-gray h-screen  z-10 flex flex-col bg-white sticky top-0 bottom-0",
+        "text-text-gray h-screen  z-10 flex flex-col bg-white sticky top-0 bottom-0 transition-all",
         {
           "w-auto px-2": !isSidebarOpen,
           "w-[20%]": isSidebarOpen,
@@ -76,7 +76,7 @@ const Sidebar = () => {
       >
         {isSidebarOpen ? (
           <div className="flex w-full justify-between items-center">
-            <div className="flex items-center mr-4">
+            <div className="flex items-center mr-4 gap-1">
               <h1>Nyaaydoot</h1>
               <Icon icon="octicon:law-24" className="ml-1 w-8 h-8" />
             </div>

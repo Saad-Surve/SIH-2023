@@ -8,6 +8,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/flowbite/**/*.js",
   ],
   theme: {
     extend: {
@@ -22,5 +23,5 @@ export default {
       },
     },
   },
-  plugins: [hide, daisyui, nextui()],
+  plugins: [hide, daisyui, nextui(), require("flowbite/plugin")],
 };
