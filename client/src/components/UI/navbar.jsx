@@ -1,25 +1,29 @@
-import React from 'react'
-import Avatar from 'react-avatar';
-import { Icon } from '@iconify/react';
-
+import Avatar from "react-avatar";
+import { Icon } from "@iconify/react";
 
 const navbar = () => {
   return (
-    <div className='bg-red-500 top-0 sticky z-10 border-b-4 flex flex-row'>
-        <input type="text" placeholder='search' className='w-1/2 h-10 p-4 bg-gray-100 text-black rounded-lg border-inherit focus:outline-none text-base'/>
-        <div className='w-full h-10 gap-2 flex flex-row justify-end items-center'>
-        <Icon icon="mingcute:question-line" />
-        <Icon icon="material-symbols:settings-outline" />
-        <Icon icon="ph:bell-bold" />
-        <Avatar name='Yusuf Sodawala' size='35px' round/>
-        <div className='flex flex-col'>
-            <span className=' text-base'>Yusuf Sodawala</span>
-            <span className='text-xs'>yusuf.sodawala@spit.ac.in</span>
+    <div className="bg-white top-0 sticky z-10 border-b-1 p-3 px-6 flex flex-row border-l shadow-md">
+      <input
+        type="text"
+        placeholder="Search"
+        className="w-4/5 h-10 p-4 bg-gray-100 text-text-gray rounded-xl border-inherit focus:outline-none text-base"
+      />
+      <div className="w-full h-10 gap-2 flex flex-row text-icon-gray justify-end items-center">
+        <Icon icon="mingcute:question-line" className="w-6 h-6" />
+        <Icon icon="material-symbols:settings-outline" className="w-6 h-6" />
+        <Icon icon="ph:bell-bold" className="w-6 h-6 mr-2" />
+        <Avatar name="Yusuf Sodawala" size="35px" round />
+        <div className="flex flex-col text-text-black">
+          <span className="text-sm font-bold">Yusuf Sodawala</span>
+          <span className="text-xs text-text-gray">
+            yusuf.sodawala@spit.ac.in
+          </span>
         </div>
-        <Icon icon="icon-park:down" />
-        </div>
+        <Icon icon="icon-park:down" className="w-6 h-6" />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default navbar
+export default navbar;

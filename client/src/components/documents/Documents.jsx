@@ -1,4 +1,3 @@
-import React from "react";
 import Card from "../UI/Card";
 import Navbar from "../UI/navbar";
 const Documents = () => {
@@ -68,7 +67,7 @@ const Documents = () => {
     },
   ];
   return (
-    <div className="flex flex-col w-3/4">
+    <div className="w-full">
       <Navbar />
       <div className="p-10 h-min justify-center flex-col gap-6 flex-wrap grid grid-cols-3">
         {data.map((item, index) => (
@@ -81,7 +80,6 @@ const Documents = () => {
           />
         ))}
       </div>
-      ;
     </div>
   );
 };

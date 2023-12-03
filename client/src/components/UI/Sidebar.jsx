@@ -5,7 +5,7 @@ import classNames from "classnames";
 import "./styles/Sidebar.css";
 
 const Sidebar = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
 
   const toggleSidebar = () => {
@@ -57,7 +57,7 @@ const Sidebar = () => {
   return (
     <div
       className={classNames(
-        "text-text-gray h-screen  z-10 flex flex-col bg-white sticky top-0 transition-all ease-in-out duration-300",
+        "text-text-gray h-screen  z-10 flex flex-col bg-white sticky top-0",
         {
           "w-auto px-2": !isSidebarOpen,
           "w-max": isSidebarOpen,
@@ -66,9 +66,9 @@ const Sidebar = () => {
     >
       <button
         className={classNames(
-          "text-text-black p-4 pl-0 pr-0 w-100 focus:outline-none h-16 flex logo text-3xl border-b-2 ml-2 mr-2 transition-all ease-in-out duration-300",
+          "text-text-black p-4 pl-0 pr-0 w-100 focus:outline-none h-16 flex logo text-3xl border-b-2 ml-2 mr-2 transition-transform ease-in-out duration-300",
           {
-            "flex": isSidebarOpen,
+            flex: isSidebarOpen,
             "": !isSidebarOpen,
           }
         )}
@@ -89,23 +89,20 @@ const Sidebar = () => {
 
       {/* Sidebar Open */}
       {isSidebarOpen ? (
-        <nav className="mt-4 w-full mr-auto transition-all ease-in-out duration-300">
+        <nav className="mt-4 w-full mr-auto">
           <ul>
             {sidebarItems.map((item, index) => (
               <li
                 key={index}
-                className={classNames(
-                  "mt-2 mx-2 p-2 rounded-2xl transition-all ease-in-out duration-300",
-                  {
-                    "bg-light-blue text-primary": selectedItem === index,
-                  }
-                )}
+                className={classNames("mt-2 mx-2 p-2 rounded-2xl", {
+                  "bg-light-blue text-primary": selectedItem === index,
+                })}
               >
                 <Link to={item.path} onClick={() => handleItemClick(index)}>
                   {/* <div className="flex text-lg items-center text-icon-gray ml-4"> */}
                   <div
                     className={classNames(
-                      "flex text-lg items-center text-icon-gray",
+                      "flex text-lg items-center text-icon-gray  transition-all ease-in-out duration-100",
                       {
                         "text-primary": selectedItem === index,
                       }
@@ -127,7 +124,8 @@ const Sidebar = () => {
         </nav>
       ) : (
         //  Sidebar is Closed
-        <nav className="mt-4 mx-auto transition-all ease-in-out duration-300">
+        // <nav className="mt-4 mx-auto transition-all ease-in-out duration-300">
+        <nav className="mt-4 mx-auto">
           <ul>
             {sidebarItems.map((item, index) => (
               <li
