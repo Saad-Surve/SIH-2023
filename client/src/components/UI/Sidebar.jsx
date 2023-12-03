@@ -94,9 +94,12 @@ const Sidebar = () => {
             {sidebarItems.map((item, index) => (
               <li
                 key={index}
-                className={classNames("mt-2 mx-2 p-2 rounded-2xl transition-all ease-in-out duration-300", {
-                  "bg-light-blue text-primary":selectedItem === index
-                })}
+                className={classNames(
+                  "mt-2 mx-2 p-2 rounded-2xl transition-all ease-in-out duration-300",
+                  {
+                    "bg-light-blue text-primary": selectedItem === index,
+                  }
+                )}
               >
                 <Link to={item.path} onClick={() => handleItemClick(index)}>
                   {/* <div className="flex text-lg items-center text-icon-gray ml-4"> */}
@@ -104,14 +107,14 @@ const Sidebar = () => {
                     className={classNames(
                       "flex text-lg items-center text-icon-gray",
                       {
-                        "text-primary": selectedItem === index, 
+                        "text-primary": selectedItem === index,
                       }
                     )}
                   >
                     {item.icon}{" "}
                     <span
                       className={classNames("ml-2 text-primary", {
-                        "text-text-gray":  selectedItem != index,
+                        "text-text-gray": selectedItem != index,
                       })}
                     >
                       {item.name}
@@ -130,7 +133,7 @@ const Sidebar = () => {
               <li
                 key={index}
                 className={classNames("mt-2 text-icon-gray p-2 rounded-2xl ", {
-                  "bg-light-blue text-primary":selectedItem === index,
+                  "bg-light-blue text-primary": selectedItem === index,
                 })}
               >
                 <Link to={item.path} onClick={() => handleItemClick(index)}>
