@@ -34,16 +34,6 @@ const Posts = () => {
     <div className="bg-white rounded-md w-full ml-4 h-full ">
       <div className="flex justify-between items-center font-light p-4 pl-6">
         <h1 className="font-bold text-header-black">All Posts</h1>
-        <div className="flex gap-4">
-          <button className="text-sm flex items-center text-text-gray">
-            <Icon icon="bi:sort-up" className="mr-1 text-icon-gray " />
-            Sort
-          </button>
-          <button className="text-sm flex items-center text-text-gray ">
-            <Icon icon="mdi:filter" className="mr-1 text-icon-gray" />
-            Filter
-          </button>
-        </div>
       </div>
       <PostTable rows={rows} />
       <div className="text-center py-5">Placeholder for Pagination</div>

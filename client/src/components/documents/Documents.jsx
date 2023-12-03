@@ -68,7 +68,7 @@ const Documents = () => {
   return (
     <div className="w-full">
       <Navbar />
-      <div className="p-10 justify-center flex-col gap-6 flex-wrap grid grid-cols-3 z-5 ">
+      <div className="p-10 justify-center flex-col gap-6 flex-wrap grid grid-cols-3 z-5">
         {data.map((item, index) => (
           <DocumentCard
             key={index}

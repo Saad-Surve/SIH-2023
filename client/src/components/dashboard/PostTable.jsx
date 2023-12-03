@@ -1,8 +1,19 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 import Avatar from "react-avatar";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@nextui-org/react";
+// import PostModal from "./PostModal";
 
 const PostTable = ({ rows }) => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <table className="w-full ">
       <thead>
@@ -41,11 +52,15 @@ const PostTable = ({ rows }) => {
                 <span className="text-xs text-icon-gray">6:30 PM</span>
               </div>
             </td>
-            <td className="ml-auto font-light flex items-center">
+            <td
+              className="ml-auto font-light flex items-center"
+              onClick={onOpen}
+            >
               <Icon
                 icon="pepicons-pencil:dots-y"
                 className="mr-6 h-6 w-6 text-icon-gray hover:text-text-gray hover:border-1 hover:bg-gray-200 hover:rounded-[50%] hover:p-1 hover:h-8 hover:w-8 hover:mr-5"
               />
+              {/* <PostModal onOpen={onOpen}/> */}
             </td>
           </tr>
         ))}

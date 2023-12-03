@@ -2,6 +2,7 @@ import Navbar from "../UI/navbar";
 import { Icon } from "@iconify/react";
 import LawyerCard from "./LawyerCard.jsx";
 import { ScrollShadow } from "@nextui-org/react";
+import "./LawyerCard.css";
 
 const Directory = () => {
   return (
@@ -35,6 +36,8 @@ const Directory = () => {
             size={15}
             className="flex flex-col items-center px-5  gap-4 h-[600px] random overflow-y-scroll"
           >
+            <LawyerCard />
+            <LawyerCard />
             <LawyerCard />
             <LawyerCard />
             <LawyerCard />
