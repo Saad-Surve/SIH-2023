@@ -1,20 +1,13 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import classNames from "classnames";
 import "./styles/Sidebar.css";
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(0);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
-  const handleItemClick = (index) => {
-    setSelectedItem(index);
-  };
+  const [selectedItem, setSelectedItem] = useState(null);
+  const location = useLocation();
 
   const sidebarItems = [
     {
@@ -54,10 +47,31 @@ const Sidebar = () => {
     },
   ];
 
+  useEffect(() => {
+    // Extract the path from the URL and find the corresponding index in sidebarItems
+    let currentPath = location.pathname.slice(1);
+    if (currentPath === "") currentPath = "/";
+    const selectedIndex = sidebarItems.findIndex(
+      (item) => item.path === currentPath
+    );
+
+    // Update the selected item only if a match is found
+    if (selectedIndex !== -1) {
+      setSelectedItem(selectedIndex);
+    }
+  }, [location.pathname]);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const handleItemClick = (index) => {
+    setSelectedItem(index);
+  };
   return (
     <div
       className={classNames(
-        "text-text-gray h-screen  z-10 flex flex-col bg-white sticky top-0 bottom-0 transition-all",
+        "text-text-gray h-screen  z-10 flex flex-col bg-white sticky top-0",
         {
           "w-auto px-2": !isSidebarOpen,
           "w-[20%]": isSidebarOpen,
@@ -66,7 +80,7 @@ const Sidebar = () => {
     >
       <button
         className={classNames(
-          "text-text-black p-4 pl-0 pr-0 w-100 focus:outline-none h-16 flex logo text-3xl border-b-2 ml-2 mr-2 transition-transform ease-in-out duration-300",
+          "text-text-black p-4 pl-0 pr-0 w-100 focus:outline-none h-16 flex logo text-3xl border-b-2 ml-2 mr-2",
           {
             flex: isSidebarOpen,
             "": !isSidebarOpen,
@@ -102,7 +116,7 @@ const Sidebar = () => {
                   {/* <div className="flex text-lg items-center text-icon-gray ml-4"> */}
                   <div
                     className={classNames(
-                      "flex text-lg items-center text-icon-gray  transition-all ease-in-out duration-100",
+                      "flex text-lg items-center text-icon-gray",
                       {
                         "text-primary": selectedItem === index,
                       }
@@ -124,7 +138,6 @@ const Sidebar = () => {
         </nav>
       ) : (
         //  Sidebar is Closed
-        // <nav className="mt-4 mx-auto transition-all ease-in-out duration-300">
         <nav className="mt-4 mx-auto">
           <ul>
             {sidebarItems.map((item, index) => (
