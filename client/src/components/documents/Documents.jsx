@@ -1,7 +1,24 @@
-import DocumentCard from "./Card";
+import DocumentCard from "./DocumentCard";
 import Navbar from "../UI/navbar";
+import "./Documents.css";
+
 const Documents = () => {
   const data = [
+    {
+      title: "PAN CARD",
+      link: "https://uidai.gov.in/",
+      image: "/images/nyaaydoot.png",
+    },
+    {
+      title: "PAN CARD",
+      link: "https://uidai.gov.in/",
+      image: "/images/nyaaydoot.png",
+    },
+    {
+      title: "PAN CARD",
+      link: "https://uidai.gov.in/",
+      image: "/images/nyaaydoot.png",
+    },
     {
       title: "PAN CARD",
       link: "https://uidai.gov.in/",
@@ -51,7 +68,7 @@ const Documents = () => {
   return (
     <div className="w-full">
       <Navbar />
-      <div className="p-10 overflow-y-scroll h-screen justify-center flex-col gap-6 flex-wrap grid grid-cols-3 scrollbar-hide">
+      <div className="p-10 justify-center flex-col gap-6 flex-wrap grid grid-cols-3 z-5 ">
         {data.map((item, index) => (
           <DocumentCard
             key={index}

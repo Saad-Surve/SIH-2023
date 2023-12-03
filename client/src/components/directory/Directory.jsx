@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "../UI/navbar";
 import { Icon } from "@iconify/react";
 import LawyerCard from "./lawyerCard";
@@ -7,11 +6,11 @@ import {ScrollShadow} from "@nextui-org/react";
 
 const Directory = () => {
   return (
-    <div className="w-full flex flex-col h-screen overflow-y-auto scrollbar-hide">
+    <div className="w-full z-10 flex flex-col">
       <Navbar />
-      <div className="h-[89%] flex flex-row">
-        <div className="max-w-8/12 flex flex-col p-10 top-0 sticky ">
-          <div className="flex flex-row p-10 m-1 border border-b-3 drop-shadow-sm  rounded-lg bg-blue-200 items-center w-[100%font-extrabold text-base z-10 ">
+      <div className="h-[calc(100vh-4rem-1px)] flex flex-row overflow-y-hidden">
+        <div className="max-w-7/12 flex flex-col p-10">
+          <div className="flex flex-row p-10 m-1 mb-4 border rounded-lg bg-blue-100 items-center font-extrabold text-base">
             <div className="flex flex-row justify-center items-center border rounded-full p-2 border-white bg-white">
               <Icon icon="tabler:phone" color="rgb(0,106,255)" fontSize={25} />
             </div>
@@ -33,14 +32,15 @@ const Directory = () => {
             </div>
             <span className="text-center">Consult Multiple Lawyers</span>
           </div>
-          <div className="p-5 gap-4 z-0 overflow-y-auto h-[70%] scrollbar-hide">
-          <ScrollShadow >
+          <ScrollShadow
+            size={15}
+            className="flex flex-col items-center px-5  gap-4 h-[600px] random overflow-y-scroll"
+          >
             <LawyerCard />
             <LawyerCard />
             <LawyerCard />
             <LawyerCard />
           </ScrollShadow>
-          </div>
         </div>
         <div className="w-5/12 flex justify-center items-center">
             <Consult />
