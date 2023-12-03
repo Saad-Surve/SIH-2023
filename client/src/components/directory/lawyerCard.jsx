@@ -13,7 +13,7 @@ import { Icon } from "@iconify/react";
 
 const lawyerCard = () => {
   return (
-    <Card className="min-w-[600px] h-[300px] shadow-sm p-8">
+    <Card className="min-w-[600px] h-[269px] shadow-sm mb-5 p-8">
       <CardHeader className="flex gap-3 items-start flex-col text-3xl font-bold">
         <span>Adv. Mayuri Deshpande</span>
         <span className="text-blue-500 text-2xl">Available</span>
