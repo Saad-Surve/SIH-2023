@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 const { nextui } = require("@nextui-org/react");
 const daisyui = require("daisyui");
+const hide = require("tailwind-scrollbar-hide");
 
 export default {
   content: [
@@ -21,5 +22,5 @@ export default {
       },
     },
   },
-  plugins: [daisyui, nextui()],
+  plugins: [hide, daisyui, nextui()],
 };
