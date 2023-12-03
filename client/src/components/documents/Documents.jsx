@@ -67,9 +67,9 @@ const Documents = () => {
     },
   ];
   return (
-    <div className="w-full scrollbar-hide">
+    <div className="w-full h-screen overflow-hidden">
       <Navbar />
-      <div className="p-10 h-min justify-center flex-col gap-6 flex-wrap grid grid-cols-3 scrollbar-hide">
+      <div className="p-10 overflow-y-scroll  h-screen justify-center flex-col gap-6 flex-wrap grid grid-cols-3 scrollbar-hide">
         {data.map((item, index) => (
           <Card
             key={index}

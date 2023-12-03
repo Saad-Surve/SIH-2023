@@ -56,7 +56,7 @@ const RegisterLawyer = () => {
                             <li>Explore user benefits</li>
                         </ul>
                         <div className='bg-[#C3DDFF]  rounded-xl flex items-center p-3'>
-                            <Link className='font-semibold text-xl flex gap-3 w-full px-3' href='/registerLawyer'>
+                            <Link className='font-semibold text-xl flex gap-3 w-full px-3' href='/registerUser'>
                                 <span>Register as a User </span>
                                 <Icon className="w-12 h-12 text-[#006AFF]" icon="teenyicons:arrow-right-solid" />
                             </Link>
