@@ -33,7 +33,7 @@ const requests = [
 
 const PendingRequests = () => {
   return (
-    <div className="w-2/5 h-max rounded-3xl bg-white m-4">
+    <div className="h-[500px]  rounded-3xl bg-white m-12 mr-4 mt-4">
       <h1 className="border-b-2 border-b-grey-50 py-5 pl-8 font-bold text-xl mt-2">
         Pending Requests
       </h1>
@@ -43,8 +43,8 @@ const PendingRequests = () => {
           className={classNames(
             "flex border-b-2 border-b-grey-50 items-center pl-6",
             {
-              "bg-blue-50": index % 2 == 1,
-              "rounded-b-3xl": index === requests.length - 1,
+              "bg-blue-50 bg-opacity-50": index % 2 == 1,
+              // "rounded-b-3xl": index === requests.length - 1,
             }
           )}
         >
@@ -55,7 +55,7 @@ const PendingRequests = () => {
           </div>
           <Icon
             icon="pepicons-pencil:dots-y"
-            className="ml-auto mr-6 h-6 w-6 hover:border-1 hover:bg-gray-200 hover:rounded-[50%] hover:p-1 hover:h-8 hover:w-8 hover:mr-5 "
+            className="ml-auto mr-6 h-6 w-6 text-icon-gray hover:text-text-gray hover:border-1 hover:bg-gray-200 hover:rounded-[50%] hover:p-1 hover:h-8 hover:w-8 hover:mr-5 "
           />
         </div>
       ))}

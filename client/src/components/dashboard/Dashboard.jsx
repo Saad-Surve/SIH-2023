@@ -3,17 +3,23 @@ import Navbar from "../UI/Navbar";
 import PendingRequests from "./PendingRequests";
 import Posts from "./Posts";
 import PostMaker from "./PostMaker";
+import CustTable from "../UI/CustTable";
 
 const Dashboard = () => {
   return (
-    <div className="w-full"> 
+    <div className="w-full ">
       <Navbar />
-      <div className="flex w-full text-base text-text-black mt-2">
-        <div className="w-3/5 h-full ">
+      <div className="flex w-full h-fit text-base text-text-black mt-2 pl-6">
+        <div className="w-4/6 h-full">
           <PostMaker />
-          <Posts />
+          <div className="w-full pr-4">
+            <Posts />
+          </div>
         </div>
-        <PendingRequests />
+
+        <div className="w-2/5 px-8 ">
+          <PendingRequests />
+        </div>
       </div>
     </div>
   );
