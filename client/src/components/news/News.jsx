@@ -3,6 +3,9 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import NewsCard from "./NewsCard";
 import def from '../../assets/default_thumbnail.jpg';
+import {TwitterTimelineEmbed} from 'react-twitter-embed'
+import {ScrollShadow} from "@nextui-org/react";
+import './News.css'
 
 
 const dummydata=[
@@ -339,20 +342,33 @@ const News = () => {
   const data = useLoaderData()
   console.log(data.value)
   return (
-    <div className="flex flex-col ">
-      <h1 className="pt-4 pl-4 font-bold"> Trending Legal news in India </h1>
-      <div className="flex flex-col p-4 gap-6 w-3/4">
-        {
-          data.value.sort((a,b)=>{
-            return new Date(b.datePublished)-new Date(a.datePublished)
-          }).map((article)=>{
-            return <NewsCard headline={article.name} description={article.description} date={article.datePublished} thumbnail={article?.image?.thumbnail?.contentUrl||def} url={article.url} />
-          })
-        }
+    <div className="flex">
+      <div className="flex flex-col  px-6 gap-6 w-3/4">
+        <h1 className="pt-4 pl-4 text-4xl font-bold"> Trending Legal news in India </h1>
+            <ScrollShadow className="flex flex-col scrollbar px-4 gap-6 h-[calc(100vh-5rem)] overflow-y-auto" size={20}>
+                {
+                    data.value.sort((a,b)=>{
+                        return new Date(b.datePublished)-new Date(a.datePublished)
+                    }).map((article)=>{
+                        return <NewsCard headline={article.name} description={article.description} date={article.datePublished} thumbnail={article?.image?.thumbnail?.contentUrl||def} url={article.url} />
+                    })
+                }
+            </ScrollShadow>
       </div>
-      <div className="w-1/4">
-          Twitter
-      </div>
+      <div className="w-1/4 h-screen scrollbar p-6 overflow-y-auto">
+        <div className="centerContent overflow-y-auto">
+            <div className="selfCenter spaceBetween">
+                <TwitterTimelineEmbed
+                    onLoad={function noRefCheck(){}}
+                    options={{
+                        width: 400,     
+                    }}
+                    screenName="MLJ_GoI"
+                    sourceType="profile"
+                />
+            </div>
+            </div>      
+        </div>
     </div>
   );
 };
@@ -364,7 +380,7 @@ export async function loader(){
     method: "GET",
     url: "https://api.bing.microsoft.com/v7.0/news/search",
     params: {
-      q:"india legal law",
+      q:"india legal law indian",
       freshness: "Day",
       textFormat: "Raw",
       safeSearch: "Off",
