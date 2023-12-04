@@ -1,8 +1,8 @@
 import Navbar from "../UI/navbar";
 import { Icon } from "@iconify/react";
-import LawyerCard from "./lawyerCard";
-import Consult from "./consult";
-import {ScrollShadow} from "@nextui-org/react";
+import LawyerCard from "./LawyerCard";
+import Consult from "./Consult";
+import { ScrollShadow } from "@nextui-org/react";
 
 const Directory = () => {
   return (
@@ -45,7 +45,7 @@ const Directory = () => {
           </ScrollShadow>
         </div>
         <div className="w-5/12 flex justify-center items-center">
-            <Consult />
+          <Consult />
         </div>
       </div>
     </div>

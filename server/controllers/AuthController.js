@@ -7,15 +7,35 @@ const Admin = require('../models/Admin.model')
 const {generateToken} = require('../utils/utils')
 const Requests = require('../models/Requests.model')
 
+const checkUsernameUser = asyncHandler(async(req,res)=>{
+    const {username} = req.query
+    const usernameExists = await User.findOne({username:username})
+    if(usernameExists){
+        res.status(200).json({message:'Username already exists',usernameExists:true})
+    }else{
+        res.status(200).json({message:'Username available',usernameExists:false})
+    }
+})  
+
+const checkUsernameLawyer = asyncHandler(async(req,res)=>{
+    const {username} = req.query
+    const usernameExists = await Lawyer.findOne({username:username})
+    if(usernameExists){
+        res.status(200).json({message:'Username already exists',usernameExists:true})
+    }else{
+        res.status(200).json({message:'Username available',usernameExists:false})
+    }
+})
+
 const registerUser = asyncHandler(async(req,res)=>{
-    console.log(req.body)
     const { emailID, username , password } = req.body;
     if(!emailID || !username || !password){
         res.status(400).json({message:"Please add all fields"})
     }
     const userExists = await User.findOne({emailID})
     if(userExists){
-        res.status(400).json({message:'User already exists'})
+        res.status(200).json({message:'User already exists',userExists:true})
+        return
     }
 
     const salt = await bcrypt.genSalt()
@@ -32,7 +52,8 @@ const registerUser = asyncHandler(async(req,res)=>{
             _id: user.id,
             username: user.username,
             emailID:user.emailID,
-            token: generateToken(user._id)
+            token: generateToken(user._id),
+            success:true
         })
     }else{
         res.status(400).json({message:"Invalid user data"})
@@ -44,7 +65,8 @@ const registerLawyer = asyncHandler(async(req,res)=>{
     const { emailID, username , password, name, location,expertise, experience,allowSharingOfData } = req.body;
     const lawyerExists = await Lawyer.findOne({emailID})
     if(lawyerExists){
-        res.status(400).json({message:'User already exists'})
+        res.status(200).json({message:'Lawyer already exists',userExists:true})
+        return
     }
 
     const salt = await bcrypt.genSalt()
@@ -67,7 +89,8 @@ const registerLawyer = asyncHandler(async(req,res)=>{
             _id: user.id,
             username: user.username,
             emailID:user.emailID,
-            token: generateToken(user._id)
+            token: generateToken(user._id),
+            success:true
         })
     }else{
         res.status(400).json({message:"Invalid user data"})
@@ -76,28 +99,29 @@ const registerLawyer = asyncHandler(async(req,res)=>{
 })
 
 const loginUser = asyncHandler(async (req, res) => {
-    const { emailID, password } = req.body
+    const { username, password } = req.body
     // Check for user email
-    const user = await User.findOne({ emailID })
+    const user = await User.findOne({ username })
     if (user && (await bcrypt.compare(password, user.password))) {
       res.json({
         _id: user.id,
         name: user.username,
         email: user.emailID,
         token: generateToken(user._id),
+        success:true
       })
     } else {
-      res.status(400).json('Invalid credentials')
+      res.status(200).json({message:'Invalid credentials',success:false})
     }
 })
 
 
 
 const loginLawyer = asyncHandler(async (req, res) => {
-    const { emailID, password } = req.body
+    const { username, password } = req.body
   
     // Check for user email
-    const user = await Lawyer.findOne({ emailID })
+    const user = await Lawyer.findOne({ username })
   
     if (user && (await bcrypt.compare(password, user.password))) {
       res.json({
@@ -105,9 +129,10 @@ const loginLawyer = asyncHandler(async (req, res) => {
         name: user.username,
         email: user.emailID,
         token: generateToken(user._id),
+        success:true
       })
     } else {
-      res.status(400).json({message:'Invalid credentials'})
+      res.status(200).json({message:'Invalid credentials',success:false})
     }
 })
 const loginAdmin = asyncHandler(async (req, res) => {
@@ -165,5 +190,7 @@ module.exports = {
     registerLawyer,
     loginLawyer,
     registerAdmin,
-    loginAdmin
+    loginAdmin,
+    checkUsernameUser,
+    checkUsernameLawyer
 }

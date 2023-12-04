@@ -1,15 +1,13 @@
 import { Icon } from "@iconify/react";
 import Avatar from "react-avatar";
 import {
-  Modal,
-  ModalContent,
-  ModalBody,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
   Button,
-  useDisclosure,
 } from "@nextui-org/react";
 
 const PostTable = ({ rows }) => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <table className="w-full ">
       <thead>
@@ -45,52 +43,29 @@ const PostTable = ({ rows }) => {
                 <span className="text-xs text-icon-gray">6:30 PM</span>
               </div>
             </td>
-            <td
-              className="ml-auto font-light flex items-center"
-              onClick={onOpen}
-            >
-              <Icon
-                icon="pepicons-pencil:dots-y"
-                className="mr-6 h-6 w-6 text-icon-gray hover:text-text-gray hover:border-1 hover:bg-gray-200 hover:rounded-[50%] hover:p-1 hover:h-8 hover:w-8 hover:mr-5"
-              />
+            <td className="ml-auto font-light flex items-center">
+              <Popover placement="left-start" showArrow={true}>
+                <PopoverTrigger>
+                  <Icon
+                    icon="pepicons-pencil:dots-y"
+                    className="mr-6 h-6 w-6 text-icon-gray hover:text-text-gray hover:border-1 hover:bg-gray-200 hover:rounded-[50%] hover:p-1 hover:h-8 hover:w-8 hover:mr-5"
+                  />
+                </PopoverTrigger>
+                <PopoverContent>
+                  <Button color="primary" variant="light" className=" px-4">
+                    <Icon icon="ri:send-plane-fill" />
+                    Share
+                  </Button>
+                  <Button color="danger" variant="light" className="px-4">
+                    <Icon icon="mdi:bin" />
+                    Delete
+                  </Button>
+                </PopoverContent>
+              </Popover>
             </td>
           </tr>
         ))}
       </tbody>
-
-      <Modal
-        backdrop="transparent"
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        className="w-max"
-      >
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalBody className="px-4 mr-4">
-                <Button
-                  color="primary"
-                  variant="light"
-                  onPress={onClose}
-                  className=" px-4"
-                >
-                  <Icon icon="ri:send-plane-fill" />
-                  Share
-                </Button>
-                <Button
-                  color="danger"
-                  variant="light"
-                  onPress={onClose}
-                  className="px-4"
-                >
-                  <Icon icon="mdi:bin" />
-                  Delete
-                </Button>
-              </ModalBody>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
     </table>
   );
 };
