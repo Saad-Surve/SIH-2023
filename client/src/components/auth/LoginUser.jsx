@@ -15,8 +15,8 @@ const LoginUser = () => {
           <div className='w-[35%] gap-6 items-center justify-center h-full flex flex-col' >
               <span>Login as a User </span>
               <form className=' w-[80%] flex flex-col justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl'>
-                <Input type="text" label="Username" placeholder="Enter a username" />
-                <Input type="password" label="Password" placeholder="Enter your password" />
+                <Input type="text" label="Username" placeholder="Enter a username" className='outline-none' />
+                <Input type="password" label="Password" placeholder="Enter your password" className='outline-none'/>
                 <Button color="primary" className='w-auto'>
                   Login
                 </Button>

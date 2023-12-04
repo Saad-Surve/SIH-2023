@@ -67,7 +67,7 @@ const consult = () => {
             ))}
           </Select>
         </div><div className="w-[90%] flex rounded-xl bg-white px-2 py-1">
-        <Input type="text" variant="underlined" label="Description" placeholder="Type here..." className="border-white focus:outline-none" />
+        <Input type="text" variant="underlined" label="Description" placeholder="Type here..." className="border-0" />
         </div>
         <Button color="primary" className="w-[50%]">Submit</Button>
         </form>
