@@ -45,25 +45,25 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path:"registerUser",
-        element:<RegisterUser />
+        path: "registerUser",
+        element: <RegisterUser />,
       },
       {
-        path:"registerLawyer",
-        element:<RegisterLawyer />
+        path: "registerLawyer",
+        element: <RegisterLawyer />,
       },
       {
-        path:"lawyerDashboard",
-        element:<LawyerDashboard />
+        path: "lawyerDashboard",
+        element: <LawyerDashboard />,
       },
       {
-        path:"loginUser",
-        element:<LoginUser />
+        path: "loginUser",
+        element: <LoginUser />,
       },
       {
-        path:"loginLawyer",
-        element:<LoginLawyer />
-      }
+        path: "loginLawyer",
+        element: <LoginLawyer />,
+      },
     ],
   },
 ]);

@@ -36,6 +36,11 @@ const Sidebar = () => {
       path: "community",
     },
     {
+      name: "Legal Resources",
+      icon: <Icon className="w-8 h-8" icon="system-uicons:message-writing" />,
+      path: "resources",
+    },
+    {
       name: "Lawyer Dashboard",
       icon: (
         <Icon
