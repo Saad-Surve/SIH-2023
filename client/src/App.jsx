@@ -11,6 +11,8 @@ import Dashboard from "./components/dashboard/Dashboard";
 import RegisterUser from "./components/auth/RegisterUser";
 import RegisterLawyer from "./components/auth/RegisterLawyer";
 import LawyerDashboard from "./components/lawyerDashboard/LawyerDashboard";
+import LoginUser from "./components/auth/LoginUser";
+import LoginLawyer from "./components/auth/LoginLawyer";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
       {
         path:"lawyerDashboard",
         element:<LawyerDashboard />
+      },
+      {
+        path:"loginUser",
+        element:<LoginUser />
+      },
+      {
+        path:"loginLawyer",
+        element:<LoginLawyer />
       }
     ],
   },
