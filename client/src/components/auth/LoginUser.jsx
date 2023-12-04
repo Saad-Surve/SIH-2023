@@ -20,7 +20,6 @@ const LoginUser = () => {
 
   const handleChange = (e)=>{
     setUser({...user,[e.target.name]:e.target.value})
-    console.log(user)
   }
 
   const handleSubmit = async(e) =>{
@@ -37,7 +36,6 @@ const LoginUser = () => {
     let response = await axios.post(`${ServerUrl}/api/auth/loginUser`,user).catch(err=>{
       console.log(err)
     })
-    console.log(response.data)
     if(response.data.success){
       //set the token of the response.data to a cookie 
       document.cookie = `token=${response.data.token}; path=/; max-age=${60*60*24*30}`
