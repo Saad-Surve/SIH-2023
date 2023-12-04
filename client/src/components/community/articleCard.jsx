@@ -1,8 +1,7 @@
-import React from "react";
-import { Image, Divider } from "@nextui-org/react";
+import { Image } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 
-const articleCard = () => {
+const ArticleCard = () => {
   return (
     <div className="flex p-4 gap-4 items-center border-b-2">
       <div>
@@ -38,4 +37,4 @@ const articleCard = () => {
   );
 };
 
-export default articleCard;
+export default ArticleCard;

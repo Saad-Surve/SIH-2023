@@ -1,4 +1,3 @@
-import React from "react";
 import registerUser from "../../assets/registerUser.jpg";
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
