@@ -1,5 +1,4 @@
-// import React from 'react'
-import ArticleCard from "./articleCard";
+import ArticleCard from "./ArticleCard";
 const articles = () => {
   const articles = [
     {
