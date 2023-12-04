@@ -22,6 +22,9 @@ export default {
         "light-blue": "#E5F0FF",
       },
     },
+    fontFamily:{
+      'saira':['Saira', 'sans-serif']
+    }
   },
   plugins: [hide, daisyui, nextui(), require("flowbite/plugin")],
 };

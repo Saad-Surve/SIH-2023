@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
 import Home from "./components/home/Home";
 import Documents from "./components/documents/Documents";
-import News from "./components/news/News";
+import News, { loader as NewsLoader } from "./components/news/News";
 import Directory from "./components/directory/Directory";
 import Community from "./components/community/Community";
 import Resources from "./components/resources/Resources";
@@ -27,6 +27,7 @@ const router = createBrowserRouter([
       {
         path: "news",
         element: <News />,
+        loader: NewsLoader
       },
       {
         path: "directory",
