@@ -69,7 +69,7 @@ const Consult = () => {
         </div>
         <div className="w-[90%] flex rounded-xl bg-white px-2 py-1">
           <Input
-            type="text"
+            type="input"
             variant="underlined"
             label="Description"
             placeholder="Type here..."
