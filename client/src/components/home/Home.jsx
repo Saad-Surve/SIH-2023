@@ -1,21 +1,20 @@
 import React from "react";
-import home from '../../assets/home_bg.png'
+import home1 from '../../assets/home_bg.png'
+import home2 from '../../assets/home_bg2.avif'
 import { Button, Link } from "@nextui-org/react";
-import FrontPage from "./FrontPage";
+import Page1 from "./Page1";
+import Page2 from "./Page2";
+import Header from "./Header";
 
 const Home = () => {
   return (
     <section className="w-full flex flex-col relative">
-        <div className='bg-cover bg-center w-full h-full absolute opacity-90 bg-gradient-to-t	brightness-[25%] saturate-150' style={{backgroundImage:`url(${home})`}}></div>
-        <div className="flex w-full p-5 font-bold text-2xl justify-end gap-6">
-          <Link href="/registerUser" className="bg-primary text-white py-1 px-12 rounded-lg">
-            Register
-          </Link>
-          <Link href="/loginUser" className="bg-white text-primary py-1 px-12 rounded-lg">
-            Login
-          </Link>
-        </div>
-        <FrontPage />
+          <div className='bg-cover bg-center w-full h-screen absolute opacity-90 bg-gradient-to-t brightness-[25%] saturate-150' style={{backgroundImage:`url(${home1})`}}></div>
+          <Header/>
+          <Page1 />
+          <div className='bg-cover bg-center top-[100vh]  w-full h-screen absolute opacity-90 bg-gradient-to-t brightness-[25%] saturate-150' style={{backgroundImage:`url(${home2})`}}></div>
+
+          <Page2 />
     </section>
   )
 };
