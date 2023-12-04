@@ -93,14 +93,7 @@ const LoginUser = () => {
               className="w-auto"
             >
               {isLoading ? "Logging" : "Login"}
-            </Button>
-            <CustModal
-              isOpen={isOpen}
-              onOpenChange={onOpenChange}
-              title="Error Message"
-              content={contentModal}
-            />
-
+            </Button>          
             <span className="text-sm">
               Don't have an account?{" "}
               <Link className="text-sm" href="/registerUser">

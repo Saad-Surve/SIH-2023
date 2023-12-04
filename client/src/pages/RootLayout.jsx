@@ -12,9 +12,9 @@ const RootLayout = () => {
       {
         navigation.state === 'loading' ?
           <div className='flex flex-col items-center h-screen bg-gray-200 w-full justify-center gap-3 sm:text-base'>
-            <span className='text-2xl'>Have patience, we are loading your data...</span> 
-              <CircularProgress size='lg' classNames={{
-                svg:"w-36 h-36"
+            <span className='text-3xl'>Have patience, we are loading your data...</span> 
+              <CircularProgress size='md' classNames={{
+                svg:"w-24 h-24"
               
               }} />
           </div>
