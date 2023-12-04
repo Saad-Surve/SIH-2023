@@ -1,9 +1,9 @@
-// import React from "react";
+import React from "react";
 import { Image, Divider } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 import CustModal from "../UI/Modal.jsx";
 
-const articleCard = ({ title, author, content, src, date }) => {
+const ArticleCard = ({ title, author, content, src, date }) => {
   return (
     <div className="flex p-4 gap-4 items-center border-b-2">
       <div>
@@ -43,4 +43,4 @@ const articleCard = ({ title, author, content, src, date }) => {
   );
 };
 
-export default articleCard;
+export default ArticleCard;

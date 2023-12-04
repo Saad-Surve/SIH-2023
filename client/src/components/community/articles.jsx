@@ -1,5 +1,5 @@
 import ArticleCard from "./ArticleCard";
-const articles = () => {
+const Articles = () => {
   const articles = [
     {
       id: 1,
@@ -13,6 +13,24 @@ const articles = () => {
     {
       id: 2,
       title: "Headline 2",
+      author: "John Doe",
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, tenetur facere deserunt minima ratione itaque vitae beatae laborum qui eligendi iure atque ipsum obcaecati distinctio officiis architecto impedit labore dicta?",
+      src: "/images/nyaaydoot.png",
+      date: "19th Semptember, 2023",
+    },
+    {
+      id: 3,
+      title: "Headline 3",
+      author: "John Doe",
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, tenetur facere deserunt minima ratione itaque vitae beatae laborum qui eligendi iure atque ipsum obcaecati distinctio officiis architecto impedit labore dicta?",
+      src: "/images/nyaaydoot.png",
+      date: "19th Semptember, 2023",
+    },
+    {
+      id: 4,
+      title: "Headline 4",
       author: "John Doe",
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, tenetur facere deserunt minima ratione itaque vitae beatae laborum qui eligendi iure atque ipsum obcaecati distinctio officiis architecto impedit labore dicta?",
@@ -41,4 +59,4 @@ const articles = () => {
   );
 };
 
-export default articles;
+export default Articles;

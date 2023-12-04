@@ -1,12 +1,13 @@
-import React from "react";
 import Updates from "./updates";
-import Article from "./articles";
+import Article from "./Articles";
 
 const Community = () => {
-  return <div className="w-full h-screen scrollbar-hide">
-    <Updates />
-    <Article />
-  </div>;
+  return (
+    <div className="w-full h-screen scrollbar-hide">
+      <Updates />
+      <Article />
+    </div>
+  );
 };
 
 export default Community;

@@ -1,4 +1,4 @@
-// import React from "react";
+import React from "react";
 import {
   Modal,
   ModalContent,
@@ -9,14 +9,14 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 
-const CustModal = ({title, content}) => {
+const CustModal = ({ title, content }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [scrollBehavior, setScrollBehavior] = React.useState("inside");
 
   return (
     <div className="flex flex-col gap-2">
       <Button onPress={onOpen} style={{ width: "21%" }}>
-       read full article
+        read full article
       </Button>
       <Modal
         isOpen={isOpen}
@@ -26,9 +26,7 @@ const CustModal = ({title, content}) => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">
-                {title}
-              </ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
               <ModalBody>{content}</ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
@@ -41,7 +39,6 @@ const CustModal = ({title, content}) => {
       </Modal>
     </div>
   );
-}
-
+};
 
 export default CustModal;
