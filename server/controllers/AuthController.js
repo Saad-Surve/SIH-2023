@@ -8,6 +8,7 @@ const {generateToken} = require('../utils/utils')
 const Requests = require('../models/Requests.model')
 
 const registerUser = asyncHandler(async(req,res)=>{
+    console.log(req.body)
     const { emailID, username , password } = req.body;
     if(!emailID || !username || !password){
         res.status(400).json({message:"Please add all fields"})

@@ -1,35 +1,14 @@
-import React, { useRef, useState } from 'react'
+import React from 'react'
 import registerUser from '../../assets/registerUser.jpg'
 import {Input} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import {Link} from "@nextui-org/react";
 import { Icon } from '@iconify/react';
-import axios from 'axios';
-import ServerUrl from '../../constants';
 
 
-const RegisterUser = () => {
-  const [user, setUser] = useState({
-    username:'',
-    emailID:'',
-    password:'',
-  })
-  const form = useRef(null)
-  const handleSubmit = async(e) =>{
+const LoginLawyer = () => {
+  const handleSubmit = (e) =>{
     e.preventDefault()
-    const formdata = new FormData(form.current)
-    formdata.append('username',user.username) 
-    formdata.append('emailID',user.emailID) 
-    formdata.append('password',user.password) 
-    console.log(formdata.entries)
-    // let response = await axios.post(`${ServerUrl}/api/auth/registerUser`,
-    // )
-    // console.log(response.data)
-  }
-
-  const handleChange = (e)=>{
-    setUser({...user,[e.target.name]:e.target.value})
-    console.log(user)
   }
   return (
     <section className='w-full relative'>
@@ -37,26 +16,25 @@ const RegisterUser = () => {
 
         <div className='flex h-full'>
           <div className='w-[35%] gap-6 items-center justify-center h-full flex flex-col' >
-              <span>Register as a User </span>
-              <form ref={form} onSubmit={handleSubmit} className=' w-[80%] flex flex-col justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl'>
-                <Input type="text" label="Username" name='username' onChange={handleChange}  placeholder="Enter a username" />
-                <Input type="email" label="Email" name='emailID' onChange={handleChange} placeholder="Enter your email" />
-                <Input type="password" label="Password" name='password' onChange={handleChange} placeholder="Enter your password" />
-                <Button  type='submit' color="primary" className='w-auto'>
-                  Register
+              <span>Login as a Lawyer </span>
+              <form onSubmit={handleSubmit} className='w-[80%] flex flex-col justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl'>
+                <Input type="text" label="Username" placeholder="Enter a username" />
+                <Input type="password" label="Password" placeholder="Enter your password" />
+                <Button color="primary" type='submit' className='w-auto'>
+                  Login
                 </Button>
                 <span className='text-sm'>
-                  Already have an account? <Link className='text-sm' href='/loginUser'>Login</Link>
+                  Don't have an account? <Link className='text-sm' href='/registerLawyer'>Register</Link>
                 </span>
               </form>
           </div>
           <div className='w-[65%] h-full flex flex-col gap-6  justify-center'>
             <div className='text-xl flex flex-col gap-2 font-medium'>
-              <h1 className='text-2xl'>Get full access of our website by signing up as a user!</h1>
+              <h1 className='text-2xl'>Want to contribute as a lawyer?</h1>
               <ul className='list-disc list-inside font-light'>
-                <li>Consult a lawyer</li>
-                <li>Talk with a lawyer near you</li>
-                <li>Explore user benefits</li>
+                <li>Take up cases in your area</li>
+                <li>Update people by posting articles</li>
+                <li>Provide consultation in your expertise</li>
               </ul>
             </div>
             <div className='bg-[#A8A8BD] w-[95%] p-6 text-base rounded-xl font-medium flex items-center justify-around '>
@@ -83,16 +61,16 @@ const RegisterUser = () => {
 
             </div>
             <div className='text-xl flex flex-col gap-2 font-medium'>
-              <h1 className='text-2xl'>Want to contribute as a lawyer?</h1>
+              <h1 className='text-2xl'>Get full access of our website as a user!</h1>
               <ul className='list-disc list-inside font-light'>
-                <li>Take up cases in your area</li>
-                <li>Update people by posting articles</li>
-                <li>Provide consultation in your expertise</li>
+                <li>Connect with a lawyer</li>
+                <li>Talk with a lawyer near you</li>
+                <li>Explore user benefits!</li>
               </ul>
             </div>
             <div className='bg-[#C3DDFF] w-3/4 rounded-xl flex items-center p-3'>
-              <Link className='font-semibold text-xl flex gap-3 w-full pl-6' href='/registerLawyer'>
-                  <span>Register as a Lawyer </span>
+              <Link className='font-semibold text-xl flex gap-3 w-full pl-6' href='/loginUser'>
+                  <span>Login as a User </span>
                   <Icon className="w-12 h-12 text-[#006AFF]" icon="teenyicons:arrow-right-solid" />
 
               </Link>
@@ -103,4 +81,4 @@ const RegisterUser = () => {
   )
 }
 
-export default RegisterUser
+export default LoginLawyer
