@@ -1,12 +1,61 @@
-import React from 'react'
+import React, { useState } from 'react'
 import registerUser from '../../assets/registerUser.jpg'
-import {Input} from "@nextui-org/react";
+import {Input, useDisclosure} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import {Link} from "@nextui-org/react";
 import { Icon } from '@iconify/react';
+import CustModal from '../UI/Modal';
+import axios from 'axios';
+import ServerUrl from '../../constants';
 
 
 const LoginUser = () => {
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const [user, setUser] = useState({
+    username:'',
+    password:'',
+  })
+  const [contentModal,setContentModal] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleChange = (e)=>{
+    setUser({...user,[e.target.name]:e.target.value})
+    console.log(user)
+  }
+
+  const handleSubmit = async(e) =>{
+    e.preventDefault()
+    setIsLoading(true)
+
+    if(!user.username||!user.password){
+      onOpen()
+      setContentModal('Please fill all the fields')
+      setIsLoading(false)
+      return
+    }
+
+    let response = await axios.post(`${ServerUrl}/api/auth/loginUser`,user).catch(err=>{
+      console.log(err)
+    })
+    console.log(response.data)
+    if(response.data.success){
+      //set the token of the response.data to a cookie 
+      document.cookie = `token=${response.data.token}; path=/; max-age=${60*60*24*30}`
+      onOpen()
+      setContentModal('Login Successful')
+      setIsLoading(false)
+    }
+    else{
+      onOpen()
+      setContentModal(response.data.message)
+    
+    }
+    setIsLoading(false)
+
+  }
+
+
+
   return (
     <section className='w-full relative'>
         <div className='bg-cover bg-center w-full h-full absolute  opacity-10' style={{backgroundImage:`url(${registerUser})`}}></div>
@@ -14,12 +63,14 @@ const LoginUser = () => {
         <div className='flex h-full'>
           <div className='w-[35%] gap-6 items-center justify-center h-full flex flex-col' >
               <span>Login as a User </span>
-              <form className=' w-[80%] flex flex-col justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl'>
-                <Input type="text" label="Username" placeholder="Enter a username" />
-                <Input type="password" label="Password" placeholder="Enter your password" />
-                <Button color="primary" className='w-auto'>
-                  Login
+              <form onSubmit={handleSubmit} className=' w-[80%] flex flex-col justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl'>
+                <Input type="text" label="Username" name='username' onChange={handleChange} placeholder="Enter a username" />
+                <Input type="password" label="Password" name='password' onChange={handleChange} placeholder="Enter your password" />
+                <Button  type='submit' color="primary" isLoading={isLoading} className='w-auto'>
+                  {isLoading?'Logging':'Login'}
                 </Button>
+                <CustModal isOpen={isOpen} onOpenChange={onOpenChange} title='Error Message' content={contentModal} />
+
                 <span className='text-sm'>
                   Don't have an account? <Link className='text-sm' href='/registerUser'>Register</Link>
                 </span>

@@ -1,35 +1,71 @@
 import React, { useRef, useState } from 'react'
 import registerUser from '../../assets/registerUser.jpg'
-import {Input} from "@nextui-org/react";
-import {Button} from "@nextui-org/react";
-import {Link} from "@nextui-org/react";
+import {Input, useDisclosure,Button,Link} from "@nextui-org/react";
 import { Icon } from '@iconify/react';
 import axios from 'axios';
 import ServerUrl from '../../constants';
+import CustModal from '../UI/Modal';
 
 
 const RegisterUser = () => {
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const [user, setUser] = useState({
     username:'',
     emailID:'',
     password:'',
   })
-  const form = useRef(null)
+  const [usernameExists, setUsernameExists] = useState(false)
+  const [contentModal,setContentModal] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+
   const handleSubmit = async(e) =>{
     e.preventDefault()
-    const formdata = new FormData(form.current)
-    formdata.append('username',user.username) 
-    formdata.append('emailID',user.emailID) 
-    formdata.append('password',user.password) 
-    console.log(formdata.entries)
-    // let response = await axios.post(`${ServerUrl}/api/auth/registerUser`,
-    // )
-    // console.log(response.data)
+    setIsLoading(true)
+
+    if(!user.username||!user.emailID||!user.password){
+      onOpen()
+      setContentModal('Please fill all the fields')
+      setIsLoading(false)
+      return
+    }
+
+    if(usernameExists){
+      return
+    }
+
+    let response = await axios.post(`${ServerUrl}/api/auth/registerUser`,user)
+
+    if(response.data.userExists){
+      onOpen()
+      setContentModal('User already exists')
+      return
+    }
+
+    if(response.data.success){
+      //set the token of the response.data to a cookie 
+      document.cookie = `token=${response.data.token}; path=/; max-age=${60*60*24*30}`
+      //redirect to the dashboard
+      window.location.href='/loginUser'
+
+    }
+
+
+    setIsLoading(false)
+
+  }
+
+  const handleUsernameChange=async(e)=>{
+    setUser({...user,username:e.target.value})
+    let response = await axios.get(`${ServerUrl}/api/auth/checkUsernameUser/?username=${e.target.value}`)
+    if(response.data.usernameExists){
+      setUsernameExists(true)
+    }else{
+      setUsernameExists(false)
+    }
   }
 
   const handleChange = (e)=>{
     setUser({...user,[e.target.name]:e.target.value})
-    console.log(user)
   }
   return (
     <section className='w-full relative'>
@@ -38,13 +74,24 @@ const RegisterUser = () => {
         <div className='flex h-full'>
           <div className='w-[35%] gap-6 items-center justify-center h-full flex flex-col' >
               <span>Register as a User </span>
-              <form ref={form} onSubmit={handleSubmit} className=' w-[80%] flex flex-col justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl'>
-                <Input type="text" label="Username" name='username' onChange={handleChange}  placeholder="Enter a username" />
-                <Input type="email" label="Email" name='emailID' onChange={handleChange} placeholder="Enter your email" />
-                <Input type="password" label="Password" name='password' onChange={handleChange} placeholder="Enter your password" />
-                <Button  type='submit' color="primary" className='w-auto'>
-                  Register
+              <form onSubmit={handleSubmit} className=' w-[80%] flex flex-col justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl'>
+                <Input 
+                  type=""  
+                  color={usernameExists ? "danger" : ""} 
+                  isInvalid={usernameExists} 
+                  errorMessage={usernameExists?"Username already taken":''} 
+                  required 
+                  label="Username"  
+                  name='username' 
+                  onChange={handleUsernameChange}  
+                  placeholder="Enter a username" 
+                />
+                <Input type="" required label="Email" name='emailID' onChange={handleChange} placeholder="Enter your email" />
+                <Input type="password" required label="Password" name='password' onChange={handleChange} placeholder="Enter your password" />
+                <Button  type='submit' color="primary" isLoading={isLoading} className='w-auto'>
+                  {isLoading?'Registering':'Register'}
                 </Button>
+                <CustModal isOpen={isOpen} onOpenChange={onOpenChange} title='Error Message' content={contentModal} />
                 <span className='text-sm'>
                   Already have an account? <Link className='text-sm' href='/loginUser'>Login</Link>
                 </span>

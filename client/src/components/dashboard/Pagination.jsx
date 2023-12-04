@@ -1,6 +1,6 @@
 // import "./.css";
 import { Button } from "@nextui-org/react";
-import classNames from "classNames";
+import classNames from "classnames";
 
 const Pagination = ({
   totalPosts,
