@@ -11,7 +11,7 @@ const articleCard = () => {
           className="object-cover"
           width={180}
           height={190}
-          shadow="md"
+          shadow="sm"
           src="/images/nyaaydoot.png"
         />
       </div>
