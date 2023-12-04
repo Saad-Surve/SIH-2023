@@ -3,14 +3,15 @@ const DocumentCard = (props) => {
   return (
     <Card
       isFooterBlurred
-      className="border-none z-5 rounded-[calc(0.75rem+0.25rem)] items-center"
+      radius="lg"
+      className="border-none z-5 items-center"
     >
       <Image
-        alt=""
-        className="object-cover z-5"
-        height={200}
         src={props.image}
-        width={200}
+        alt="logo"
+        width={300}
+        height={300}
+        className=" object-cover -z-0"
       />
       <CardFooter className="flex justify-between items-center before:bg-white/10 border-white/20 border-1 overflow-hidden py-2 absolute before:rounded-xl rounded-xl bottom-1 w-[calc(100%_-_8px)] shadow-small z-5">
         <p className="text-base text-text-gray font-bold">{props.title}</p>
