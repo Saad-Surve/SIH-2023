@@ -1,5 +1,7 @@
 import React from "react";
 import { Icon } from "@iconify/react";
+import { Input } from "@nextui-org/react";
+import { Textarea } from "@nextui-org/react";
 import {
   Modal,
   ModalContent,
@@ -31,14 +33,38 @@ const AddPost = () => {
                 Add new Article
               </ModalHeader>
               <ModalBody>
-                <p>PostForm</p>
+                <Input
+                  type="text"
+                  className="w-full m-auto"
+                  classNames={{
+                    input: ["p-0", "focus:ring-0", "border-none"],
+                  }}
+                  label="Headline"
+                  placeholder="Enter the Headline"
+                />
+                <Input
+                  type="file"
+                  className="w-full m-auto"
+                  classNames={{
+                    input: ["p-0", "ml-16", "focus:ring-0", "border-none"],
+                    inputWrapper: ["pt-9"],
+                  }}
+                  label="Thumbnail"
+                  placeholder="Add thumbnail"
+                />
+                <Textarea
+                  type="text"
+                  className="w-full m-auto"
+                  classNames={{
+                    input: ["p-0", "focus:ring-0", "border-none"],
+                  }}
+                  label="Content"
+                  placeholder="Add Article Content"
+                />
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
                 <Button color="primary" onPress={onClose}>
-                  Action
+                  Post
                 </Button>
               </ModalFooter>
             </>

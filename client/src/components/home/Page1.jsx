@@ -1,6 +1,6 @@
-import React from 'react'
-import TypewriterComponent  from 'typewriter-effect'
-import logo from '../../assets/logo.png'
+import React from "react";
+import TypewriterComponent from "typewriter-effect";
+import logo from "../../assets/logowhite.png";
 
 const Page1 = () => {
   return (
@@ -28,7 +28,7 @@ const Page1 = () => {
             />
         </div>
     </div>
-  )
-}
+  );
+};
 
-export default Page1
+export default Page1;

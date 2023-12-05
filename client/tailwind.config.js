@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 const { nextui } = require("@nextui-org/react");
-const daisyui = require("daisyui");
 const hide = require("tailwind-scrollbar-hide");
 
 export default {
@@ -22,9 +21,9 @@ export default {
         "light-blue": "#E5F0FF",
       },
     },
-    fontFamily:{
-      'saira':['Saira', 'sans-serif']
-    }
+    fontFamily: {
+      saira: ["Saira", "sans-serif"],
+    },
   },
-  plugins: [hide, daisyui, nextui(), require("flowbite/plugin")],
+  plugins: [hide, nextui(), require("flowbite/plugin")],
 };

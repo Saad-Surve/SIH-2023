@@ -95,8 +95,8 @@ const Sidebar = () => {
       >
         {isSidebarOpen ? (
           <div className="flex w-full justify-between items-center">
-            <div className="flex items-center mr-4 gap-1">
-              <h1>Nyaaydoot</h1>
+            <div className="flex items-center mr-4 gap-1 font-saira">
+              <h1>Nyaydoot</h1>
               <Icon icon="octicon:law-24" className="ml-1 w-8 h-8" />
             </div>
             <Icon icon="solar:arrow-left-linear" className="ml-2 w-8 h-8" />
