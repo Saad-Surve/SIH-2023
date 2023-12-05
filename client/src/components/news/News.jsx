@@ -6,6 +6,7 @@ import def from '../../assets/default_thumbnail.jpg';
 import {TwitterTimelineEmbed} from 'react-twitter-embed'
 import {ScrollShadow} from "@nextui-org/react";
 import './News.css'
+import home1 from '../../assets/bg1.jpg'
 
 
 const dummydata=[
@@ -342,10 +343,11 @@ const News = () => {
   const data = useLoaderData()
   console.log(data.value)
   return (
-    <div className="flex">
+    <div className="flex relative" >
+    <div className='bg-cover bg-center w-full h-screen absolute opacity-75 bg-gradient-to-b brightness-[25%] saturate-150' style={{backgroundImage:`url(${home1})`}}></div>
       <div className="flex flex-col  px-6 gap-6 w-3/4">
-        <h1 className="pt-4 pl-4 text-4xl font-bold"> Trending Legal news in India </h1>
-            <ScrollShadow className="flex flex-col scrollbar px-4 gap-6 h-[calc(100vh-5rem)] overflow-y-auto" size={20}>
+        <h1 className="pt-4 pl-4 text-4xl font-bold font-saira text-white z-10"> Trending Legal news in India </h1>
+            <ScrollShadow className="flex flex-col scrollbar px-4 py-4 gap-6 h-[calc(100vh-5rem)] overflow-y-auto" size={20}>
                 {
                     data.value.sort((a,b)=>{
                         return new Date(b.datePublished)-new Date(a.datePublished)
@@ -355,9 +357,9 @@ const News = () => {
                 }
             </ScrollShadow>
       </div>
-      <div className="w-1/4 h-screen scrollbar p-6 overflow-y-auto">
+      <ScrollShadow className="w-1/4 h-[calc(100vh-2rem)] scrollbar mr-4 my-2 p-4 overflow-y-auto">
         <div className="centerContent overflow-y-auto">
-            <div className="selfCenter spaceBetween">
+            <div className="selfCenter spaceBetween ">
                 <TwitterTimelineEmbed
                     onLoad={function noRefCheck(){}}
                     options={{
@@ -368,7 +370,7 @@ const News = () => {
                 />
             </div>
             </div>      
-        </div>
+        </ScrollShadow>
     </div>
   );
 };
