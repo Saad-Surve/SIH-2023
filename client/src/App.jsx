@@ -14,10 +14,12 @@ import LawyerDashboard from "./components/lawyerDashboard/LawyerDashboard";
 import LoginUser from "./components/auth/LoginUser";
 import LoginLawyer from "./components/auth/LoginLawyer";
 import UserDashboard from "./components/userDashboard/userDashboard";
+import ErrorPage from "./pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <ErrorPage />,
     element: <RootLayout />,
     children: [
       { index: true, element: <Home /> },
@@ -28,7 +30,7 @@ const router = createBrowserRouter([
       {
         path: "news",
         element: <News />,
-        loader: NewsLoader
+        loader: NewsLoader,
       },
       {
         path: "directory",
