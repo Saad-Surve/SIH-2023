@@ -1,3 +1,4 @@
+import React, { useRef, useState } from "react";
 import registerUser from "../../assets/registerUser.jpg";
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
@@ -5,6 +6,48 @@ import { Link } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 
 const RegisterLawyer = () => {
+  const [lawyer, setLawyer] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [usernameExists, setUsernameExists] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    if (!lawyer.username || !lawyer.emailID || !lawyer.password) {
+      onOpen();
+      setContentModal("Please fill all the fields");
+      setIsLoading(false);
+      return;
+    }
+
+    if (usernameExists) {
+      return;
+    }
+
+    let response = await axios.post(
+      `${ServerUrl}/api/auth/registerUser`,
+      lawyer
+    );
+
+    if (response.data.userExists) {
+      onOpen();
+      setContentModal("User already exists");
+      return;
+    }
+
+    if (response.data.success) {
+      //set the token of the response.data to a cookie
+      document.cookie = `token=${response.data.token}; path=/; max-age=${
+        60 * 60 * 24 * 30
+      }`;
+      //redirect to the dashboard
+      window.location.href = "/loginUser";
+    }
+
+    setIsLoading(false);
+  };
+
   return (
     <section className="w-full relative">
       <div
@@ -32,6 +75,7 @@ const RegisterLawyer = () => {
                 }}
                 label="Name"
                 placeholder="Enter your Name"
+                name="name"
               />
               <Input
                 type="email"
@@ -41,6 +85,7 @@ const RegisterLawyer = () => {
                 }}
                 label="Email ID"
                 placeholder="Enter your email id"
+                name="emailID"
               />
               <Input
                 type="text"
@@ -50,6 +95,7 @@ const RegisterLawyer = () => {
                 }}
                 label="Username"
                 placeholder="Set Username"
+                name="username"
               />
               <Input
                 type="password"
@@ -59,6 +105,7 @@ const RegisterLawyer = () => {
                 }}
                 label="Password"
                 placeholder="Enter your password"
+                name="password"
               />
               <Input
                 type="text"
@@ -68,6 +115,7 @@ const RegisterLawyer = () => {
                 }}
                 label="Expertise"
                 placeholder="Enter your expertise"
+                name="expertise"
               />
               <Input
                 type="text"
@@ -77,6 +125,7 @@ const RegisterLawyer = () => {
                 }}
                 label="Experience"
                 placeholder="Enter your experience(in yrs)"
+                name="experience"
               />
               <Input
                 type="text"
@@ -86,15 +135,19 @@ const RegisterLawyer = () => {
                 }}
                 label="Location"
                 placeholder="Enter your location"
+                name="location"
               />
               <Input
                 type="file"
                 className="w-[45%] m-auto"
                 classNames={{
-                  input: ["p-0", "focus:ring-0", "border-none"],
+                  // input: ["p-0", "focus:ring-0", "border-none"],
+                  input: ["p-0", "ml-16", "focus:ring-0", "border-none"],
+                  inputWrapper: ["pt-9"],
                 }}
                 label="ID Proof"
                 placeholder="Upload an ID Proof"
+                name="idProof"
               />
             </div>
             <div className="flex flex-col gap-4">

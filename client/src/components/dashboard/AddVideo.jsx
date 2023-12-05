@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import { Input } from "@nextui-org/react";
 import {
   Modal,
   ModalContent,
@@ -30,14 +31,29 @@ const AddVideo = () => {
                 Add new Video
               </ModalHeader>
               <ModalBody>
-                <p>VideoForm</p>
+                <Input
+                  type="text"
+                  className="w-full m-auto"
+                  classNames={{
+                    input: ["p-0", "focus:ring-0", "border-none"],
+                  }}
+                  label="Title"
+                  placeholder="Enter Video Title"
+                />
+                <Input
+                  type="file"
+                  className="w-full m-auto"
+                  classNames={{
+                    input: ["p-0", "ml-16", "focus:ring-0", "border-none"],
+                    inputWrapper: ["pt-9"],
+                  }}
+                  label="Video"
+                  placeholder="Add Video"
+                />
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
                 <Button color="primary" onPress={onClose}>
-                  Action
+                  Post Video
                 </Button>
               </ModalFooter>
             </>
