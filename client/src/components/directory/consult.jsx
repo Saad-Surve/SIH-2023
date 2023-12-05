@@ -12,6 +12,32 @@ const Consult = () => {
       label: "fraud",
     },
   ];
+  const lang = [
+    {
+      value: "english",
+      label: "English"
+    },
+    {
+      value: 'hindi',
+      label: 'Hindi'
+    }
+  ]
+  const city = [
+    {
+      value: "mumbai",
+      label: "Mumbai"
+    },
+    {
+      value:"thane",
+      label:"Thane"
+    }
+  ]
+  const state = [
+    {
+      value:'maharashtra',
+      label: 'Maharashtra'
+    }
+  ]
   return (
     <div className="flex justify-center h-[90%] w-[80%] bg-blue-200 rounded-3xl p-4">
       <form
@@ -37,10 +63,10 @@ const Consult = () => {
         <div className="w-[90%] flex rounded-xl bg-white px-2 py-1">
           <Select
             variant="underlined"
-            label="Problem Type"
-            placeholder="Select Problem Type"
+            label="Language"
+            placeholder="Select Language"
           >
-            {problem.map((problem) => (
+            {lang.map((problem) => (
               <SelectItem key={problem.value} value={problem.value}>
                 {problem.label}
               </SelectItem>
@@ -50,17 +76,17 @@ const Consult = () => {
         <div className="w-[90%] flex flex-col flex-wrap rounded-xl bg-white px-2 py-1">
           <Select
             variant="underlined"
-            label="Problem Type"
-            placeholder="Select Problem Type"
+            label="Location"
+            placeholder="Select City"
           >
-            {problem.map((problem) => (
+            {city.map((problem) => (
               <SelectItem key={problem.value} value={problem.value}>
                 {problem.label}
               </SelectItem>
             ))}
           </Select>
-          <Select variant="underlined" placeholder="Select Problem Type">
-            {problem.map((problem) => (
+          <Select variant="underlined" placeholder="Select State">
+            {state.map((problem) => (
               <SelectItem key={problem.value} value={problem.value}>
                 {problem.label}
               </SelectItem>
