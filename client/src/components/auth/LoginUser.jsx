@@ -93,7 +93,7 @@ const LoginUser = () => {
               className="w-auto"
             >
               {isLoading ? "Logging" : "Login"}
-            </Button>          
+            </Button>
             <span className="text-sm">
               Don't have an account?{" "}
               <Link className="text-sm" href="/registerUser">

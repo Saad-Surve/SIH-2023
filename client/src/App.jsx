@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       {
         path: "news",
         element: <News />,
-        loader: NewsLoader
+        loader: NewsLoader,
       },
       {
         path: "directory",
