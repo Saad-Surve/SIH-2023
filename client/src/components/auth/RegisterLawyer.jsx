@@ -105,7 +105,7 @@ const RegisterLawyer = () => {
               <span className="text-lg">
                 Already have an account?{" "}
                 <Link className="text-lg font-semibold" href="/loginLawyer">
-                  Login 
+                  Login
                 </Link>
               </span>
             </div>

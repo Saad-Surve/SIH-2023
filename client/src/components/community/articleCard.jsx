@@ -5,7 +5,7 @@ import CustModal from "../UI/Modal.jsx";
 
 const ArticleCard = ({ title, author, content, src, date }) => {
   return (
-    <div className="flex p-4 gap-4 items-center border-b-2">
+    <div className="flex p-4 gap-4 items-center border-b-2 mr-16">
       <div>
         <Image
           alt="Law"
@@ -17,9 +17,12 @@ const ArticleCard = ({ title, author, content, src, date }) => {
         />
       </div>
       <div>
-        <div className="flex gap-1 text-sm justify-start items-center">
-          <Icon icon="gg:profile" fontSize={20} />
-          <span>{author}</span>
+        <div className="flex gap-2 text-sm justify-start items-center">
+          <div className="flex gap-1">
+            <Icon icon="gg:profile" fontSize={20} />
+            <span>{author}</span>
+          </div>
+          <span>&#x2022;</span>
           <span className="text-gray-500">{date}</span>
         </div>
         <span className="text-2xl font-bold">{title}</span>
@@ -28,15 +31,14 @@ const ArticleCard = ({ title, author, content, src, date }) => {
             ? content.substring(0, 125) + "..."
             : content.length}
         </p>
-        <span className="text-sm">
-          7 min read <Divider orientation="vertical" />
-        </span>
-
-        <a href="#" className="text-sm text-gray-500 hover:text-blue-500">
-          report
-        </a>
-        <div>
-          <CustModal title={title} content={content} />
+        <div className="flex gap-4 w-full justify-start items-center mt-4">
+          <a href="#" className="text-sm text-gray-500 hover:text-red-500">
+            Report
+          </a>
+          <span className="text-base">&#x2022;</span>
+          <div className="w-max">
+            <CustModal title={title} content={content} />
+          </div>
         </div>
       </div>
     </div>

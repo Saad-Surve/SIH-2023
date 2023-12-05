@@ -1,4 +1,6 @@
 import ArticleCard from "./ArticleCard";
+import { ScrollShadow } from "@nextui-org/react";
+
 const Articles = () => {
   const articles = [
     {
@@ -41,20 +43,22 @@ const Articles = () => {
 
   return (
     <div className="flex flex-col gap-1">
-      <div className="flex p-4">Articles</div>
-      <div className="h-[calc(100vh-18rem-1px)] overflow-y-scroll p-4 random">
+      <div className="flex p-4 font-bold ml-4">Articles</div>
+      <ScrollShadow
+        size={10}
+        className=" h-[calc(100vh-18rem-1px)] overflow-y-scroll p-4 mr-4 pb-2 random"
+      >
         {articles.map((article) => (
-          <div key={article.id}>
-            <ArticleCard
-              title={article.title}
-              content={article.content}
-              src={article.src}
-              date={article.date}
-              author={article.author}
-            />
-          </div>
+          <ArticleCard
+            key={article.id}
+            title={article.title}
+            content={article.content}
+            src={article.src}
+            date={article.date}
+            author={article.author}
+          />
         ))}
-      </div>
+      </ScrollShadow>
     </div>
   );
 };

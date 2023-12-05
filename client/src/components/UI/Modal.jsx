@@ -15,8 +15,11 @@ const CustModal = ({ title, content }) => {
 
   return (
     <div className="flex flex-col gap-2">
-      <Button onPress={onOpen} style={{ width: "21%" }}>
-        read full article
+      <Button
+        onPress={onOpen}
+        className="w-max hover:bg-primary hover:text-white"
+      >
+        Read Full Article
       </Button>
       <Modal
         isOpen={isOpen}

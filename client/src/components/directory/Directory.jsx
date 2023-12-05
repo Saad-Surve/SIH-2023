@@ -33,7 +33,7 @@ const Directory = () => {
             <span className="text-center">Consult Multiple Lawyers</span>
           </div>
           <ScrollShadow
-            size={15}
+            size={10}
             className="flex flex-col items-center px-5  gap-4 h-[600px] random overflow-y-scroll"
           >
             <LawyerCard />
