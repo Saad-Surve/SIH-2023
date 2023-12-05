@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, useRouteError, useNavigate } from "react-router-dom";
-import { Info } from "@mui/icons-material";
-import Lottie from "lottie-react";
-import animationData from "../assets/page-not-found-2.json";
+// import { Info } from "@mui/icons-material";
+// import Lottie from "lottie-react";
+// import animationData from "../assets/page-not-found-2.json";
 
 const ErrorPage = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const ErrorPage = () => {
   return (
     <div className="flex flex-col gap-4 h-screen items-center justify-center md:justify-start pt-8">
       <div className="w-72 md:w-[25rem]">
-        <Lottie animationData={animationData} />
+        {/* <Lottie animationData={animationData} /> */}
       </div>
       <h1 className="text-xl font-semibold md:text-4xl">{title}</h1>
       <p className="text-sm text-gray-400 md:text-xl">{message}</p>
@@ -39,7 +39,7 @@ const ErrorPage = () => {
         </button>
       </div>
       <p className="text-gray-600 flex flex-col gap-2 items-center text-sm md:text-base flex-wrap md:flex-row">
-        <Info /> If this keeps happening, try again later
+        If this keeps happening, try again later
       </p>
     </div>
   );
