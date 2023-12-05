@@ -4,7 +4,7 @@ import { Icon } from '@iconify/react'
 
 const Page2 = () => {
   return (
-    <div className='h-screen relative'>
+    <div className='relative'>
         <div className="bg-[#f1f1f4] p-6 text-base z-10 font-medium flex items-center justify-around ">
             <div className="flex items-center gap-2">
                 <div className="bg-white rounded-full p-2">

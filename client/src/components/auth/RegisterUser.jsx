@@ -125,6 +125,7 @@ const RegisterUser = () => {
             >
               {isLoading ? "Registering" : "Register"}
             </Button>
+            <CustModal content={contentModal} title={`Error Message`} isOpen={isOpen} onOpen={onOpen} onOpenChange={onOpenChange} />
             <span className="text-sm">
               Already have an account?{" "}
               <Link className="text-sm" href="/loginUser">
