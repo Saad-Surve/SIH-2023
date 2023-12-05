@@ -1,6 +1,6 @@
 import React from 'react'
 import TypewriterComponent  from 'typewriter-effect'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo2.png'
 
 const Page1 = () => {
   return (
