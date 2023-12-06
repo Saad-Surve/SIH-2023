@@ -15,6 +15,9 @@ import LoginUser from "./components/auth/LoginUser";
 import LoginLawyer from "./components/auth/LoginLawyer";
 import UserDashboard from "./components/userDashboard/userDashboard";
 import ErrorPage from "./pages/ErrorPage";
+import NewAdmin from "./components/admin/NewAdmin";
+import UpdateContent from "./components/admin/UpdateContent";
+import PendingRequests from "./components/admin/PendingRequests";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +75,19 @@ const router = createBrowserRouter([
         path: "userDashboard",
         element: <UserDashboard />,
       },
+      {
+        path:'newAdmin',
+        element:<NewAdmin />
+      },
+      {
+        path:'updateContent',
+        element:<UpdateContent />
+      },
+      {
+        path:'pendingRequests',
+        element:<PendingRequests />
+      }
+
     ],
   },
 ]);
