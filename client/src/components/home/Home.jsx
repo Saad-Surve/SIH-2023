@@ -5,6 +5,8 @@ import { Button, Link } from "@nextui-org/react";
 import Page1 from "./Page1";
 import Page2 from "./Page2";
 import Header from "./Header";
+import Page3 from "./Page3";
+import Page4 from "./Page4";
 
 const Home = () => {
   return (
@@ -13,8 +15,9 @@ const Home = () => {
           <Header/>
           <Page1 />
           <div className='bg-cover bg-center top-[100vh]  w-full h-screen absolute opacity-90 bg-gradient-to-t brightness-[25%] saturate-150' style={{backgroundImage:`url(${home2})`}}></div>
-
           <Page2 />
+          <Page3 />
+          <Page4 />
     </section>
   )
 };

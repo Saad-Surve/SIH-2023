@@ -23,6 +23,7 @@ export default {
     },
     fontFamily: {
       saira: ["Saira", "sans-serif"],
+      mulish:["Mulish","sans-serif"]
     },
   },
   plugins: [hide, nextui(), require("flowbite/plugin")],
