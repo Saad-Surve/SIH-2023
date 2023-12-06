@@ -43,7 +43,7 @@ const Articles = () => {
 
   return (
     <div className="flex flex-col gap-1 ">
-      <div className="flex p-4 font-bold ml-4">Articles</div>
+      <div className="flex p-4 pb-2 font-bold ml-4">Articles</div>
       <ScrollShadow
         size={10}
         className=" h-[calc(100vh-18rem-1px)] overflow-y-scroll p-4 mr-4 pb-2 random"
