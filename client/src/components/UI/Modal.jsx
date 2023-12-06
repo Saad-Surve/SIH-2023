@@ -9,18 +9,12 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 
-const CustModal = ({ title, content }) => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+const CustModal = ({ title, content,isOpen, onOpen, onOpenChange }) => {
+  // const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [scrollBehavior, setScrollBehavior] = React.useState("inside");
 
   return (
     <div className="flex flex-col gap-2">
-      <Button
-        onPress={onOpen}
-        className="w-max hover:bg-primary hover:text-white"
-      >
-        Read Full Article
-      </Button>
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}

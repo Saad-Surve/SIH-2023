@@ -34,7 +34,7 @@ const createArticle = asyncHandler(async(req,res)=>{
 })
 
 const createVideoPost = asyncHandler(async(req,res)=>{
-    const { title, content, lawyerUsername } = req.body
+    const { title,  lawyerUsername } = req.body
     const lawyer = await Lawyer.findOne({username:lawyerUsername})
     if(!lawyer){
         res.status(400).json({'message':'No lawyer found'})
@@ -42,7 +42,6 @@ const createVideoPost = asyncHandler(async(req,res)=>{
     }
     const video = await Video.create({
         headline:title,
-        content,
         postedBy:lawyer._id,
         path:`/videos/${req.videoFileName}`,
     })
