@@ -2,6 +2,7 @@ import React from "react";
 import { Image, Divider } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 import CustModal from "../UI/Modal.jsx";
+import Avatar from "react-avatar";
 
 const ArticleCard = ({ title, author, content, src, date }) => {
   return (
@@ -18,8 +19,9 @@ const ArticleCard = ({ title, author, content, src, date }) => {
       </div>
       <div>
         <div className="flex gap-2 text-sm justify-start items-center">
-          <div className="flex gap-1">
-            <Icon icon="gg:profile" fontSize={20} />
+          <div className="flex items-center gap-1">
+            {/* Avatar */}
+            <Avatar name={author} size="25px" round />
             <span>{author}</span>
           </div>
           <span>&#x2022;</span>

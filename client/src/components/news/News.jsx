@@ -396,12 +396,12 @@ const News = () => {
         style={{ backgroundImage: `url(${home1})` }}
       ></div>
       <div className="flex flex-col  px-6 gap-6 w-3/4">
-        <h1 className="pt-4 pl-4 text-4xl font-bold font-saira text-white z-10">
+        <h1 className="pt-6 pl-4 text-4xl font-bold font-saira text-white z-10">
           {" "}
           Trending Legal news in India{" "}
         </h1>
         <ScrollShadow
-          className="flex flex-col scrollbar px-4 py-4 gap-6 h-[calc(100vh-5rem)] overflow-y-auto"
+          className="flex flex-col scrollbar px-4 py-4 gap-6 h-[calc(100vh-6rem)] overflow-y-auto"
           size={20}
         >
           {data.value

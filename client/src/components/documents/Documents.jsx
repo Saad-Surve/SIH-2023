@@ -68,7 +68,7 @@ const Documents = () => {
   return (
     <div className="w-full">
       <div className="text-center text-text-black font-bold bg-white top-0 sticky z-10 border-b-1 py-6 border-l shadow-md">
-        <h1>Some Commonly Required Legal Documents</h1>
+        <h1>Most frequently used Legal Documents</h1>
       </div>
       <div className="p-10 py-6 justify-center flex-col gap-6 flex-wrap grid grid-cols-3 z-5">
         {data.map((item, index) => (

@@ -19,11 +19,24 @@ const navbar = () => {
         {/* <Icon
           icon="material-symbols:settings-outline"
           className="w-6 h-6 hover:text-text-gray"
-        />
-        <Icon
-          icon="ph:bell-bold"
-          className="w-6 h-6 mr-2 hover:text-text-gray"
         /> */}
+        <Popover placement="bottom-end" showArrow={true}>
+          <PopoverTrigger>
+            <Icon
+              icon="ph:bell-bold"
+              className="w-6 h-6 mr-2 hover:text-text-gray"
+            />
+          </PopoverTrigger>
+          <PopoverContent>
+            <p className="py-2 w-36 text-center">
+              Your request has been approved!
+            </p>
+            <Button color="primary" className="mb-2">
+              Open Requests
+            </Button>
+          </PopoverContent>
+        </Popover>
+
         <Avatar name="Yusuf Sodawala" size="35px" round />
         <div className="flex flex-col text-text-black">
           <span className="text-sm font-bold">Yusuf Sodawala</span>

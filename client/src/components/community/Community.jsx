@@ -1,9 +1,9 @@
-import Updates from "./updates";
+import Updates from "./Updates";
 import Article from "./Articles";
 
 const Community = () => {
   return (
-    <div className="w-full h-screen scrollbar-hide">
+    <div className="w-full h-screen scrollbar-hide overflow-hidden">
       <Updates />
       <Article />
     </div>

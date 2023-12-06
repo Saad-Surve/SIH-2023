@@ -15,29 +15,29 @@ const Consult = () => {
   const lang = [
     {
       value: "english",
-      label: "English"
+      label: "English",
     },
     {
-      value: 'hindi',
-      label: 'Hindi'
-    }
-  ]
+      value: "hindi",
+      label: "Hindi",
+    },
+  ];
   const city = [
     {
       value: "mumbai",
-      label: "Mumbai"
+      label: "Mumbai",
     },
     {
-      value:"thane",
-      label:"Thane"
-    }
-  ]
+      value: "thane",
+      label: "Thane",
+    },
+  ];
   const state = [
     {
-      value:'maharashtra',
-      label: 'Maharashtra'
-    }
-  ]
+      value: "maharashtra",
+      label: "Maharashtra",
+    },
+  ];
   return (
     <div className="flex justify-center h-[90%] w-[80%] bg-blue-200 rounded-3xl p-4">
       <form
@@ -74,24 +74,13 @@ const Consult = () => {
           </Select>
         </div>
         <div className="w-[90%] flex flex-col flex-wrap rounded-xl bg-white px-2 py-1">
-          <Select
+          <Input
+            type="input"
             variant="underlined"
             label="Location"
-            placeholder="Select City"
-          >
-            {city.map((problem) => (
-              <SelectItem key={problem.value} value={problem.value}>
-                {problem.label}
-              </SelectItem>
-            ))}
-          </Select>
-          <Select variant="underlined" placeholder="Select State">
-            {state.map((problem) => (
-              <SelectItem key={problem.value} value={problem.value}>
-                {problem.label}
-              </SelectItem>
-            ))}
-          </Select>
+            placeholder="Type here..."
+            className="border-0"
+          />
         </div>
         <div className="w-[90%] flex rounded-xl bg-white px-2 py-1">
           <Input
