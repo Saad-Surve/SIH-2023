@@ -62,27 +62,36 @@ const RegisterLawyer = () => {
       return;
     }
 
-    if (usernameExists) {
-      return;
-    }
+    // if (usernameExists) {
+    //   return;
+    // }
 
-    let response = await axios.post(
-      `${ServerUrl}/api/auth/registerLawyer`,
-      lawyer
-    );
+    const formData = new FormData(document.querySelector("form"));
+    // Object.entries(lawyer).forEach(([key, value]) => {
+    //   formData.append(key, value);
+    // });
 
-    if (response.data.userExists) {
-      alert("User already exists");
-      return;
-    }
+    try {
+      let response = await axios.post(
+        `${ServerUrl}/api/auth/registerLawyer`,formData,{
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
-    if (response.data.success) {
-      //set the token of the response.data to a cookie
-      document.cookie = `token=${response.data.token}; path=/; max-age=${
-        60 * 60 * 24 * 30
-      }`;
-      //redirect to the dashboard
-      window.location.href = "/loginLawyer";
+      console.log(response.data);
+
+      if (response.data.userExists) {
+        alert("User already exists");
+      } else if (response.data.success) {
+        document.cookie = `token=${response.data.token}; path=/; max-age=${
+          60 * 60 * 24 * 30
+        }`;
+        window.location.href = "/loginLawyer";
+      }
+    } catch (error) {
+      console.error("Error registering lawyer:", error);
     }
 
     setIsLoading(false);
@@ -101,8 +110,12 @@ const RegisterLawyer = () => {
   };
 
   const handleChange = (e) => {
-    console.log(e.target.value);
-    setLawyer({ ...lawyer, [e.target.name]: e.target.value });
+    if (e.target.name === "idProof") {
+      const file = e.target.files[0];
+      setLawyer({ ...lawyer, idProof: file });
+    } else {
+      setLawyer({ ...lawyer, [e.target.name]: e.target.value });
+    }
   };
 
   return (

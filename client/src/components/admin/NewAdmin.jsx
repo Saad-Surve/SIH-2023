@@ -9,8 +9,8 @@ const NewAdmin = () => {
         className="bg-cover bg-center w-full h-screen absolute opacity-90 bg-gradient-to-t brightness-[25%] saturate-150"
         style={{ backgroundImage: `url(${admin})` }}
       ></div>
-      <div className="bg-white/[0.81] w-3/5 h-3/5 flex flex-col gap-6 items-center justify-center  rounded-[40px] z-10 ">
-        <div className="border-b-2 border-[#6E6E91] w-4/5 text-center pb-4 font-mulish">
+      <div className="w-1/2 h-[80%] flex flex-col gap-6 items-center justify-center  rounded-[40px] z-10 ">
+        <div className="bg-white  border-b-2 border-[#6E6E91] w-4/5 text-center pb-4 font-mulish">
           Make New Admin
         </div>
         <form className="w-3/5 gap-6 flex flex-col" autoComplete="off">

@@ -13,6 +13,7 @@ import RegisterLawyer from "./components/auth/RegisterLawyer";
 import LawyerDashboard from "./components/lawyerDashboard/LawyerDashboard";
 import LoginUser from "./components/auth/LoginUser";
 import LoginLawyer from "./components/auth/LoginLawyer";
+import LoginAdmin from "./components/auth/LoginAdmin";
 import UserDashboard from "./components/userDashboard/userDashboard";
 import ErrorPage from "./pages/ErrorPage";
 import NewAdmin from "./components/admin/NewAdmin";
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "loginLawyer",
         element: <LoginLawyer />,
+      },
+      {
+        path: "loginAdmin",
+        element: <LoginAdmin />,
       },
       {
         path: "userDashboard",
