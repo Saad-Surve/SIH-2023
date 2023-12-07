@@ -163,6 +163,7 @@ const loginAdmin = asyncHandler(async (req, res) => {
       name: user.username,
       email: user.emailID,
       token: generateToken(user._id),
+      success: true,
     });
   } else {
     res.status(400).json({ message: "Invalid credentials" });
