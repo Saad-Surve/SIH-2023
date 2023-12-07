@@ -41,6 +41,7 @@ const Consult = () => {
   return (
     <div className="flex justify-center h-[90%] w-[80%] bg-blue-200 rounded-3xl p-4">
       <form
+        autoComplete="off"
         action=""
         className="flex flex-col w-full justify-between items-center gap-4"
       >

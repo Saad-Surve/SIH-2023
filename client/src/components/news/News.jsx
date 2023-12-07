@@ -422,7 +422,7 @@ const News = () => {
             })}
         </ScrollShadow>
       </div>
-      <ScrollShadow className="w-1/4 h-[calc(100vh-2rem)] scrollbar mr-4 my-2 p-4 overflow-y-auto z-10">
+      <ScrollShadow className="w-1/4 h-[calc(100vh-2rem)] scrollbar mr-4 my-2 py-4 pr-2 overflow-y-auto z-10">
         <div className="centerContent overflow-y-auto">
           <div className="selfCenter spaceBetween ">
             <TwitterTimelineEmbed

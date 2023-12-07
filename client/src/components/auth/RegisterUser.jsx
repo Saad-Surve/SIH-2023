@@ -79,6 +79,7 @@ const RegisterUser = () => {
           <span>Register as a User </span>
           <form
             onSubmit={handleSubmit}
+            autoComplete="off"
             className=" w-[80%] flex flex-col justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl"
           >
             <Input
@@ -125,7 +126,13 @@ const RegisterUser = () => {
             >
               {isLoading ? "Registering" : "Register"}
             </Button>
-            <CustModal content={contentModal} title={`Error Message`} isOpen={isOpen} onOpen={onOpen} onOpenChange={onOpenChange} />
+            <CustModal
+              content={contentModal}
+              title={`Error Message`}
+              isOpen={isOpen}
+              onOpen={onOpen}
+              onOpenChange={onOpenChange}
+            />
             <span className="text-sm">
               Already have an account?{" "}
               <Link className="text-sm" href="/loginUser">

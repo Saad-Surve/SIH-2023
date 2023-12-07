@@ -1,13 +1,52 @@
-import React from "react";
+import { useState } from "react";
 import registerUser from "../../assets/registerUser.jpg";
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import { Link } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
+import axios from "axios";
+import ServerUrl from "../../constants";
 
 const LoginLawyer = () => {
-  const handleSubmit = (e) => {
+  const [lawyer, setLawyer] = useState({
+    username: "",
+    password: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setLawyer({ ...lawyer, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+
+    if (!lawyer.username || !lawyer.password) {
+      alert("Please fill all the fields");
+      setIsLoading(false);
+      return;
+    }
+
+    let response = await axios
+      .post(`${ServerUrl}/api/auth/loginLawyer`, lawyer)
+      .catch((err) => {
+        console.log(err);
+      });
+    if (response.data.success) {
+      //set the token of the response.data to a cookie
+      document.cookie = `token=${response.data.token}; path=/; max-age=${
+        60 * 60 * 24 * 30
+      }`;
+      // onOpen();
+      // alert("Login Successful");
+      setIsLoading(false);
+      window.location.href = "/lawyerDashboard";
+    } else {
+      // onOpen();
+      alert("Login Unsuccessful "+ response.data.message);
+    }
+    setIsLoading(false);
   };
   return (
     <section className="w-full relative">
@@ -21,26 +60,36 @@ const LoginLawyer = () => {
           <span>Login as a Lawyer </span>
           <form
             onSubmit={handleSubmit}
+            autoComplete="off"
             className="w-[80%] flex flex-col justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl"
           >
             <Input
               type="text"
               label="Username"
+              name="username"
               placeholder="Enter a username"
               classNames={{
                 input: ["p-0", "focus:ring-0", "border-none"],
               }}
+              onChange={handleChange}
             />
             <Input
               type="password"
               label="Password"
+              name="password"
               placeholder="Enter your password"
               classNames={{
                 input: ["p-0", "focus:ring-0", "border-none"],
               }}
+              onChange={handleChange}
             />
-            <Button color="primary" type="submit" className="w-auto">
-              Login
+            <Button
+              type="submit"
+              color="primary"
+              isLoading={isLoading}
+              className="w-auto"
+            >
+              {isLoading ? "Logging" : "Login"}
             </Button>
             <span className="text-sm">
               Don't have an account?{" "}

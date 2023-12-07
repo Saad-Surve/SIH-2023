@@ -43,8 +43,9 @@ const LoginUser = () => {
         60 * 60 * 24 * 30
       }`;
       onOpen();
-      setContentModal("Login Successful");
+      // alert("Login Successful");
       setIsLoading(false);
+      window.location.href = "/userDashboard";
     } else {
       onOpen();
       setContentModal(response.data.message);
@@ -63,6 +64,7 @@ const LoginUser = () => {
         <div className="w-[35%] gap-6 items-center justify-center h-full flex flex-col">
           <span>Login as a User </span>
           <form
+            autoComplete="off"
             onSubmit={handleSubmit}
             className=" w-[80%] flex flex-col justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl"
           >

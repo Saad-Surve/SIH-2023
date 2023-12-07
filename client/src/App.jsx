@@ -22,7 +22,7 @@ import PendingRequests from "./components/admin/PendingRequests";
 const router = createBrowserRouter([
   {
     path: "/",
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     element: <RootLayout />,
     children: [
       { index: true, element: <Home /> },
@@ -76,18 +76,17 @@ const router = createBrowserRouter([
         element: <UserDashboard />,
       },
       {
-        path:'newAdmin',
-        element:<NewAdmin />
+        path: "newAdmin",
+        element: <NewAdmin />,
       },
       {
-        path:'updateContent',
-        element:<UpdateContent />
+        path: "updateContent",
+        element: <UpdateContent />,
       },
       {
-        path:'pendingRequests',
-        element:<PendingRequests />
-      }
-
+        path: "pendingRequests",
+        element: <PendingRequests />,
+      },
     ],
   },
 ]);

@@ -1,12 +1,26 @@
-import React, { useRef, useState } from "react";
+import { useState } from "react";
 import registerUser from "../../assets/registerUser.jpg";
+import axios from "axios";
+import ServerUrl from "../../constants";
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import { Link } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 
+//Add a Checkbox to allow sharing of data to users
+
 const RegisterLawyer = () => {
-  const [lawyer, setLawyer] = useState({});
+  const [lawyer, setLawyer] = useState({
+    name: "",
+    username: "",
+    emailID: "",
+    password: "",
+    expertise: "",
+    experience: "",
+    idProof: "",
+    location: "",
+  });
+
   const [isLoading, setIsLoading] = useState(false);
   const [usernameExists, setUsernameExists] = useState(false);
 
@@ -14,9 +28,36 @@ const RegisterLawyer = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    if (!lawyer.username || !lawyer.emailID || !lawyer.password) {
-      onOpen();
-      setContentModal("Please fill all the fields");
+    if (
+      !(
+        lawyer.name &&
+        lawyer.username &&
+        lawyer.emailID &&
+        lawyer.password &&
+        lawyer.expertise &&
+        lawyer.experience &&
+        lawyer.idProof &&
+        lawyer.location
+      )
+    ) {
+      alert(
+        "Please fill all the fields",
+        +lawyer.name +
+          " " +
+          lawyer.username +
+          " " +
+          lawyer.emailID +
+          " " +
+          lawyer.password +
+          " " +
+          lawyer.expertise +
+          " " +
+          lawyer.experience +
+          " " +
+          lawyer.idProof +
+          " " +
+          lawyer.location
+      );
       setIsLoading(false);
       return;
     }
@@ -26,13 +67,12 @@ const RegisterLawyer = () => {
     }
 
     let response = await axios.post(
-      `${ServerUrl}/api/auth/registerUser`,
+      `${ServerUrl}/api/auth/registerLawyer`,
       lawyer
     );
 
     if (response.data.userExists) {
-      onOpen();
-      setContentModal("User already exists");
+      alert("User already exists");
       return;
     }
 
@@ -42,10 +82,27 @@ const RegisterLawyer = () => {
         60 * 60 * 24 * 30
       }`;
       //redirect to the dashboard
-      window.location.href = "/loginUser";
+      window.location.href = "/loginLawyer";
     }
 
     setIsLoading(false);
+  };
+
+  const handleUsernameChange = async (e) => {
+    setLawyer({ ...lawyer, username: e.target.value });
+    let response = await axios.get(
+      `${ServerUrl}/api/auth/checkUsernameLawyer/?username=${e.target.value}`
+    );
+    if (response.data.usernameExists) {
+      setUsernameExists(true);
+    } else {
+      setUsernameExists(false);
+    }
+  };
+
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    setLawyer({ ...lawyer, [e.target.name]: e.target.value });
   };
 
   return (
@@ -65,7 +122,11 @@ const RegisterLawyer = () => {
           </ul>
         </div>
         <div className="w-4/5">
-          <form className="flex flex-wrap justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl">
+          <form
+            onSubmit={handleSubmit}
+            autoComplete="off"
+            className="flex flex-wrap justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl"
+          >
             <div className="w-full flex flex-wrap items-center gap-6">
               <Input
                 type="text"
@@ -76,6 +137,7 @@ const RegisterLawyer = () => {
                 label="Name"
                 placeholder="Enter your Name"
                 name="name"
+                onChange={handleChange}
               />
               <Input
                 type="email"
@@ -86,9 +148,13 @@ const RegisterLawyer = () => {
                 label="Email ID"
                 placeholder="Enter your email id"
                 name="emailID"
+                onChange={handleChange}
               />
               <Input
                 type="text"
+                color={usernameExists ? "danger" : ""}
+                isInvalid={usernameExists}
+                errorMessage={usernameExists ? "Username already taken" : ""}
                 className="w-[45%] m-auto"
                 classNames={{
                   input: ["p-0", "focus:ring-0", "border-none"],
@@ -96,6 +162,7 @@ const RegisterLawyer = () => {
                 label="Username"
                 placeholder="Set Username"
                 name="username"
+                onChange={handleUsernameChange}
               />
               <Input
                 type="password"
@@ -106,6 +173,7 @@ const RegisterLawyer = () => {
                 label="Password"
                 placeholder="Enter your password"
                 name="password"
+                onChange={handleChange}
               />
               <Input
                 type="text"
@@ -116,6 +184,7 @@ const RegisterLawyer = () => {
                 label="Expertise"
                 placeholder="Enter your expertise"
                 name="expertise"
+                onChange={handleChange}
               />
               <Input
                 type="text"
@@ -126,6 +195,7 @@ const RegisterLawyer = () => {
                 label="Experience"
                 placeholder="Enter your experience(in yrs)"
                 name="experience"
+                onChange={handleChange}
               />
               <Input
                 type="text"
@@ -136,6 +206,7 @@ const RegisterLawyer = () => {
                 label="Location"
                 placeholder="Enter your location"
                 name="location"
+                onChange={handleChange}
               />
               <Input
                 type="file"
@@ -148,11 +219,17 @@ const RegisterLawyer = () => {
                 label="ID Proof"
                 placeholder="Upload an ID Proof"
                 name="idProof"
+                onChange={handleChange}
               />
             </div>
             <div className="flex flex-col gap-4">
-              <Button color="primary" size="large">
-                Register
+              <Button
+                type="submit"
+                color="primary"
+                isLoading={isLoading}
+                className="w-auto"
+              >
+                {isLoading ? "Registering" : "Register"}
               </Button>
 
               <span className="text-lg">
