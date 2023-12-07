@@ -8,7 +8,7 @@ const Directory = () => {
   return (
     <div className="w-full z-10 flex flex-col">
       <Navbar />
-      <div className="h-[calc(100vh-4rem-1px)] flex flex-row overflow-y-hidden">
+      <div className="h-[calc(100vh-4rem-4px)] flex flex-row overflow-y-hidden">
         <div className="max-w-7/12 flex flex-col p-10">
           <div className="flex flex-row p-10 m-1 mb-4 border rounded-lg bg-blue-100 items-center font-extrabold text-base">
             <div className="flex flex-row justify-center items-center border rounded-full p-2 border-white bg-white">

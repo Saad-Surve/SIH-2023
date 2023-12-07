@@ -1,5 +1,6 @@
 import Avatar from "react-avatar";
 import { Icon } from "@iconify/react";
+import { useState } from "react";
 import {
   Popover,
   PopoverTrigger,
@@ -7,14 +8,25 @@ import {
   Button,
 } from "@nextui-org/react";
 
-const navbar = () => {
+const navbar = (props) => {
+  const [newData, setNewData] = useState('');
+  const handleDataChange = (e) => {
+    setNewData({ ...newData, [e.target.name]: e.target.value });
+  };
+  const handleDataSubmit = async (e) => {
+    e.preventDefault();
+    props.onSubmit(newData);
+  };
   return (
     <div className="bg-white top-0 sticky z-10 border-b-1 p-3 px-6 flex flex-row border-l shadow-md">
-      <input
-        type="text"
-        placeholder="Search"
-        className="w-4/5 h-10 p-4 bg-gray-100 text-text-gray rounded-xl border-inherit focus:outline-none text-base"
-      />
+      <form className="w-full" onSubmit={handleDataSubmit}>
+        <input
+          type="text"
+          placeholder="Search"
+          className="w-4/5 h-10 p-4 bg-gray-100 text-text-gray rounded-xl border-inherit focus:outline-none text-base"
+          onChange={handleDataChange}
+        />
+      </form>
       <div className="w-full h-10  gap-2 flex flex-row text-icon-gray justify-end items-center">
         {/* <Icon
           icon="material-symbols:settings-outline"
