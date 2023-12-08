@@ -3,12 +3,14 @@ import { Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import classNames from "classnames";
 import "./styles/Sidebar.css";
+import { jwtDecode } from 'jwt-decode'
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const location = useLocation();
-
+  const role = jwtDecode(document.cookie.split('token=')[1]).id.role
+  console.log(role)
   const sidebarItems = [
     {
       name: "Home",
