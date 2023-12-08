@@ -60,7 +60,7 @@ const registerUser = asyncHandler(async (req, res) => {
       _id: user.id,
       username: user.username,
       emailID: user.emailID,
-      token: generateToken(user._id),
+      token: generateToken({id:user._id,role:'User'}),
       success: true,
     });
   } else {
@@ -107,7 +107,7 @@ const registerLawyer = asyncHandler(async (req, res) => {
       _id: user.id,
       username: user.username,
       emailID: user.emailID,
-      token: generateToken(user._id),
+      token: generateToken({id:user._id,role:'Lawyer'}),
       success: true,
     });
   } else {
@@ -124,7 +124,7 @@ const loginUser = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.username,
       email: user.emailID,
-      token: generateToken(user._id),
+      token: generateToken({id:user._id,role:'User'}),
       success: true,
     });
   } else {
@@ -144,7 +144,7 @@ const loginLawyer = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.username,
       email: user.emailID,
-      token: generateToken(user._id),
+      token: generateToken({id:user._id,role:'Lawyer'}),
       success: true,
     });
   } else {
@@ -162,7 +162,7 @@ const loginAdmin = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.username,
       email: user.emailID,
-      token: generateToken(user._id),
+      token: generateToken({id:user._id,role:'Admin'}),
       success: true,
     });
   } else {
@@ -194,6 +194,7 @@ const registerAdmin = asyncHandler(async (req, res) => {
       emailID: user.emailID,
       token: generateToken(user._id),
       success: true,
+      token: generateToken({id:user._id,role:'Admin'}),
     });
   } else {
     res.status(400).json({ message: "Invalid user data" });

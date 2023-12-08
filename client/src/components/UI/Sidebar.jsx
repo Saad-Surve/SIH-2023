@@ -3,12 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import classNames from "classnames";
 import "./styles/Sidebar.css";
+import { jwtDecode } from 'jwt-decode'
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const location = useLocation();
-
+  const role = document.cookie.split('token=')[1] && jwtDecode( document.cookie.split('token=')[1]).id.role
   const sidebarItems = [
     {
       name: "Home",
@@ -40,16 +41,17 @@ const Sidebar = () => {
       icon: <Icon className="w-8 h-8" icon="system-uicons:message-writing" />,
       path: "resources",
     },
+    role?
     {
-      name: "Lawyer Dashboard",
+      name: `${role?role:''} Dashboard`,
       icon: (
         <Icon
           className="w-8 h-8"
           icon="material-symbols-light:dashboard-outline"
         />
       ),
-      path: "dashboard",
-    },
+      path: `${role.toLowerCase()}dashboard`,
+    }:{},
   ];
 
   useEffect(() => {

@@ -7,25 +7,38 @@ import {
   PopoverContent,
   Button,
 } from "@nextui-org/react";
+import axios from 'axios';
+import ServerUrl from '../../constants';
+
 
 const navbar = (props) => {
-  const [newData, setNewData] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const handleDataChange = (e) => {
-    setNewData({ ...newData, [e.target.name]: e.target.value });
+    setSearchTerm(e.target.value)
   };
-  const handleDataSubmit = async (e) => {
+  
+  const handleSearch = async (e) => {
     e.preventDefault();
-    props.onSubmit(newData);
+    try {
+      const response = await axios.put(`${ServerUrl}/api/search/getLawyer`, {
+        expertise: searchTerm,
+      });
+      props.setLawyers(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
+
   return (
     <div className="bg-white top-0 sticky z-10 border-b-1 p-3 px-6 flex flex-row border-l shadow-md">
-      <form className="w-full" onSubmit={handleDataSubmit}>
+      <form className="w-full flex gap-3" onSubmit={handleSearch} >
         <input
           type="text"
           placeholder="Search"
           className="w-4/5 h-10 p-4 bg-gray-100 text-text-gray rounded-xl border-inherit focus:outline-none text-base"
           onChange={handleDataChange}
         />
+        <Button color="primary" className="rounded-full" type="submit"><Icon icon="eva:search-fill" /></Button>
       </form>
       <div className="w-full h-10  gap-2 flex flex-row text-icon-gray justify-end items-center">
         {/* <Icon
