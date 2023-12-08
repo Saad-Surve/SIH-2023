@@ -7,7 +7,8 @@ const {
   createVideoPost,
   deleteArticle,
   deleteVideo,
-  getLawyer
+  getLawyer,
+  getArticles
 } = require("../controllers/LawyerController");
 
 const {
@@ -31,4 +32,5 @@ router.post(
 router.post("/deleteArticle", protectLawyer, deleteArticle);
 router.post("/deleteVideo", protectLawyer, deleteVideo);
 router.get("/getLawyer",getLawyer)
+router.get("/getArticles",getArticles)
 module.exports = router;
