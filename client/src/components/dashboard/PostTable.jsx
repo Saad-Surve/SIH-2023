@@ -7,9 +7,9 @@ import {
   Button,
 } from "@nextui-org/react";
 
-const PostTable = ({ rows }) => {
+const PostTable = ({ username, rows }) => {
   return (
-    <table className="w-full ">
+    <table className="w-full">
       <thead>
         <tr className="text-left text-icon-gray text-sm flex border-b-2 border-grey-200 pb-2">
           <th className="w-2/5 font-light pl-6">Post Details</th>
@@ -19,8 +19,8 @@ const PostTable = ({ rows }) => {
         </tr>
       </thead>
       <tbody>
-        {rows.map((row) => (
-          <tr key={row.key} className="flex border-b-2 border-grey-200 py-4">
+        {rows.map((row, index) => (
+          <tr key={index} className="flex border-b-2 border-grey-200 py-4">
             <td className="w-2/5 font-medium  pl-6 flex items-center">
               <Avatar
                 name="Yusuf Sodawala"
@@ -30,7 +30,9 @@ const PostTable = ({ rows }) => {
               />
               <div className="flex flex-col">
                 <span className="text-sm text-header-black">
-                  {row.headline}
+                  {row.headline.length <= 25
+                    ? row.headline
+                    : row.headline.slice(0, 25) + "..."}
                 </span>
               </div>
             </td>

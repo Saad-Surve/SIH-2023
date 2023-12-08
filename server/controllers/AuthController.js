@@ -169,9 +169,10 @@ const loginAdmin = asyncHandler(async (req, res) => {
     res.status(400).json({ message: "Invalid credentials" });
   }
 });
+
 const registerAdmin = asyncHandler(async (req, res) => {
-  const { emailID, username, password } = req.body;
-  if (!emailID || !username || !password) {
+  const { emailID, password } = req.body;
+  if (!emailID || !password) {
     res.status(400).json({ message: "Please add all fields" });
   }
   const userExists = await Admin.findOne({ emailID });
@@ -184,14 +185,12 @@ const registerAdmin = asyncHandler(async (req, res) => {
 
   const user = await Admin.create({
     emailID,
-    username,
     password: hashedPassword,
   });
 
   if (user) {
     res.status(201).json({
       _id: user.id,
-      username: user.username,
       emailID: user.emailID,
       token: generateToken({id:user._id,role:'Admin',username:user.username}),
     });

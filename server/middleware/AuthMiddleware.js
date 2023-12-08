@@ -37,6 +37,7 @@ const protectUser = asyncHandler(async (req, res, next) => {
 const protectLawyer = asyncHandler(async (req, res, next) => {
   let token;
 
+  console.log("Protect Lawyer : ", req.headers);
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")

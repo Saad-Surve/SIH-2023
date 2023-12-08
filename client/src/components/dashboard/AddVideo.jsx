@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { Input } from "@nextui-org/react";
 import {
@@ -9,9 +10,56 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
+import axios from "axios";
+import ServerUrl from "../../constants";
 
 const AddVideo = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const username = "1212";
+
+  // /api/lawyer
+  // const [post, setPost] = useState({
+  //   title: "",
+  //   thumbnail: "",
+  //   content: "",
+  // });
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const formData = new FormData(e.target);
+    formData.append("lawyerUsername", username);
+
+    try {
+      const token = document.cookie.split("token=")[1];
+
+      const response = await axios.post(
+        `${ServerUrl}/api/lawyer/createVideoPost`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log(response.data);
+
+      if (response.data.message === "Video created") {
+        alert("Video Post created");
+      } else {
+        alert("Video Post not created");
+      }
+    } catch (error) {
+      console.error("Error Creating Article:", error);
+    }
+    setIsLoading(false);
+  };
 
   return (
     <div
@@ -26,7 +74,11 @@ const AddVideo = () => {
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
-            <>
+            <form
+              onSubmit={handleSubmit}
+              autoComplete="off"
+              className="flex flex-col gap-4 z-10"
+            >
               <ModalHeader className="flex flex-col gap-1">
                 Add new Video
               </ModalHeader>
@@ -39,6 +91,7 @@ const AddVideo = () => {
                   }}
                   label="Title"
                   placeholder="Enter Video Title"
+                  name="title"
                 />
                 <Input
                   type="file"
@@ -49,14 +102,20 @@ const AddVideo = () => {
                   }}
                   label="Video"
                   placeholder="Add Video"
+                  name="video"
                 />
               </ModalBody>
               <ModalFooter>
-                <Button color="primary" onPress={onClose}>
-                  Post Video
+                <Button
+                  type="submit"
+                  color="primary"
+                  isLoading={isLoading}
+                  onPress={onClose}
+                >
+                  {isLoading ? "Posting Video" : "Post Video"}
                 </Button>
               </ModalFooter>
-            </>
+            </form>
           )}
         </ModalContent>
       </Modal>
