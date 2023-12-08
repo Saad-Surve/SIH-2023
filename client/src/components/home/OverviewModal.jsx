@@ -39,7 +39,7 @@ export default function OverviewModal({ modalRef, handleOverview, open }) {
     const arrowRef = useRef(null)
     const [index, setIndex] = useState(0)
     const handleLeft=()=>{
-        const w = modalRef.current.getBoundingClientRect().width
+        const w = modalRef.current.getBoundingClientRect().width 
         const h = modalRef.current.getBoundingClientRect().height
         if(index===0){
             arrowRef.current.style.transition = 'translate 1ms ease'
@@ -108,7 +108,6 @@ export default function OverviewModal({ modalRef, handleOverview, open }) {
                 src={arrow} 
                 className={`w-12 h-12 fixed top-0 translate-y-[5.5rem]`}
             />
-            {/* //5.5 9  */}
         </motion.div>
         </>
     );

@@ -29,6 +29,10 @@ const navbar = (props) => {
     }
   };
 
+  const logout = () => {
+    document.cookie = `token=; path=/; max-age=0`;
+    window.location.href = "/";
+  }
   return (
     <div className="bg-white top-0 sticky z-10 border-b-1 p-3 px-6 flex flex-row border-l shadow-md">
       <form className="w-full flex gap-3" onSubmit={handleSearch} >
@@ -77,7 +81,7 @@ const navbar = (props) => {
             />
           </PopoverTrigger>
           <PopoverContent>
-            <Button color="danger" variant="light" className="p-4">
+            <Button onPress={logout} color="danger" variant="light" className="p-4">
               <Icon icon="material-symbols:logout" />
               Logout
             </Button>
