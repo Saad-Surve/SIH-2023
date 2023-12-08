@@ -10,6 +10,7 @@ import ServerUrl from "../../constants";
 
 const Directory = () => {
   const [lawyers, setLawyers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const fetchLawyers = async () => {
     try {
@@ -22,13 +23,26 @@ const Directory = () => {
   useEffect(() => {
     // Fetch lawyers when the component mounts
     fetchLawyers();
-    console.log(lawyers)
-  }, []); 
+  }, []);
+  
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.put(`${ServerUrl}/api/search/getLawyer`, {
+        expertise: searchTerm,
+      });
+      setLawyers(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   return (
     <div className="w-full z-10 flex flex-col">
       <Navbar
         setLawyers={setLawyers}
+        handleSearch={handleSearch}
+        setSearchTerm={setSearchTerm}
       />
       <div className="h-[calc(100vh-4rem-4px)] flex flex-row overflow-y-hidden">
         <div className="max-w-7/12 flex flex-col p-10">

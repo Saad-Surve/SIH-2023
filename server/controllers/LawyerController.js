@@ -11,6 +11,25 @@ const getLawyer = asyncHandler(async(req,res) =>{
   res.status(200).json(lawyer)
 })
 
+const getArticles = asyncHandler(async(req,res) =>{
+  const article = await Article.find();
+  if (!article || article.length === 0) {
+    return res.status(400).json({ message: 'Articles not found' });
+  }
+  // Fetch associated lawyers for each article
+  const articlesWithLawyers = await Promise.all(
+    article.map(async (article) => {
+      const lawyer = await Lawyer.findById(article.postedBy).select("name");
+      return {
+        ...article.toObject(),
+        name: lawyer ? lawyer.name : null,
+      };
+    })
+  );
+
+  res.status(200).json(articlesWithLawyers);
+})
+
 const getLawyerPosts = asyncHandler(async (req, res) => {
   console.log("req.query.lawyerUsername : ", req.query);
   const lawyerUsername = req.query.lawyerUsername;
@@ -121,5 +140,6 @@ module.exports = {
   createVideoPost,
   deleteArticle,
   deleteVideo,
-  getLawyer
+  getLawyer,
+  getArticles
 };
