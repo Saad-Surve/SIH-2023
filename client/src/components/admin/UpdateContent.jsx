@@ -55,9 +55,9 @@ const UpdateContent = () => {
           <div className="w-full text-center font-saira pt-4">
             Pending Update Requests
           </div>
-          <div className="w-[90%] flex items-center justify-evenly text-xl font-bold">
-            <div className="text-black p-4">Original Content</div>
-            <div className="mr-24">Proposed Changes</div>
+          <div className="w-[90%] flex items-center justify-between text-xl font-bold">
+            <div className="text-black p-4 ml-6">Original Content</div>
+            <div className="mr-28">Proposed Changes</div>
           </div>
         </div>
         <ScrollShadow className="w-[90%] text-text-gray h-max mt-4 pr-2 admin overflow-y-auto text-xl">
