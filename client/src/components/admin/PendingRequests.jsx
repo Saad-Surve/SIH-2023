@@ -13,65 +13,30 @@ import { Icon } from "@iconify/react";
 import "./Admin.css";
 import axios from "axios";
 import ServerUrl from "../../constants";
-
+import { useLoaderData } from "react-router-dom";
+ 
 const PendingRequests = () => {
-  const data = [
-    {
-      username: "Mrumayee123",
-      name: "Adv. Mrunmayee Deshmukh",
-      idProof: "default_thumbnail.jpg",
-    },
-    {
-      username: "Mrumayee",
-      name: "Adv. Mrunmayee Deshmukh",
-      idProof: "default_thumbnail.jpg",
-    },
-    {
-      username: "Mrume123",
-      name: "Adv. Mrunmayee Deshmukh",
-      idProof: "default_thumbnail.jpg",
-    },
-    {
-      username: "Mrumaye=123",
-      name: "Adv. Mrunmayee Deshmukh",
-      idProof: "default_thumbnail.jpg",
-    },
-    {
-      username: "Mrumayfaefaee123",
-      name: "Adv. Mrunmayee Deshmukh",
-      idProof: "default_thumbnail.jpg",
-    },
-    {
-      username: "Mayee123",
-      name: "Adv. Mrunmayee Deshmukh",
-      idProof: "default_thumbnail.jpg",
-    },
-    {
-      username: "Mree123",
-      name: "Adv. Mrunmayee Deshmukh",
-      idProof: "default_thumbnail.jpg",
-    },
-  ];
+  const allRequests = useLoaderData();
+  console.log("All Requests : ", allRequests);
 
-  const [allRequests, setAllRequests] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const token = document.cookie.split("token=")[1];
-      console.log(token);
-      try {
-        const response = await axios.get(`${ServerUrl}/api/admin/getRequests`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setAllRequests(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
+  // const [allRequests, setAllRequests] = useState([]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const token = document.cookie.split("token=")[1];
+  //     console.log(token);
+  //     try {
+  //       const response = await axios.get(`${ServerUrl}/api/admin/getRequests`, {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+  //       setAllRequests(response.data);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
   const handleAccept = async (lawyer) => {
     const token = document.cookie.split("token=")[1];
@@ -85,8 +50,8 @@ const PendingRequests = () => {
       .catch((err) => {
         console.log(err);
       });
-    location.reload();
   };
+
   return (
     <div className="w-full flex justify-center items-center relative h-screen">
       <div
@@ -184,3 +149,27 @@ const PendingRequests = () => {
 };
 
 export default PendingRequests;
+
+export async function loader() {
+  const token = document.cookie.split("token=")[1];
+  const options = {
+    method: "GET",
+    url: `${ServerUrl}/api/admin/getRequests`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  let response;
+  try {
+    response = await axios.request(options);
+    console.log(response.data);
+  } catch (error) {
+    response = { data: null };
+    console.error(error);
+  }
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  // Add a delay of 3000 milliseconds (3 seconds)
+  await delay(2000);
+  return response.data;
+}

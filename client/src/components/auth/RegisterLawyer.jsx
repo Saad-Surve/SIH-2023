@@ -19,7 +19,7 @@ const RegisterLawyer = () => {
     experience: "",
     idProof: "",
     location: "",
-  });
+  }); 
 
   const [isLoading, setIsLoading] = useState(false);
   const [usernameExists, setUsernameExists] = useState(false);
