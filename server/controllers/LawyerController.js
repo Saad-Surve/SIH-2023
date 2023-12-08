@@ -3,18 +3,27 @@ const asyncHandler = require("express-async-handler");
 const Article = require("../models/Article.model");
 const Video = require("../models/Video.model");
 
-const getLawyer = asyncHandler(async(req,res) =>{
-  const lawyer = await Lawyer.find();
-  if(!lawyer){
-    res.status(400).json({ message: "No lawyer found" })
+const getLawyers = asyncHandler(async (req, res) => {
+  const lawyers = await Lawyer.find();
+  if (!lawyers) {
+    res.status(400).json({ message: "No lawyers found" });
   }
-  res.status(200).json(lawyer)
-})
+  res.status(200).json(lawyers);
+});
 
-const getArticles = asyncHandler(async(req,res) =>{
+const getLawyer = asyncHandler(async (req, res) => {
+  const { username } = req.query;
+  const lawyer = await Lawyer.findOne({ username });
+  if (!lawyer) {
+    res.status(400).json({ message: "No lawyer found" });
+  }
+  res.status(200).json(lawyer);
+});
+
+const getArticles = asyncHandler(async (req, res) => {
   const article = await Article.find();
   if (!article || article.length === 0) {
-    return res.status(400).json({ message: 'Articles not found' });
+    return res.status(400).json({ message: "Articles not found" });
   }
   // Fetch associated lawyers for each article
   const articlesWithLawyers = await Promise.all(
@@ -28,14 +37,11 @@ const getArticles = asyncHandler(async(req,res) =>{
   );
 
   res.status(200).json(articlesWithLawyers);
-})
+});
 
 const getLawyerPosts = asyncHandler(async (req, res) => {
-  console.log("req.query.lawyerUsername : ", req.query);
   const lawyerUsername = req.query.lawyerUsername;
   const lawyer = await Lawyer.findOne({ username: lawyerUsername });
-
-  console.log("Lawyer here : ", lawyer);
 
   if (!lawyer) {
     res.status(400).json({ message: "No lawyer found" });
@@ -44,16 +50,12 @@ const getLawyerPosts = asyncHandler(async (req, res) => {
   const rows = [];
 
   for (const articleId of lawyer.articles) {
-    console.log("Article in this case : ", articleId);
     const article = await Article.findOne({ _id: articleId });
-    console.log("Article : ", article);
     rows.push({ ...article.toObject(), type: "Article" });
   }
 
   for (const videoId of lawyer.videos) {
-    console.log("Video in this case : ", videoId);
     const video = await Video.findOne({ _id: videoId });
-    console.log("Video : ", video);
     rows.push({ ...video.toObject(), type: "Video" });
   }
 
@@ -70,7 +72,6 @@ const getLawyerPosts = asyncHandler(async (req, res) => {
 
 const createArticle = asyncHandler(async (req, res) => {
   const { title, content, lawyerUsername } = req.body;
-  console.log(title + "|" + content + "|" + lawyerUsername);
   const lawyer = await Lawyer.findOne({ username: lawyerUsername });
   if (!lawyer) {
     res.status(400).json({ message: "No lawyer found" });
@@ -148,6 +149,7 @@ module.exports = {
   createVideoPost,
   deleteArticle,
   deleteVideo,
+  getLawyers,
   getLawyer,
-  getArticles
+  getArticles,
 };

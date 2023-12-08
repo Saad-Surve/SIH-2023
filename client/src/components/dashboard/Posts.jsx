@@ -131,9 +131,8 @@ const rows = [
   },
 ];
 
-const Posts = () => {
+const Posts = (props) => {
   const allPosts = useLoaderData();
-  console.log("All <> : ", allPosts);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(4);
@@ -175,14 +174,9 @@ export async function loader() {
   // let response;
   try {
     const response = await axios.request(options);
-    console.log(response.data);
     return response.data; // Return the fetched data
   } catch (error) {
     console.error(error);
     return null; // Return null or handle the error accordingly
   }
-  // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-  // Add a delay of 3000 milliseconds (3 seconds)
-  // await delay(2000);
 }

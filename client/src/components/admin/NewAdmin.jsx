@@ -3,6 +3,7 @@ import adminLogo from "../../assets/admin.jpg";
 import { Button, Input, Link } from "@nextui-org/react";
 import axios from "axios";
 import ServerUrl from "../../constants";
+import { Icon } from "@iconify/react";
 
 const NewAdmin = () => {
   const [admin, setAdmin] = useState({
@@ -34,7 +35,7 @@ const NewAdmin = () => {
 
     if (response.data.success) {
       //set the token of the response.data to a cookie
-      alert("Admin has successfully registered");
+      alert("Admin has been successfully registered");
       //redirect to the dashboard
       window.location.href = "/loginAdmin";
     }
@@ -43,9 +44,12 @@ const NewAdmin = () => {
   };
 
   const handleChange = (e) => {
-    console.log("Admin before change : ", admin);
     setAdmin({ ...admin, [e.target.name]: e.target.value });
-    console.log("Admin on change : ", admin);
+  };
+
+  const logout = () => {
+    document.cookie = `token=; path=/; max-age=0`;
+    window.location.href = "/";
   };
 
   return (
@@ -54,6 +58,14 @@ const NewAdmin = () => {
         className="bg-cover bg-center w-full h-screen absolute opacity-90 bg-gradient-to-t brightness-[25%] saturate-150"
         style={{ backgroundImage: `url(${adminLogo})` }}
       ></div>
+      <Button
+        onPress={logout}
+        color="danger"
+        className="absolute top-0 right-0 mt-4 mr-4 text-red-600 bg-white hover:bg-red-400 hover:text-white"
+      >
+        <Icon icon="material-symbols:logout" />
+        Logout
+      </Button>
       <div className="bg-white w-[40%] h-[70%] flex flex-col gap-6 items-center justify-center  rounded-[20px] z-10 ">
         <div className="border-b-2 border-[#6E6E91] w-4/5 text-center pb-4 font-saira">
           Make New Admin

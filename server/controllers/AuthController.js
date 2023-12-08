@@ -9,7 +9,9 @@ const Requests = require("../models/Requests.model");
 
 const checkUsernameUser = asyncHandler(async (req, res) => {
   const { username } = req.query;
+
   const usernameExists = await User.findOne({ username: username });
+
   if (usernameExists) {
     res
       .status(200)
@@ -60,7 +62,11 @@ const registerUser = asyncHandler(async (req, res) => {
       _id: user.id,
       username: user.username,
       emailID: user.emailID,
-      token: generateToken({id:user._id,role:'User',username:user.username}),
+      token: generateToken({
+        id: user._id,
+        role: "User",
+        username: user.username,
+      }),
       success: true,
     });
   } else {
@@ -107,7 +113,11 @@ const registerLawyer = asyncHandler(async (req, res) => {
       _id: user.id,
       username: user.username,
       emailID: user.emailID,
-      token: generateToken({id:user._id,role:'Lawyer',username:user.username}),
+      token: generateToken({
+        id: user._id,
+        role: "Lawyer",
+        username: user.username,
+      }),
       success: true,
     });
   } else {
@@ -118,13 +128,19 @@ const registerLawyer = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
   const { username, password } = req.body;
   // Check for user email
+
   const user = await User.findOne({ username });
+
   if (user && (await bcrypt.compare(password, user.password))) {
     res.json({
       _id: user.id,
       name: user.username,
       email: user.emailID,
-      token: generateToken({id:user._id,role:'User',username:user.username}),
+      token: generateToken({
+        id: user._id,
+        role: "User",
+        username: user.username,
+      }),
       success: true,
     });
   } else {
@@ -137,14 +153,17 @@ const loginLawyer = asyncHandler(async (req, res) => {
 
   // Check for user email
   const user = await Lawyer.findOne({ username });
-  console.log("Found user : " + user);
 
   if (user && (await bcrypt.compare(password, user.password))) {
     res.json({
       _id: user.id,
       name: user.username,
       email: user.emailID,
-      token: generateToken({id:user._id,role:'Lawyer',username:user.username}),
+      token: generateToken({
+        id: user._id,
+        role: "Lawyer",
+        username: user.username,
+      }),
       success: true,
     });
   } else {
@@ -162,7 +181,11 @@ const loginAdmin = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.username,
       email: user.emailID,
-      token: generateToken({id:user._id,role:'Admin',username:user.username}),
+      token: generateToken({
+        id: user._id,
+        role: "Admin",
+        username: user.username,
+      }),
       success: true,
     });
   } else {
@@ -192,7 +215,11 @@ const registerAdmin = asyncHandler(async (req, res) => {
     res.status(201).json({
       _id: user.id,
       emailID: user.emailID,
-      token: generateToken({id:user._id,role:'Admin',username:user.username}),
+      token: generateToken({
+        id: user._id,
+        role: "Admin",
+        username: user.username,
+      }),
     });
   } else {
     res.status(400).json({ message: "Invalid user data" });

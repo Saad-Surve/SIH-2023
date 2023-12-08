@@ -36,8 +36,6 @@ const protectUser = asyncHandler(async (req, res, next) => {
 
 const protectLawyer = asyncHandler(async (req, res, next) => {
   let token;
-
-  console.log("Protect Lawyer : ", req.headers);
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
@@ -67,25 +65,16 @@ const protectLawyer = asyncHandler(async (req, res, next) => {
 const protectAdmin = asyncHandler(async (req, res, next) => {
   let token;
 
-  console.log("REQ HEADERS: ", req.headers);
-  console.log("REQ BODY: ", req.body);
-
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
   ) {
     try {
       // Get token from header
-      console.log("Received Token:", req.headers.authorization);
-
       token = req.headers.authorization.split(" ")[1];
-
-      console.log("Received Token:", token);
 
       // Verify token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-      console.log("Decoded Token:", decoded);
 
       // Get user from the token
       req.user = await Admin.findById(decoded.id.id).select("-password");

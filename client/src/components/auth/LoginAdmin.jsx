@@ -43,11 +43,10 @@ const LoginAdmin = () => {
         60 * 60 * 24 * 30
       }`;
       // onOpen();
-      alert("Login Successful");
       setIsLoading(false);
       window.location.href = "/pendingRequests";
     } else {
-      alert("Login Unsuccessfull : ", response.data.message);
+      alert("Login failed : ", response.data.message);
     }
     setIsLoading(false);
   };

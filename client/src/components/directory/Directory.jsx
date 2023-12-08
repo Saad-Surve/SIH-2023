@@ -1,20 +1,21 @@
-import Navbar from "../UI/navbar";
+import Navbar from "../UI/Navbar";
 import { Icon } from "@iconify/react";
 import LawyerCard from "./LawyerCard";
 import Consult from "./Consult";
 import { ScrollShadow } from "@nextui-org/react";
 import axios from "axios";
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ServerUrl from "../../constants";
+import { jwtDecode } from "jwt-decode";
 
 const Directory = () => {
   const [lawyers, setLawyers] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const fetchLawyers = async () => {
     try {
-      const response = await axios.get(`${ServerUrl}/api/lawyer/getLawyer`);
+      const response = await axios.get(`${ServerUrl}/api/lawyer/getLawyers`);
       setLawyers(response.data);
     } catch (error) {
       console.error("Error fetching lawyers:", error);
@@ -24,11 +25,11 @@ const Directory = () => {
     // Fetch lawyers when the component mounts
     fetchLawyers();
   }, []);
-  
+
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`${ServerUrl}/api/search/getLawyer`, {
+      const response = await axios.put(`${ServerUrl}/api/search/getLawyers`, {
         expertise: searchTerm,
       });
       setLawyers(response.data);
@@ -37,12 +38,49 @@ const Directory = () => {
     }
   };
 
+  //add custom user data here
+  const [user, setUser] = useState({
+    username: "",
+    emailID: "",
+  });
+
+  const token = document.cookie.split("token=")[1];
+  const username = jwtDecode(token).id.username;
+
+  const role = jwtDecode(token).id.role;
+
+  useEffect(() => {
+    const getUser = async () => {
+      let url;
+      if (role === "User") {
+        url = `${ServerUrl}/api/user/getUser/?username=${username}`;
+      }
+      // else if (role === "Lawyer") {
+      //   url = `${ServerUrl}/api/lawyer/getLawyer/?username=${username}`;
+      // }
+
+      const response = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUser({
+        ...user,
+        username: response.data.username,
+        emailID: response.data.emailID,
+      });
+    };
+    getUser();
+  }, []);
+
   return (
     <div className="w-full z-10 flex flex-col">
       <Navbar
         setLawyers={setLawyers}
         handleSearch={handleSearch}
         setSearchTerm={setSearchTerm}
+        user={user}
+        role={role}
       />
       <div className="h-[calc(100vh-4rem-4px)] flex flex-row overflow-y-hidden">
         <div className="max-w-7/12 flex flex-col p-10">
@@ -72,10 +110,9 @@ const Directory = () => {
             size={10}
             className="flex flex-col items-center px-5  gap-4 h-[600px] random overflow-y-scroll"
           >
-          {/* {console.log(lawyers)} */}
-          {lawyers.map((lawyer,index) => (
-            <LawyerCard key={index} lawyer={lawyer}/>
-          ))}
+            {lawyers.map((lawyer, index) => (
+              <LawyerCard key={index} lawyer={lawyer} />
+            ))}
           </ScrollShadow>
         </div>
         <div className="w-5/12 flex justify-center items-center">

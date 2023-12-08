@@ -13,10 +13,10 @@ import {
 import axios from "axios";
 import ServerUrl from "../../constants";
 
-const AddVideo = () => {
+const AddVideo = (props) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const username = "1212";
+  const username = props.username || "2102ankit";
 
   // /api/lawyer
   // const [post, setPost] = useState({
@@ -48,8 +48,6 @@ const AddVideo = () => {
         }
       );
 
-      console.log(response.data);
-
       if (response.data.message === "Video created") {
         alert("Video Post created");
       } else {
@@ -59,6 +57,7 @@ const AddVideo = () => {
       console.error("Error Creating Article:", error);
     }
     setIsLoading(false);
+    location.reload();
   };
 
   return (

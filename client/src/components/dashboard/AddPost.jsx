@@ -14,17 +14,10 @@ import {
 import axios from "axios";
 import ServerUrl from "../../constants";
 
-const AddPost = () => {
+const AddPost = (props) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const username = "1212";
-
-  // /api/lawyer
-  // const [post, setPost] = useState({
-  //   title: "",
-  //   thumbnail: "",
-  //   content: "",
-  // });
+  const username = props.username || "2102ankit";
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -49,8 +42,6 @@ const AddPost = () => {
         }
       );
 
-      console.log(response.data);
-
       if (response.data.message === "Article created") {
         alert("Article created");
       } else {
@@ -60,6 +51,7 @@ const AddPost = () => {
       console.error("Error Creating Article:", error);
     }
     setIsLoading(false);
+    location.reload();
   };
 
   return (

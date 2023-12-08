@@ -388,7 +388,6 @@ const dummydata = [
 ];
 const News = () => {
   const data = useLoaderData();
-  console.log(data.value);
   return (
     <div className="flex relative">
       <div
@@ -459,7 +458,6 @@ export async function loader() {
   let response;
   try {
     response = await axios.request(options);
-    console.log(response.data);
   } catch (error) {
     response = { data: null };
     console.error(error);

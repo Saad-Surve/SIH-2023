@@ -22,6 +22,7 @@ app.use("/api/auth", require("./routes/Auth.routes"));
 app.use("/api/client", require("./routes/Client.routes"));
 app.use("/api/admin", require("./routes/Admin.routes"));
 app.use("/api/lawyer", require("./routes/Lawyer.routes"));
+app.use("/api/user", require("./routes/User.routes"));
 app.use("/api/community", require("./routes/CommunityConnect.routes"));
 app.use("/api/websiteContent", require("./routes/WebsiteContent.routes"));
 app.use("/api/search", require("./routes/search.routes"));

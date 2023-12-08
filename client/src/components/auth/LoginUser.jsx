@@ -43,7 +43,6 @@ const LoginUser = () => {
         60 * 60 * 24 * 30
       }`;
       onOpen();
-      // alert("Login Successful");
       setIsLoading(false);
       window.location.href = "/userDashboard";
     } else {

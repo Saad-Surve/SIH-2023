@@ -19,7 +19,7 @@ const RegisterLawyer = () => {
     experience: "",
     idProof: "",
     location: "",
-  }); 
+  });
 
   const [isLoading, setIsLoading] = useState(false);
   const [usernameExists, setUsernameExists] = useState(false);
@@ -40,24 +40,7 @@ const RegisterLawyer = () => {
         lawyer.location
       )
     ) {
-      alert(
-        "Please fill all the fields",
-        +lawyer.name +
-          " " +
-          lawyer.username +
-          " " +
-          lawyer.emailID +
-          " " +
-          lawyer.password +
-          " " +
-          lawyer.expertise +
-          " " +
-          lawyer.experience +
-          " " +
-          lawyer.idProof +
-          " " +
-          lawyer.location
-      );
+      alert("Please fill all the fields");
       setIsLoading(false);
       return;
     }
@@ -73,14 +56,14 @@ const RegisterLawyer = () => {
 
     try {
       let response = await axios.post(
-        `${ServerUrl}/api/auth/registerLawyer`,formData,{
+        `${ServerUrl}/api/auth/registerLawyer`,
+        formData,
+        {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         }
       );
-
-      console.log(response.data);
 
       if (response.data.userExists) {
         alert("User already exists");

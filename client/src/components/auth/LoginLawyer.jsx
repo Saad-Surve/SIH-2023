@@ -38,13 +38,11 @@ const LoginLawyer = () => {
       document.cookie = `token=${response.data.token}; path=/; max-age=${
         60 * 60 * 24 * 30
       }`;
-      // onOpen();
-      // alert("Login Successful");
       setIsLoading(false);
       window.location.href = "/lawyerDashboard";
     } else {
       // onOpen();
-      alert("Login Unsuccessful" + response.data.message);
+      alert("Login failed : " + response.data.message);
     }
     setIsLoading(false);
   };

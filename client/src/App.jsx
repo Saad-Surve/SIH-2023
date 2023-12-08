@@ -11,7 +11,6 @@ import Dashboard from "./components/dashboard/Dashboard";
 import { loader as LawyerDashboardLoader } from "./components/dashboard/Posts";
 import RegisterUser from "./components/auth/RegisterUser";
 import RegisterLawyer from "./components/auth/RegisterLawyer";
-import LawyerDashboard from "./components/lawyerDashboard/LawyerDashboard";
 import LoginUser from "./components/auth/LoginUser";
 import LoginLawyer from "./components/auth/LoginLawyer";
 import LoginAdmin from "./components/auth/LoginAdmin";
@@ -52,21 +51,12 @@ const router = createBrowserRouter([
         element: <Resources />,
       },
       {
-        path: "dashboard",
-        element: <Dashboard />,
-      },
-      {
         path: "registerUser",
         element: <RegisterUser />,
       },
       {
         path: "registerLawyer",
         element: <RegisterLawyer />,
-      },
-      {
-        path: "lawyerDashboard",
-        element: <Dashboard />,
-        loader: LawyerDashboardLoader,
       },
       {
         path: "loginUser",
@@ -81,8 +71,17 @@ const router = createBrowserRouter([
         element: <LoginAdmin />,
       },
       {
+        path: "lawyerDashboard",
+        element: <Dashboard />,
+        loader: LawyerDashboardLoader,
+      },
+      {
         path: "userDashboard",
         element: <UserDashboard />,
+      },
+      {
+        path: "adminDashboard",
+        element: <NewAdmin />,
       },
       {
         path: "newAdmin",

@@ -7,12 +7,10 @@ const WebsiteContent = require("../models/WebsiteContent.model");
 
 const getRequests = asyncHandler(async (req, res) => {
   const requests = await Requests.find();
-  console.log(requests);
   res.json(requests);
 });
 
 const acceptLawyer = asyncHandler(async (req, res) => {
-  console.log("Req body in acceptLawyer", req.body);
   const requestId = req.body._id;
   if (!requestId) {
     res.status(400).json({ message: "Invalid request" });

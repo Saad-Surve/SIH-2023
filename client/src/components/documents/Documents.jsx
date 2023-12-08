@@ -1,5 +1,5 @@
 import DocumentCard from "./DocumentCard";
-import Navbar from "../UI/navbar";
+// import Navbar from "../UI/Navbar";
 import "./Documents.css";
 
 const Documents = () => {

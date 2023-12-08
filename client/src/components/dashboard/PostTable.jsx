@@ -20,7 +20,6 @@ const PostTable = ({ username, rows }) => {
       </thead>
       <tbody>
         {rows.map((row, index) => {
-          console.log("Current data : ", row);
           const [date, fullTime] = row.postedOn.split("T");
           const [time, seconds] = fullTime.split(".");
 

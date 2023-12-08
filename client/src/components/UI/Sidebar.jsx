@@ -3,13 +3,15 @@ import { Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import classNames from "classnames";
 import "./styles/Sidebar.css";
-import { jwtDecode } from 'jwt-decode'
+import { jwtDecode } from "jwt-decode";
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const location = useLocation();
-  const role = document.cookie.split('token=')[1] && jwtDecode( document.cookie.split('token=')[1]).id.role
+  const role =
+    document.cookie.split("token=")[1] &&
+    jwtDecode(document.cookie.split("token=")[1]).id.role;
   const sidebarItems = [
     {
       name: "Home",
@@ -41,23 +43,26 @@ const Sidebar = () => {
       icon: <Icon className="w-8 h-8" icon="system-uicons:message-writing" />,
       path: "resources",
     },
-    role?
-    {
-      name: `${role?role:''} Dashboard`,
-      icon: (
-        <Icon
-          className="w-8 h-8"
-          icon="material-symbols-light:dashboard-outline"
-        />
-      ),
-      path: `${role.toLowerCase()}dashboard`,
-    }:{},
+    role
+      ? {
+          name: `${role ? role : ""} Dashboard`,
+          icon: (
+            <Icon
+              className="w-8 h-8"
+              icon="material-symbols-light:dashboard-outline"
+            />
+          ),
+          path: `${role.toLowerCase()}Dashboard`,
+        }
+      : {},
   ];
 
   useEffect(() => {
     // Extract the path from the URL and find the corresponding index in sidebarItems
     let currentPath = location.pathname.slice(1);
     if (currentPath === "") currentPath = "/";
+    if (currentPath === "pendingRequests" || currentPath === "updateContent")
+      currentPath = "adminDashboard";
     const selectedIndex = sidebarItems.findIndex(
       (item) => item.path === currentPath
     );
@@ -100,7 +105,11 @@ const Sidebar = () => {
             <div className="flex items-center mr-4 gap-1 font-saira">
               <h1>Nyaydoot</h1>
               {/* <Icon icon="octicon:law-24" className="ml-1 w-8 h-8" /> */}
-              <img src="../../src/assets/logoblack.png" alt="" className="w-8 h-8 mr-10"/>
+              <img
+                src="../../src/assets/logoblack.png"
+                alt=""
+                className="w-8 h-8 mr-10"
+              />
             </div>
             <Icon icon="solar:arrow-left-linear" className="ml-2 w-8 h-8" />
           </div>

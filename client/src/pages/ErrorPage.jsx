@@ -9,7 +9,6 @@ import Sidebar from "../components/UI/Sidebar";
 const ErrorPage = () => {
   const navigate = useNavigate();
   const error = useRouteError();
-  // console.log(error);
   let title = "An error occurred";
   let message = error?.message || "Something went wrong";
   if (error?.status === 404) {
