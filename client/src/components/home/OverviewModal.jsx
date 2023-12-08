@@ -39,9 +39,11 @@ export default function OverviewModal({ modalRef, handleOverview, open }) {
     const arrowRef = useRef(null)
     const [index, setIndex] = useState(0)
     const handleLeft=()=>{
+        const w = modalRef.current.getBoundingClientRect().width
+        const h = modalRef.current.getBoundingClientRect().height
         if(index===0){
             arrowRef.current.style.transition = 'translate 1ms ease'
-            arrowRef.current.style.translate = `85vw 100vh`
+            arrowRef.current.style.translate = `${w*0.9}px ${h*0.99}px`
             arrowRef.current.style.rotate = '180deg'
             setIndex(6)
             return
@@ -58,9 +60,11 @@ export default function OverviewModal({ modalRef, handleOverview, open }) {
         setIndex((index-1))
     }
     const handleRight=()=>{
+        const w = modalRef.current.getBoundingClientRect().width
+        const h = modalRef.current.getBoundingClientRect().height
         if(index===5){
             arrowRef.current.style.transition = 'translate 1ms ease'
-            arrowRef.current.style.translate = `85vw 100vh`
+            arrowRef.current.style.translate = `${w*0.9}px ${h*0.99}px`
             arrowRef.current.style.rotate = '180deg'
             setIndex(6)
             return
