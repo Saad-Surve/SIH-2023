@@ -13,7 +13,7 @@ const Directory = () => {
 
   const fetchLawyers = async () => {
     try {
-      const response = await axios.get(`${ServerUrl}/api/lawyer/getLawyer`); // Adjust the endpoint based on your backend
+      const response = await axios.get(`${ServerUrl}/api/lawyer/getLawyer`);
       setLawyers(response.data);
     } catch (error) {
       console.error("Error fetching lawyers:", error);
@@ -22,6 +22,7 @@ const Directory = () => {
   useEffect(() => {
     // Fetch lawyers when the component mounts
     fetchLawyers();
+    console.log(lawyers)
   }, []); 
 
   return (
@@ -57,7 +58,7 @@ const Directory = () => {
             size={10}
             className="flex flex-col items-center px-5  gap-4 h-[600px] random overflow-y-scroll"
           >
-          {console.log(lawyers)}
+          {/* {console.log(lawyers)} */}
           {lawyers.map((lawyer,index) => (
             <LawyerCard key={index} lawyer={lawyer}/>
           ))}
