@@ -3,6 +3,15 @@ const asyncHandler = require('express-async-handler')
 const Article = require('../models/Article.model')
 const Video = require('../models/Video.model')
 
+const getLawyer = asyncHandler(async(req,res)=>{
+    const lawyer = await Lawyer.find()
+    if(!lawyer)
+    {
+        res.status(404).json({'message': 'Lawyer Not Found'})
+    }
+    res.status(200).json(lawyer)
+})
+
 const getLawyerPosts = asyncHandler(async(req,res)=>{
     const lawyerUsername = req.query.username
     const lawyer = await Lawyer.findOne({username:lawyerUsername})
@@ -92,5 +101,6 @@ module.exports = {
     createArticle,
     createVideoPost,
     deleteArticle,
-    deleteVideo
+    deleteVideo,
+    getLawyer
 }
