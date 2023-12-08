@@ -14,29 +14,10 @@ import "./Admin.css";
 import axios from "axios";
 import ServerUrl from "../../constants";
 import { useLoaderData } from "react-router-dom";
- 
+
 const PendingRequests = () => {
   const allRequests = useLoaderData();
   console.log("All Requests : ", allRequests);
-
-  // const [allRequests, setAllRequests] = useState([]);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const token = document.cookie.split("token=")[1];
-  //     console.log(token);
-  //     try {
-  //       const response = await axios.get(`${ServerUrl}/api/admin/getRequests`, {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       });
-  //       setAllRequests(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
 
   const handleAccept = async (lawyer) => {
     const token = document.cookie.split("token=")[1];

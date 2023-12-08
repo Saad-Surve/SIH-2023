@@ -30,6 +30,14 @@ const getLawyerPosts = asyncHandler(async (req, res) => {
     rows.push({ ...video.toObject(), type: "Video" });
   }
 
+  rows.sort((a, b) => {
+    const dateA = new Date(a.postedOn);
+    const dateB = new Date(b.postedOn);
+
+    // Compare the dates
+    return dateB - dateA;
+  });
+
   res.status(200).json(rows);
 });
 

@@ -19,54 +19,60 @@ const PostTable = ({ username, rows }) => {
         </tr>
       </thead>
       <tbody>
-        {rows.map((row, index) => (
-          <tr key={index} className="flex border-b-2 border-grey-200 py-4">
-            <td className="w-2/5 font-medium  pl-6 flex items-center">
-              <Avatar
-                name="Yusuf Sodawala"
-                size="35px"
-                round
-                className="mr-4"
-              />
-              <div className="flex flex-col">
-                <span className="text-sm text-header-black">
-                  {row.headline.length <= 25
-                    ? row.headline
-                    : row.headline.slice(0, 25) + "..."}
-                </span>
-              </div>
-            </td>
-            <td className="w-1/5 font-light  text-sm flex justify-center items-center text-header-black">
-              {row.type}
-            </td>
-            <td className="w-1/5 font-light  text-sm flex justify-center items-center">
-              <div className="flex flex-col">
-                <span className="text-xs text-header-black">{row.Date}</span>
-                <span className="text-xs text-icon-gray">6:30 PM</span>
-              </div>
-            </td>
-            <td className="ml-auto font-light flex items-center">
-              <Popover placement="left-start" showArrow={true}>
-                <PopoverTrigger>
-                  <Icon
-                    icon="pepicons-pencil:dots-y"
-                    className="mr-6 h-6 w-6 text-icon-gray hover:text-text-gray hover:border-1 hover:bg-gray-200 hover:rounded-[50%] hover:p-1 hover:h-8 hover:w-8 hover:mr-5"
-                  />
-                </PopoverTrigger>
-                <PopoverContent>
-                  <Button color="primary" variant="light" className=" px-4">
-                    <Icon icon="ri:send-plane-fill" />
-                    Share
-                  </Button>
-                  <Button color="danger" variant="light" className="px-4">
-                    <Icon icon="mdi:bin" />
-                    Delete
-                  </Button>
-                </PopoverContent>
-              </Popover>
-            </td>
-          </tr>
-        ))}
+        {rows.map((row, index) => {
+          console.log("Current data : ", row);
+          const [date, fullTime] = row.postedOn.split("T");
+          const [time, seconds] = fullTime.split(".");
+
+          return (
+            <tr key={index} className="flex border-b-2 border-grey-200 py-4">
+              <td className="w-2/5 font-medium  pl-6 flex items-center">
+                <Avatar
+                  name="Yusuf Sodawala"
+                  size="35px"
+                  round
+                  className="mr-4"
+                />
+                <div className="flex flex-col">
+                  <span className="text-sm text-header-black">
+                    {row.headline.length <= 25
+                      ? row.headline
+                      : row.headline.slice(0, 25) + "..."}
+                  </span>
+                </div>
+              </td>
+              <td className="w-1/5 font-light  text-sm flex justify-center items-center text-header-black">
+                {row.type}
+              </td>
+              <td className="w-1/5 font-light  text-sm flex justify-center items-center">
+                <div className="flex flex-col">
+                  <span className="text-xs text-header-black">{date}</span>
+                  <span className="text-xs text-icon-gray">{time}</span>
+                </div>
+              </td>
+              <td className="ml-auto font-light flex items-center">
+                <Popover placement="left-start" showArrow={true}>
+                  <PopoverTrigger>
+                    <Icon
+                      icon="pepicons-pencil:dots-y"
+                      className="mr-6 h-6 w-6 text-icon-gray hover:text-text-gray hover:border-1 hover:bg-gray-200 hover:rounded-[50%] hover:p-1 hover:h-8 hover:w-8 hover:mr-5"
+                    />
+                  </PopoverTrigger>
+                  <PopoverContent>
+                    <Button color="primary" variant="light" className=" px-4">
+                      <Icon icon="ri:send-plane-fill" />
+                      Share
+                    </Button>
+                    <Button color="danger" variant="light" className="px-4">
+                      <Icon icon="mdi:bin" />
+                      Delete
+                    </Button>
+                  </PopoverContent>
+                </Popover>
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );

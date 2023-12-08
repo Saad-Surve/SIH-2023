@@ -19,7 +19,7 @@ const protectUser = asyncHandler(async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
       // Get user from the token
-      req.user = await User.findById(decoded.id).select("-password");
+      req.user = await User.findById(decoded.id.id).select("-password");
 
       next();
     } catch (error) {
@@ -50,7 +50,7 @@ const protectLawyer = asyncHandler(async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
       // Get user from the token
-      req.user = await Lawyer.findById(decoded.id).select("-password");
+      req.user = await Lawyer.findById(decoded.id.id).select("-password");
 
       next();
     } catch (error) {
@@ -88,7 +88,7 @@ const protectAdmin = asyncHandler(async (req, res, next) => {
       console.log("Decoded Token:", decoded);
 
       // Get user from the token
-      req.user = await Admin.findById(decoded.id).select("-password");
+      req.user = await Admin.findById(decoded.id.id).select("-password");
 
       next();
     } catch (error) {
