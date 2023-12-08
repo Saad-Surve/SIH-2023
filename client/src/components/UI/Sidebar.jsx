@@ -100,11 +100,7 @@ const Sidebar = () => {
             <div className="flex items-center mr-4 gap-1 font-saira">
               <h1>Nyaydoot</h1>
               {/* <Icon icon="octicon:law-24" className="ml-1 w-8 h-8" /> */}
-              <img
-                src="../../src/assets/logoblack.png"
-                alt=""
-                className="w-8 h-8"
-              />
+              <img src="../../src/assets/logoblack.png" alt="" className="w-8 h-8 mr-10"/>
             </div>
             <Icon icon="solar:arrow-left-linear" className="ml-2 w-8 h-8" />
           </div>
