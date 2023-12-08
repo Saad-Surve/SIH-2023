@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { Input } from "@nextui-org/react";
 import { Textarea } from "@nextui-org/react";
@@ -11,9 +11,56 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
+import axios from "axios";
+import ServerUrl from "../../constants";
 
 const AddPost = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const username = "1212";
+
+  // /api/lawyer
+  // const [post, setPost] = useState({
+  //   title: "",
+  //   thumbnail: "",
+  //   content: "",
+  // });
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const formData = new FormData(e.target);
+    formData.append("lawyerUsername", username);
+
+    try {
+      const token = document.cookie.split("token=")[1];
+
+      const response = await axios.post(
+        `${ServerUrl}/api/lawyer/createArticle`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log(response.data);
+
+      if (response.data.message === "Article created") {
+        alert("Article created");
+      } else {
+        alert("Article not created");
+      }
+    } catch (error) {
+      console.error("Error Creating Article:", error);
+    }
+    setIsLoading(false);
+  };
 
   return (
     <div
@@ -25,13 +72,19 @@ const AddPost = () => {
         icon="mdi:pencil"
         className="text-text-gray border-2 border-solid border-current h-10 w-10 p-2 mr-4 rounded-[50%] hover:text-primary hover:cursor-pointer"
       />
+
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
-            <>
+            <form
+              onSubmit={handleSubmit}
+              autoComplete="off"
+              className="flex flex-col gap-4 z-10"
+            >
               <ModalHeader className="flex flex-col gap-1">
                 Add new Article
               </ModalHeader>
+
               <ModalBody>
                 <Input
                   type="text"
@@ -41,6 +94,7 @@ const AddPost = () => {
                   }}
                   label="Headline"
                   placeholder="Enter the Headline"
+                  name="title"
                 />
                 <Input
                   type="file"
@@ -51,6 +105,7 @@ const AddPost = () => {
                   }}
                   label="Thumbnail"
                   placeholder="Add thumbnail"
+                  name="thumbnail"
                 />
                 <Textarea
                   type="text"
@@ -60,14 +115,20 @@ const AddPost = () => {
                   }}
                   label="Content"
                   placeholder="Add Article Content"
+                  name="content"
                 />
               </ModalBody>
               <ModalFooter>
-                <Button color="primary" onPress={onClose}>
-                  Post
+                <Button
+                  type="submit"
+                  color="primary"
+                  isLoading={isLoading}
+                  onPress={onClose}
+                >
+                  {isLoading ? "Posting" : "Post"}
                 </Button>
               </ModalFooter>
-            </>
+            </form>
           )}
         </ModalContent>
       </Modal>

@@ -9,7 +9,7 @@ import {
 } from "@nextui-org/react";
 
 const navbar = (props) => {
-  const [newData, setNewData] = useState('');
+  const [newData, setNewData] = useState("");
   const handleDataChange = (e) => {
     setNewData({ ...newData, [e.target.name]: e.target.value });
   };
