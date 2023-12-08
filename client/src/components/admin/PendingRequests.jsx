@@ -8,41 +8,85 @@ import {
   ScrollShadow,
 } from "@nextui-org/react";
 import admin from "../../assets/admin.jpg";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import "./Admin.css";
+import axios from "axios";
+import ServerUrl from "../../constants";
 
 const PendingRequests = () => {
   const data = [
     {
+      username: "Mrumayee123",
       name: "Adv. Mrunmayee Deshmukh",
       idProof: "default_thumbnail.jpg",
     },
     {
+      username: "Mrumayee",
       name: "Adv. Mrunmayee Deshmukh",
       idProof: "default_thumbnail.jpg",
     },
     {
+      username: "Mrume123",
       name: "Adv. Mrunmayee Deshmukh",
       idProof: "default_thumbnail.jpg",
     },
     {
+      username: "Mrumaye=123",
       name: "Adv. Mrunmayee Deshmukh",
       idProof: "default_thumbnail.jpg",
     },
     {
+      username: "Mrumayfaefaee123",
       name: "Adv. Mrunmayee Deshmukh",
       idProof: "default_thumbnail.jpg",
     },
     {
+      username: "Mayee123",
       name: "Adv. Mrunmayee Deshmukh",
       idProof: "default_thumbnail.jpg",
     },
     {
+      username: "Mree123",
       name: "Adv. Mrunmayee Deshmukh",
       idProof: "default_thumbnail.jpg",
     },
   ];
+
+  const [allRequests, setAllRequests] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = document.cookie.split("token=")[1];
+      console.log(token);
+      try {
+        const response = await axios.get(`${ServerUrl}/api/admin/getRequests`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setAllRequests(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleAccept = async (lawyer) => {
+    const token = document.cookie.split("token=")[1];
+    console.log("Token : ", token);
+    let response = await axios
+      .post(`${ServerUrl}/api/admin/acceptLawyer`, lawyer, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    location.reload();
+  };
   return (
     <div className="w-full flex justify-center items-center relative h-screen">
       <div
@@ -63,7 +107,8 @@ const PendingRequests = () => {
 
         <ScrollShadow className="w-[90%] text-text-gray h-max mt-4 pr-2 admin  overflow-y-auto text-xl ">
           {/* <div className="flex flex-col justify-start bg-red-500"> */}
-          {data.map((item, index) => {
+          {allRequests.map((item, index) => {
+            // console.log(allRequests);
             return (
               <div
                 key={index}
@@ -80,7 +125,7 @@ const PendingRequests = () => {
                       target="_blank"
                       rel="noreferrer"
                       className="text-lg text-center w-full left-1/2 text-header-black  bg-white rounded-xl py-1.5 px-3 hover:bg-primary hover:text-white transition-all"
-                      href={`http://localhost:5000/${item.idProof}`}
+                      href={`http://localhost:5000/uploads${item.idProof}`}
                     >
                       View Document
                     </a>
@@ -97,6 +142,7 @@ const PendingRequests = () => {
                             color="primary"
                             variant="light"
                             className=" px-4"
+                            onClick={() => handleAccept(item)}
                           >
                             <Icon icon="icon-park-solid:correct" />
                             Accept Request
@@ -105,6 +151,7 @@ const PendingRequests = () => {
                             color="danger"
                             variant="light"
                             className="px-4"
+                            // onClick={handleAccept}
                           >
                             <Icon icon="maki:cross" />
                             Reject Request
@@ -121,12 +168,12 @@ const PendingRequests = () => {
         </ScrollShadow>
         <div className="w-3/5 h-1/5 flex gap-10">
           <Link href="/newAdmin" className="w-full">
-            <Button className="w-full" color="secondary" size="large">
+            <Button className="w-full" color="primary" size="large">
               Make New Admin
             </Button>
           </Link>
           <Link href="/updateContent" className="w-full">
-            <Button className="w-full" color="secondary" size="large">
+            <Button className="w-full" color="primary" size="large">
               Update Content
             </Button>
           </Link>

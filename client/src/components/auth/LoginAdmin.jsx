@@ -36,7 +36,7 @@ const LoginAdmin = () => {
       .catch((err) => {
         console.log(err);
       });
-      
+
     if (response.data.success) {
       //set the token of the response.data to a cookie
       document.cookie = `token=${response.data.token}; path=/; max-age=${

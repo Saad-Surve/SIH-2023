@@ -9,14 +9,14 @@ const NewAdmin = () => {
         className="bg-cover bg-center w-full h-screen absolute opacity-90 bg-gradient-to-t brightness-[25%] saturate-150"
         style={{ backgroundImage: `url(${admin})` }}
       ></div>
-      <div className="w-1/2 h-[80%] flex flex-col gap-6 items-center justify-center  rounded-[40px] z-10 ">
-        <div className="bg-white  border-b-2 border-[#6E6E91] w-4/5 text-center pb-4 font-mulish">
+      <div className="bg-white w-[40%] h-[80%] flex flex-col gap-6 items-center justify-center  rounded-[20px] z-10 ">
+        <div className="border-b-2 border-[#6E6E91] w-4/5 text-center pb-4 font-saira">
           Make New Admin
         </div>
-        <form className="w-3/5 gap-6 flex flex-col" autoComplete="off">
+        <form className="w-4/5 gap-6 flex flex-col" autoComplete="off">
           <Input
             type="text"
-            label="Username Of New Admin"
+            label="Username of New Admin"
             name="username"
             placeholder="Enter a username"
             classNames={{
@@ -41,18 +41,21 @@ const NewAdmin = () => {
               input: ["p-0", "focus:ring-0", "border-none"],
             }}
           />
-          <Button color="primary" size="large">
+          <Button
+            className="text-primary border-2 font-bold bg-white border-primary text-lg hover:bg-primary hover:text-white"
+            size="large"
+          >
             Register
           </Button>
         </form>
-        <div className="w-3/5 flex gap-10">
+        <div className="w-4/5 flex gap-10">
           <Link href="/pendingRequests" className="w-full">
-            <Button className="w-full" color="secondary" size="large">
+            <Button className="w-full" color="primary" size="large">
               Pending Requests
             </Button>
           </Link>
           <Link href="/updateContent" className="w-full">
-            <Button className="w-full" color="secondary" size="large">
+            <Button className="w-full" color="primary" size="large">
               Update Content
             </Button>
           </Link>

@@ -62,7 +62,7 @@ const router = createBrowserRouter([
       },
       {
         path: "lawyerDashboard",
-        element: <LawyerDashboard />,
+        element: <Dashboard />,
       },
       {
         path: "loginUser",
