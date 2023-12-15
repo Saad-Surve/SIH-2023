@@ -3,9 +3,23 @@ const asyncHandler = require("express-async-handler");
 const Article = require("../models/Article.model");
 
 exports.getLawyers = asyncHandler(async (req, res) => {
-  const expertise = req.body.expertise;
-  const regexPattern = new RegExp(expertise, "i");
-  const Lawyers = await lawyer.find({ expertise: { $regex: regexPattern } });
+  const { expertise, name, experience, location } = req.body;
+
+  // Create an array of non-empty values
+  const searchTerms = [expertise, name, experience, location].filter(Boolean);
+
+  // Create a regular expression pattern using the provided search terms
+  const regexPattern = new RegExp(searchTerms.join("|"), "i");
+
+  const Lawyers = await lawyer.find({
+    $or: [
+      { expertise: { $regex: regexPattern } },
+      { name: { $regex: regexPattern } },
+      { location: { $regex: regexPattern } },
+      { experience: { $regex: regexPattern } },
+    ],
+  });
+
   res.json(Lawyers);
 });
 

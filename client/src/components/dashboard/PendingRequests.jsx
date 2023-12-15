@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React from "react";
+import { useEffect, useState } from "react";
 import Avatar from "react-avatar";
 import { Icon } from "@iconify/react";
 import {
@@ -8,41 +8,70 @@ import {
   PopoverContent,
   Button,
 } from "@nextui-org/react";
+import axios from "axios";
+import ServerUrl from "../../constants";
+import { jwtDecode } from "jwt-decode";
 
-const requests = [
-  {
-    name: "Shri Narayan",
-    type: "Breach of Contract",
-    icon: "images/nyaaydoot.png",
-  },
-  {
-    name: "Shri Narayan",
-    type: "Breach of Contract",
-    icon: "images/nyaaydoot.png",
-  },
-  {
-    name: "Shri Narayan",
-    type: "Breach of Contract",
-    icon: "images/nyaaydoot.png",
-  },
-  {
-    name: "Shri Narayan",
-    type: "Breach of Contract",
-    icon: "images/nyaaydoot.png",
-  },
-  {
-    name: "Shri Narayan",
-    type: "Breach of Contract",
-    icon: "images/nyaaydoot.png",
-  },
-];
+// const requests = [
+//   {
+//     name: "Shri Narayan",
+//     type: "Breach of Contract",
+//     icon: "images/nyaaydoot.png",
+//   },
+//   {
+//     name: "Shri Narayan",
+//     type: "Breach of Contract",
+//     icon: "images/nyaaydoot.png",
+//   },
+//   {
+//     name: "Shri Narayan",
+//     type: "Breach of Contract",
+//     icon: "images/nyaaydoot.png",
+//   },
+//   {
+//     name: "Shri Narayan",
+//     type: "Breach of Contract",
+//     icon: "images/nyaaydoot.png",
+//   },
+//   {
+//     name: "Shri Narayan",
+//     type: "Breach of Contract",
+//     icon: "images/nyaaydoot.png",
+//   },
+// ];
 
-const PendingRequests = () => {
+const PendingRequests = ({ user }) => {
+  const [requests, setRequests] = useState([]);
+
+  const fetchHelp = async () => {
+    const token = document.cookie.split("token=")[1];
+    const username = jwtDecode(token).id.username;
+    try {
+      const response = await axios.get(`${ServerUrl}/api/client/getAllHelp`, {
+        params: {
+          username: username,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setRequests(response.data);
+    } catch (error) {
+      console.error("Error fetching Articles:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchHelp();
+  }, []);
+
   return (
     <div className="h-[500px]  rounded-3xl bg-white m-12 mr-4 mt-4">
+      {/* {console.log(requests)} */}
       <h1 className="border-b-2 border-b-grey-50 py-5 pl-8 font-bold text-xl mt-2">
         Pending Requests
       </h1>
+
       {requests.map((request, index) => (
         <div
           key={index}
@@ -54,10 +83,12 @@ const PendingRequests = () => {
             }
           )}
         >
-          <Avatar name={request.name} size="40px" round />
+          <Avatar name={request.sentBy.username} size="40px" round />
           <div className="p-4 flex flex-col">
-            <span className="font-medium text-sm">{request.name}</span>
-            <span className="text-sm">{request.type}</span>
+            <span className="font-medium text-sm">
+              {request.sentBy.username}
+            </span>
+            <span className="text-sm">{request.category}</span>
           </div>
           <Popover placement="left-start" showArrow={true}>
             <PopoverTrigger>

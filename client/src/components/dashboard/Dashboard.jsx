@@ -56,7 +56,7 @@ const Dashboard = () => {
         </div>
 
         <div className="w-2/5 px-8 ">
-          <PendingRequests />
+          <PendingRequests user={user} />
         </div>
       </div>
     </div>

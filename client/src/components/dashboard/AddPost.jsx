@@ -14,10 +14,10 @@ import {
 import axios from "axios";
 import ServerUrl from "../../constants";
 
-const AddPost = (props) => {
+const AddPost = ({ user }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const username = props.username || "2102ankit";
+  const username = user.username || "2102ankit";
 
   const [isLoading, setIsLoading] = useState(false);
 

@@ -5,8 +5,7 @@ import Pagination from "./Pagination";
 import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 import ServerUrl from "../../constants";
-
-const username = "1212";
+import { jwtDecode } from "jwt-decode";
 
 const rows = [
   {
@@ -131,7 +130,7 @@ const rows = [
   },
 ];
 
-const Posts = (props) => {
+const Posts = ({ user }) => {
   const allPosts = useLoaderData();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -146,7 +145,7 @@ const Posts = (props) => {
       <div className="flex justify-between items-center font-light p-4 pl-6">
         <h1 className="font-bold text-header-black">All Posts</h1>
       </div>
-      <PostTable username={username} rows={currentRows} />
+      <PostTable username={user.username} rows={currentRows} />
       <Pagination
         totalPosts={allPosts.length}
         postsPerPage={postsPerPage}
@@ -161,6 +160,8 @@ export default Posts;
 
 export async function loader() {
   const token = document.cookie.split("token=")[1];
+  const username = jwtDecode(token).id.username;
+
   const options = {
     method: "GET",
     url: `${ServerUrl}/api/lawyer/getLawyerPosts`,

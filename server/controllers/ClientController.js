@@ -5,6 +5,7 @@ const Lawyer = require("../models/Lawyer.model");
 
 const addHelp = asyncHandler(async (req, res) => {
   const { username, category, location, description } = req.body;
+  // console.log(req.body);
   const user = await User.findOne({ username: username });
   if (!user) {
     res.status(400).json({ message: "NO such user" });
@@ -45,6 +46,7 @@ const acceptHelp = asyncHandler(async (req, res) => {
 
 const getAllHelp = asyncHandler(async (req, res) => {
   const lawyerUserName = req.query.username;
+  // console.log(req.query);
   const lawyer = await Lawyer.findOne({ username: lawyerUserName });
   if (!lawyer) {
     res.status(400).json({ message: "No lawyer found" });
@@ -61,6 +63,7 @@ const getAllHelp = asyncHandler(async (req, res) => {
     };
   });
 
+  // console.log(responseCases);
   res.status(200).json(responseCases);
 });
 

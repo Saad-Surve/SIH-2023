@@ -4,7 +4,6 @@ import LawyerCard from "./LawyerCard";
 import Consult from "./Consult";
 import { ScrollShadow } from "@nextui-org/react";
 import axios from "axios";
-import { useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ServerUrl from "../../constants";
 import { jwtDecode } from "jwt-decode";
@@ -31,6 +30,9 @@ const Directory = () => {
     try {
       const response = await axios.put(`${ServerUrl}/api/search/getLawyers`, {
         expertise: searchTerm,
+        name: searchTerm,
+        experience: searchTerm,
+        location: searchTerm,
       });
       setLawyers(response.data);
     } catch (error) {
@@ -45,9 +47,18 @@ const Directory = () => {
   });
 
   const token = document.cookie.split("token=")[1];
-  const username = jwtDecode(token).id.username;
+  // console.log(token);
 
-  const role = jwtDecode(token).id.role;
+  let username = "",
+    role = "";
+
+  if (token) {
+    username = jwtDecode(token).id.username;
+    role = jwtDecode(token).id.role;
+  }
+
+  // const role = jwtDecode(token).id.role;
+  // console.log(role);
 
   useEffect(() => {
     const getUser = async () => {
@@ -116,7 +127,7 @@ const Directory = () => {
           </ScrollShadow>
         </div>
         <div className="w-5/12 flex justify-center items-center">
-          <Consult />
+          <Consult user={user} role={role} />
         </div>
       </div>
     </div>

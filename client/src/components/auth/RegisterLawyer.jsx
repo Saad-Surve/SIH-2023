@@ -23,6 +23,7 @@ const RegisterLawyer = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [usernameExists, setUsernameExists] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +37,6 @@ const RegisterLawyer = () => {
         lawyer.password &&
         lawyer.expertise &&
         lawyer.experience &&
-        lawyer.idProof &&
         lawyer.location
       )
     ) {
@@ -49,10 +49,16 @@ const RegisterLawyer = () => {
     //   return;
     // }
 
-    const formData = new FormData(document.querySelector("form"));
+    // const formData = new FormData(document.querySelector("form"));
     // Object.entries(lawyer).forEach(([key, value]) => {
     //   formData.append(key, value);
     // });
+    const formData = new FormData();
+    Object.entries(lawyer).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    formData.append("idProof", selectedFile);
+    // console.log(formData);
 
     try {
       let response = await axios.post(
@@ -95,7 +101,10 @@ const RegisterLawyer = () => {
   const handleChange = (e) => {
     if (e.target.name === "idProof") {
       const file = e.target.files[0];
-      setLawyer({ ...lawyer, idProof: file });
+      // setSelectedFile(e.target.files[0]);
+      // setLawyer({ ...lawyer, idProof: file });
+      setSelectedFile(file); // Update selected file in state
+      // console.log(file);
     } else {
       setLawyer({ ...lawyer, [e.target.name]: e.target.value });
     }
@@ -215,6 +224,7 @@ const RegisterLawyer = () => {
                 label="ID Proof"
                 placeholder="Upload an ID Proof"
                 name="idProof"
+                // value={selectedFile}
                 onChange={handleChange}
               />
             </div>

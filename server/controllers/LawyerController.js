@@ -72,7 +72,9 @@ const getLawyerPosts = asyncHandler(async (req, res) => {
 
 const createArticle = asyncHandler(async (req, res) => {
   const { title, content, lawyerUsername } = req.body;
+  // console.log(lawyerUsername);
   const lawyer = await Lawyer.findOne({ username: lawyerUsername });
+  // console.log(lawyer);
   if (!lawyer) {
     res.status(400).json({ message: "No lawyer found" });
     return;
