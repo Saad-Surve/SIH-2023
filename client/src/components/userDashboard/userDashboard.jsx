@@ -48,7 +48,7 @@ const UserDashboard = () => {
       </div>
       <div className="flex flex-col justify-center items-center w-full p-10 h-[calc(100vh-4rem-1px)] gap-4 ">
         <span>Hey {user.username} !!</span>
-        <UserTable />
+        <UserTable  user={user}/>
       </div>
     </div>
   );

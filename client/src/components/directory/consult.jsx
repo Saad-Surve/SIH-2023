@@ -257,6 +257,7 @@ const Consult = ({ user, role }) => {
 
         if (response.data.message === "Help added in database") {
           alert("Help Requested!");
+          setHelp({})   
         } else {
           alert("Help not Requested!");
         }
@@ -264,8 +265,6 @@ const Consult = ({ user, role }) => {
         console.error("Error Adding Help:", error);
       }
     } else alert("You are not a user, please login as a user");
-    // setIsLoading(false);
-    // location.reload();
   };
 
   const handleChange = (e) => {
