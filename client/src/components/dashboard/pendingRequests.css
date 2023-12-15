@@ -1,0 +1,18 @@
+.random::-webkit-scrollbar {
+    width: 0px; 
+    visibility: hidden;
+  }
+
+.random::-webkit-scrollbar-thumb {
+  background: #006AFF;
+  border-radius: 50px;
+  visibility: hidden;
+
+}
+.random::-webkit-scrollbar-track {
+  background: rgba(128, 128, 128, 0.256);
+  border-radius: 50px;
+  visibility: hidden;
+  } 
+
+  

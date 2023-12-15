@@ -7,10 +7,12 @@ import {
   PopoverTrigger,
   PopoverContent,
   Button,
+  ScrollShadow,
 } from "@nextui-org/react";
 import axios from "axios";
 import ServerUrl from "../../constants";
 import { jwtDecode } from "jwt-decode";
+import './pendingRequests.css'
 
 // const requests = [
 //   {
@@ -66,12 +68,16 @@ const PendingRequests = ({ user }) => {
   }, []);
 
   return (
-    <div className="h-[500px]  rounded-3xl bg-white m-12 mr-4 mt-4">
+    <div className="h-[490px]  rounded-3xl bg-white m-12 mr-4 mt-4 ">
       {/* {console.log(requests)} */}
       <h1 className="border-b-2 border-b-grey-50 py-5 pl-8 font-bold text-xl mt-2">
         Pending Requests
-      </h1>
+      </h1> 
 
+      <ScrollShadow
+            size={20}
+            className="flex flex-col px-5 gap-4 h-[400px] random overflow-y-scroll"
+          >
       {requests.map((request, index) => (
         <div
           key={index}
@@ -110,6 +116,7 @@ const PendingRequests = ({ user }) => {
           </Popover>
         </div>
       ))}
+      </ScrollShadow>
     </div>
   );
 };

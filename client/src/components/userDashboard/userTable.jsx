@@ -1,27 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import Avatar from "react-avatar";
 import Rows from "./rows";
 import { Divider, Button } from "@nextui-org/react";
 
 const UserTable = () => {
+
+  
   const data = [
     {
       name: "Adv. Mrunmayee Deshmukh",
       case: "Breach Of Contract",
-      status: "Active",
+      status: "Accepted",
       color: "success",
     },
     {
       name: "Adv. Mrunmayee Deshmukh",
       case: "Cyber Fraud",
-      status: "processing",
-      color: "warning",
+      status: "pending",
+      color: "danger",
     },
     {
       name: "Adv. Mrunmayee Deshmukh",
       case: "License fraud",
-      status: "paused",
+      status: "pending",
       color: "danger",
     },
   ];
