@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import Avatar from 'react-avatar'
 import { Chip, Button, useDisclosure, Modal,
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter, } from '@nextui-org/react'
+  ModalFooter} from '@nextui-org/react'
 import { Icon } from '@iconify/react';
 import axios from 'axios'
 import ServerUrl from '../../constants'
@@ -37,8 +36,6 @@ const rows = (props) => {
     const token = document.cookie.split("token=")[1];
     const username = jwtDecode(token).id.username;
     const helpId = props.id
-    console.log(helpId)
-    console.log(username)
     try {
       // Replace 'YOUR_DELETE_ENDPOINT' with the actual endpoint for deleting a row
       const response = await axios.post(`${ServerUrl}/api/client/helpResolved`, {username,helpId}, {
@@ -70,11 +67,12 @@ const rows = (props) => {
   return (
     <div className='flex p-6 justify-between'>
         <div className='flex gap-4 justify-center items-center'>
-        {/* <Avatar name={extractedName} size='35px' round/> */}
         <div className='flex flex-col'>
             <span className='text-lg font-bold'>{props.category}</span>
             <span className='text-sm font-light'>{props.description}</span>
         </div>
+        </div>
+        <div>
         </div>
         <div className='flex gap-8 justify-center items-center'>
         <Chip className="capitalize" color={color()} size="md" variant="flat">

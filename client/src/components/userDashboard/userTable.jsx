@@ -11,26 +11,6 @@ import './userTable.css'
 const UserTable = ({ user }) => {
 
   console.log(user)
-  const data = [
-    {
-      name: "Adv. Mrunmayee Deshmukh",
-      case: "Breach Of Contract",
-      status: "Accepted",
-      color: "success",
-    },
-    {
-      name: "Adv. Mrunmayee Deshmukh",
-      case: "Cyber Fraud",
-      status: "pending",
-      color: "danger",
-    },
-    {
-      name: "Adv. Mrunmayee Deshmukh",
-      case: "License fraud",
-      status: "pending",
-      color: "danger",
-    },
-  ];
 
   const [requests, setRequests] = useState([]);
 
