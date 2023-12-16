@@ -75,12 +75,12 @@ const PendingRequests = ({ user }) => {
   };
 
   const acceptHelp = async (helpId) => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       const requestBody = {
         helpId: helpId,
         lawyerUserName: username,
-        response: lawyerResponse
+        response: lawyerResponse,
       };
       const response = await axios.post(
         `${ServerUrl}/api/client/acceptHelp`,
@@ -91,14 +91,14 @@ const PendingRequests = ({ user }) => {
           },
         }
       );
-    //   setRequests((prevRequests) =>
-    //   prevRequests.filter((request) => request._id !== helpId)
-    // );
+      //   setRequests((prevRequests) =>
+      //   prevRequests.filter((request) => request._id !== helpId)
+      // );
     } catch (error) {
       alert("An Error Occurred! Please Try Again Later");
       console.error("Error accepting request: ", error);
     }
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -120,7 +120,7 @@ const PendingRequests = ({ user }) => {
           <div
             key={index}
             className={classNames(
-              "flex border-b-2 border-b-grey-50 items-center pl-6",
+              "flex border-b-2 border-b-grey-50 items-center pl-6 justify-between ",
               {
                 "bg-blue-50 bg-opacity-50": index % 2 == 1,
                 // "rounded-b-3xl": index === requests.length - 1,
@@ -134,7 +134,45 @@ const PendingRequests = ({ user }) => {
               </span>
               <span className="text-sm">{request.category}</span>
             </div>
-            <Popover placement="left-start" showArrow={true}>
+            <Button color="success" variant="light" size="md" onClick={onOpen}>
+              <Icon icon="teenyicons:tick-circle-outline" fontSize={20} />
+            </Button>
+            <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+              <ModalContent>
+                {(onClose) => (
+                  <>
+                    <ModalHeader> Accept Request </ModalHeader>
+                    <ModalBody>
+                      <Input
+                        type="text"
+                        className="w-full m-auto"
+                        classNames={{
+                          input: ["p-0", "focus:ring-0", "border-none"],
+                        }}
+                        label="Response"
+                        placeholder="Enter Your Response"
+                        name="lawyerResponse"
+                        value={lawyerResponse} // Add this line to bind the input value to the state
+                        onChange={(e) => setLawyerResponse(e.target.value)}
+                      />
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button
+                        color="primary"
+                        isLoading={isLoading}
+                        onPress={() => {
+                          acceptHelp(request._id);
+                          onClose();
+                        }}
+                      >
+                        {isLoading ? "Submitting" : "Submit"}
+                      </Button>
+                    </ModalFooter>
+                  </>
+                )}
+              </ModalContent>
+            </Modal>
+            {/* <Popover placement="left-start" showArrow={true}>
               <PopoverTrigger>
                 <Icon
                   icon="pepicons-pencil:dots-y"
@@ -193,7 +231,7 @@ const PendingRequests = ({ user }) => {
                   Reject Request
                 </Button>
               </PopoverContent>
-            </Popover>
+            </Popover> */}
           </div>
         ))}
       </ScrollShadow>
