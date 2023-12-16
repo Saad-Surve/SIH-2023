@@ -45,10 +45,10 @@ const ArticleCard = ({ title, author, content, src, date }) => {
             : content.length}
         </p>
         <div className="flex gap-4 w-full justify-start items-center mt-2">
-          <a href="#" className="text-sm text-gray-500 hover:text-red-500">
+          {/* <a href="#" className="text-sm text-gray-500 hover:text-red-500">
             Report
-          </a>
-          <span className="text-base">&#x2022;</span>
+          </a> */}
+          {/* <span className="text-base">&#x2022;</span> */}
           <div className="w-max">
             <Button onPress={onOpen} color="primary">
               Read More
