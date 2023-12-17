@@ -9,7 +9,19 @@ import {
 } from "@nextui-org/react";
 
 const PostTable = ({ username, rows }) => {
-  // console.log(username);
+  // use the navigator share 
+  const share = async () => {
+    try {
+      await navigator.share({
+        title: "LegalTek",
+        text: "LegalTek",
+        url: "https://legaltek.vercel.app/",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <table className="w-full">
       <thead>
@@ -75,7 +87,7 @@ const PostTable = ({ username, rows }) => {
                       />
                     </PopoverTrigger>
                     <PopoverContent>
-                      <Button color="primary" variant="light" className=" px-4">
+                      <Button onPress={share} color="primary" variant="light" className=" px-4">
                         <Icon icon="ri:send-plane-fill" />
                         Share
                       </Button>

@@ -139,7 +139,6 @@ const Posts = ({ user }) => {
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentRows = allPosts.slice(firstPostIndex, lastPostIndex);
-
   return (
     <div className="bg-white rounded-md w-full ml-4 h-full ">
       <div className="flex justify-between items-center font-light p-4 pl-6">
