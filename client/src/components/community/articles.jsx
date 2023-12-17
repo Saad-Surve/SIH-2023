@@ -11,7 +11,9 @@ const Articles = () => {
 
   const fetchArticles = async () => {
     try {
-      const response = await axios.get(`${ServerUrl}/api/lawyer/getArticles`);
+      const response = await axios.get(
+        `${ServerUrl}/api/community/getArticles`
+      );
       setArticles(response.data);
     } catch (error) {
       console.error("Error fetching Articles:", error);
@@ -63,6 +65,7 @@ const Articles = () => {
         size={10}
         className=" h-[calc(100vh-18rem-1px)] overflow-y-scroll p-4 mr-4 pb-2 random"
       >
+        {console.log(articles)}
         {articles.map((article, index) => (
           <ArticleCard
             key={index}

@@ -29,7 +29,7 @@ const LawyerCard = ({ lawyer }) => {
               </div>
               <div className="flex flex-row  p-1 items-center gap-1 text-sm">
                 <Icon icon="clarity:briefcase-line" />
-                <span>{lawyer.experience}</span>
+                <span>{lawyer.experience} years</span>
               </div>
               <span className="flex justify-start font-bold text-sm">
                 Practice Areas: {lawyer.expertise}

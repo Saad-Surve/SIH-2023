@@ -16,16 +16,20 @@ import Avatar from "react-avatar";
 const ArticleCard = ({ title, author, content, src, date }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
+  const [datePostedOn, fullTime] = date.split("T");
+  const [time, seconds] = fullTime.split(".");
+
   return (
     <div className="flex p-4 gap-4 items-center border-b-2 mr-16">
-      <div>
+      <div className="min-w-[180px] min-h-[180px]">
+        {/* {console.log(src)} */}
         <Image
           alt="Law"
-          className="object-cover"
+          className="object-cover min-w-[180px] min-h-[180px]"
           width={180}
           height={190}
           shadow="sm"
-          src={src}
+          src={`http://localhost:5000/uploads${src}`}
         />
       </div>
       <div>
@@ -36,13 +40,14 @@ const ArticleCard = ({ title, author, content, src, date }) => {
             <span>{author}</span>
           </div>
           <span>&#x2022;</span>
-          <span className="text-gray-500">{date}</span>
+
+          <span className="text-gray-500">
+            {datePostedOn}&nbsp;|&nbsp;{time}
+          </span>
         </div>
         <span className="text-2xl font-bold">{title}</span>
         <p className="text-sm">
-          {content.length > 125
-            ? content.substring(0, 125) + "..."
-            : content.length}
+          {content.length > 125 ? content.substring(0, 125) + "..." : content}
         </p>
         <div className="flex gap-4 w-full justify-start items-center mt-2">
           <a href="#" className="text-sm text-gray-500 hover:text-red-500">
@@ -68,34 +73,6 @@ const ArticleCard = ({ title, author, content, src, date }) => {
                     </ModalHeader>
 
                     <ModalBody className="random mr-2 text-justify">
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Enim quo maiores fugiat omnis consequuntur expedita, aut
-                      voluptas praesentium vel minima quos sunt repellendus id
-                      eveniet eum provident saepe atque aspernatur. Magnam harum
-                      officia aliquam unde tenetur vero deleniti asperiores
-                      voluptas porro distinctio, est, odio, dolores delectus.
-                      Provident, dolorem? Nemo, soluta! Odit adipisci rem
-                      laborum aliquam eveniet facere enim deleniti, expedita ea
-                      dolorum corporis aut iste magni neque dicta. Facere dolore
-                      eveniet natus expedita doloribus dolor? Aperiam fuga
-                      voluptates, sapiente voluptatibus voluptas tempora,
-                      officia unde obcaecati, quaerat hic illum aliquid sequi
-                      aliquam! Necessitatibus accusantium ipsa quibusdam atque
-                      dolores labore earum odio. Lorem ipsum dolor, sit amet
-                      consectetur adipisicing elit. Enim quo maiores fugiat
-                      omnis consequuntur expedita, aut voluptas praesentium vel
-                      minima quos sunt repellendus id eveniet eum provident
-                      saepe atque aspernatur. Magnam harum officia aliquam unde
-                      tenetur vero deleniti asperiores voluptas porro
-                      distinctio, est, odio, dolores delectus. Provident,
-                      dolorem? Nemo, soluta! Odit adipisci rem laborum aliquam
-                      eveniet facere enim deleniti, expedita ea dolorum corporis
-                      aut iste magni neque dicta. Facere dolore eveniet natus
-                      expedita doloribus dolor? Aperiam fuga voluptates,
-                      sapiente voluptatibus voluptas tempora, officia unde
-                      obcaecati, quaerat hic illum aliquid sequi aliquam!
-                      Necessitatibus accusantium ipsa quibusdam atque dolores
-                      labore earum odio.
                       {content}
                     </ModalBody>
                     <ModalFooter>

@@ -12,7 +12,7 @@ import {
 import axios from "axios";
 import ServerUrl from "../../constants";
 import { jwtDecode } from "jwt-decode";
-import './pendingRequests.css'
+import "./pendingRequests.css";
 
 // const requests = [
 //   {
@@ -63,8 +63,6 @@ const PendingRequests = ({ user }) => {
     }
   };
 
-    
-
   useEffect(() => {
     fetchHelp();
   }, []);
@@ -74,50 +72,50 @@ const PendingRequests = ({ user }) => {
       {/* {console.log(requests)} */}
       <h1 className="border-b-2 border-b-grey-50 py-5 pl-8 font-bold text-xl mt-2">
         Pending Requests
-      </h1> 
+      </h1>
 
       <ScrollShadow
-            size={20}
-            className="flex flex-col px-5 gap-4 h-[400px] random overflow-y-scroll"
+        size={20}
+        className="flex flex-col h-[400px] random overflow-y-scroll"
+      >
+        {requests.map((request, index) => (
+          <div
+            key={index}
+            className={classNames(
+              "flex border-b-2 border-b-grey-50 items-center pl-6",
+              {
+                "bg-blue-50 bg-opacity-50": index % 2 == 1,
+                // "rounded-b-3xl": index === requests.length - 1,
+              }
+            )}
           >
-      {requests.map((request, index) => (
-        <div
-          key={index}
-          className={classNames(
-            "flex border-b-2 border-b-grey-50 items-center pl-6",
-            {
-              "bg-blue-50 bg-opacity-50": index % 2 == 1,
-              // "rounded-b-3xl": index === requests.length - 1,
-            }
-          )}
-        >
-          <Avatar name={request.sentBy.username} size="40px" round />
-          <div className="p-4 flex flex-col">
-            <span className="font-medium text-sm">
-              {request.sentBy.username}
-            </span>
-            <span className="text-sm">{request.category}</span>
+            <Avatar name={request.sentBy.username} size="40px" round />
+            <div className="p-4 flex flex-col">
+              <span className="font-medium text-sm">
+                {request.sentBy.username}
+              </span>
+              <span className="text-sm">{request.category}</span>
+            </div>
+            <Popover placement="left-start" showArrow={true}>
+              <PopoverTrigger>
+                <Icon
+                  icon="pepicons-pencil:dots-y"
+                  className="ml-auto mr-6 h-6 w-6 text-icon-gray hover:text-text-gray hover:border-1 hover:bg-gray-200 hover:rounded-[50%] hover:p-1 hover:h-8 hover:w-8 hover:mr-5 "
+                />
+              </PopoverTrigger>
+              <PopoverContent>
+                <Button color="primary" variant="light" className=" px-4">
+                  <Icon icon="icon-park-solid:correct" />
+                  Accept Request
+                </Button>
+                <Button color="danger" variant="light" className="px-4">
+                  <Icon icon="maki:cross" />
+                  Reject Request
+                </Button>
+              </PopoverContent>
+            </Popover>
           </div>
-          <Popover placement="left-start" showArrow={true}>
-            <PopoverTrigger>
-              <Icon
-                icon="pepicons-pencil:dots-y"
-                className="ml-auto mr-6 h-6 w-6 text-icon-gray hover:text-text-gray hover:border-1 hover:bg-gray-200 hover:rounded-[50%] hover:p-1 hover:h-8 hover:w-8 hover:mr-5 "
-              />
-            </PopoverTrigger>
-            <PopoverContent>
-              <Button color="primary" variant="light" className=" px-4">
-                <Icon icon="icon-park-solid:correct" />
-                Accept Request
-              </Button>
-              <Button color="danger" variant="light" className="px-4">
-                <Icon icon="maki:cross" />
-                Reject Request
-              </Button>
-            </PopoverContent>
-          </Popover>
-        </div>
-      ))}
+        ))}
       </ScrollShadow>
     </div>
   );

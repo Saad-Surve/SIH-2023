@@ -19,7 +19,7 @@ const NewsCard = ({ headline, description, thumbnail, url, date }) => {
           {new Date(date).toLocaleString("en-IN")}
         </div>
         <div className="text-sm">
-          <Link href={url} className="flex items-center">
+          <Link target="_blank" href={url} className="flex items-center">
             Read more
             <Icon icon="mdi:arrow-top-right-bold-box-outline" />
           </Link>

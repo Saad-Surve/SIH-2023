@@ -20,13 +20,32 @@ const AddPost = ({ user }) => {
   const username = user.username || "2102ankit";
 
   const [isLoading, setIsLoading] = useState(false);
+  const [post, setPost] = useState({
+    title: "",
+    thumbnail: "",
+    content: "",
+  });
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
-    const formData = new FormData(e.target);
+    if (!(post.content && post.title)) {
+      // alert("Please fill all the fields");
+      setIsLoading(false);
+      return;
+    }
+
+    const formData = new FormData();
+    Object.entries(post).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    // console.log(formData);
     formData.append("lawyerUsername", username);
+    // console.log(formData);
+    formData.append("thumbnail", selectedFile);
+    // console.log(formData);
 
     try {
       const token = document.cookie.split("token=")[1];
@@ -54,18 +73,31 @@ const AddPost = ({ user }) => {
     location.reload();
   };
 
+  const handleChange = (e) => {
+    if (e.target.name === "thumbnail") {
+      const file = e.target.files[0];
+      if (file) {
+        setSelectedFile(file);
+      }
+    } else {
+      setPost({ ...post, [e.target.name]: e.target.value });
+    }
+    // console.log(post);
+    // console.log(selectedFile);
+  };
+
   return (
     <div
-      className="w-full py-2 bg-light-blue rounded-3xl flex justify-between items-center shadow-sm"
+      className="w-full py-2 bg-light-blue rounded-3xl flex justify-between items-center shadow-sm "
       onClick={onOpen}
     >
-      <h3 className="pl-6 font-bold">Start a Post...</h3>
+      <h3 className="pl-6 font-bold ">Start a Post...</h3>
       <Icon
         icon="mdi:pencil"
         className="text-text-gray border-2 border-solid border-current h-10 w-10 p-2 mr-4 rounded-[50%] hover:text-primary hover:cursor-pointer"
       />
 
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} hideCloseButton>
         <ModalContent>
           {(onClose) => (
             <form
@@ -87,6 +119,7 @@ const AddPost = ({ user }) => {
                   label="Headline"
                   placeholder="Enter the Headline"
                   name="title"
+                  onChange={handleChange}
                 />
                 <Input
                   type="file"
@@ -98,6 +131,7 @@ const AddPost = ({ user }) => {
                   label="Thumbnail"
                   placeholder="Add thumbnail"
                   name="thumbnail"
+                  onChange={handleChange}
                 />
                 <Textarea
                   type="text"
@@ -108,9 +142,18 @@ const AddPost = ({ user }) => {
                   label="Content"
                   placeholder="Add Article Content"
                   name="content"
+                  onChange={handleChange}
                 />
               </ModalBody>
               <ModalFooter>
+                <Button
+                  color="danger"
+                  type="outline"
+                  variant="flat"
+                  onPress={onClose}
+                >
+                  {"Cancel"}
+                </Button>
                 <Button
                   type="submit"
                   color="primary"

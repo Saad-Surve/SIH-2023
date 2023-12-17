@@ -7,8 +7,62 @@ import {
   Button,
   Tooltip,
 } from "@nextui-org/react";
+import ServerUrl from "../../constants";
+import axios from "axios";
 
 const PostTable = ({ username, rows }) => {
+  const deleteArticle = async (rowId, rowType) => {
+    const token = document.cookie.split("token=")[1];
+
+    if (rowType === "Article") {
+      const article = {
+        articleId: rowId,
+        lawyerUsername: username,
+      };
+
+      try {
+        const response = await axios.post(
+          `${ServerUrl}/api/lawyer/deleteArticle`,
+          article,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        // console.log(response);
+        if (response.data.message === "Article deleted")
+          alert("Article deleted successfully");
+        else alert("Article not deleted ");
+      } catch (error) {
+        console.error("error deleting article: ", error);
+      }
+    } else if (rowType === "Video") {
+      const video = {
+        videoId: rowId,
+        lawyerUsername: username,
+      };
+
+      try {
+        const response = await axios.post(
+          `${ServerUrl}/api/lawyer/deleteVideo`,
+          video,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        // console.log(response);
+        if (response.data.message === "Video deleted")
+          alert("Video deleted successfully");
+        else alert("Video not deleted ");
+      } catch (error) {
+        console.error("error deleting Video: ", error);
+      }
+    }
+    location.reload();
+  };
   // console.log(username);
   return (
     <table className="w-full">
@@ -21,8 +75,10 @@ const PostTable = ({ username, rows }) => {
         </tr>
       </thead>
       <tbody>
+        {console.log(rows)}
         {rows.length > 0 ? (
           rows.map((row, index) => {
+            // console.log(row);
             const [date, fullTime] = row.postedOn.split("T");
             const [time, seconds] = fullTime.split(".");
 
@@ -79,7 +135,14 @@ const PostTable = ({ username, rows }) => {
                         <Icon icon="ri:send-plane-fill" />
                         Share
                       </Button>
-                      <Button color="danger" variant="light" className="px-4">
+                      <Button
+                        color="danger"
+                        variant="light"
+                        className="px-4"
+                        onClick={() => {
+                          deleteArticle(row._id, row.type);
+                        }}
+                      >
                         <Icon icon="mdi:bin" />
                         Delete
                       </Button>
