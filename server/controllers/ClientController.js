@@ -36,6 +36,16 @@ const acceptHelp = asyncHandler(async (req, res) => {
     res.status(400).json({ message: "No lawyer found" });
     return;
   }
+
+  const existingLawyer = help.interestedLawyers.find(
+    (interestedLawyer) => interestedLawyer.lawyer.equals(lawyer._id)
+  );
+
+  if (existingLawyer) {
+    res.status(400).json({ message: "Lawyer already exists in the array" });
+    return;
+  }
+
   help.interestedLawyers.push({
     lawyer: lawyer._id,
     responseByLawyer: response,
@@ -101,7 +111,6 @@ const helpResolved = asyncHandler(async (req, res) => {
   await Help.findByIdAndDelete(helpId);
   res.status(200).json({ message: "Help resolved" });
 });
-
 
 module.exports = {
   addHelp,
