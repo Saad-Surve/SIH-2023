@@ -19,6 +19,7 @@ const RegisterLawyer = () => {
     experience: "",
     idProof: "",
     location: "",
+    phoneNo:""
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +38,8 @@ const RegisterLawyer = () => {
         lawyer.password &&
         lawyer.expertise &&
         lawyer.experience &&
-        lawyer.location
+        lawyer.location &&
+        lawyer.phoneNo
       )
     ) {
       alert("Please fill all the fields");
@@ -153,6 +155,17 @@ const RegisterLawyer = () => {
                 label="Email ID"
                 placeholder="Enter your email id"
                 name="emailID"
+                onChange={handleChange}
+              />
+              <Input
+                type="text"
+                className="w-[45%] m-auto"
+                classNames={{
+                  input: ["p-0", "focus:ring-0", "border-none"],
+                }}
+                label="Phone Number"
+                placeholder="Enter your email id"
+                name="phoneNo"
                 onChange={handleChange}
               />
               <Input

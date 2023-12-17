@@ -112,13 +112,6 @@ const helpResolved = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Help resolved" });
 });
 
-const rejectHelp = asyncHandler(async(req,res) => {
-  const helpId = req.body;
-
-})
-
-
-
 module.exports = {
   addHelp,
   acceptHelp,
