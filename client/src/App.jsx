@@ -19,6 +19,7 @@ import ErrorPage from "./pages/ErrorPage";
 import NewAdmin from "./components/admin/NewAdmin";
 import UpdateContent from "./components/admin/UpdateContent";
 import PendingRequests from "./components/admin/PendingRequests";
+import Statistics from "./components/statistics/Statistics";
 
 const router = createBrowserRouter([
   {
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
       {
         path: "pendingRequests",
         element: <PendingRequests />,
+      },
+      {
+        path: "statistics",
+        element: <Statistics />,
       },
     ],
   },
