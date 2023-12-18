@@ -1,8 +1,8 @@
-import {motion} from 'framer-motion';
-import { didyouknow } from './didyouknow';
-import { useEffect, useRef, useState } from 'react';
-import bulb from '../../assets/bulb.png'
-import { Image } from '@nextui-org/react';
+import { motion } from "framer-motion";
+import { didyouknow } from "./didyouknow";
+import { useEffect, useRef, useState } from "react";
+import bulb from "../../assets/bulb.png";
+import { Image } from "@nextui-org/react";
 
 const Page4 = () => {
 
@@ -49,4 +49,4 @@ const Page4 = () => {
     )
 }
 
-export default Page4
+export default Page4;

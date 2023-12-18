@@ -20,10 +20,14 @@ export default {
         "background-gray": "#F1F1F4",
         "light-blue": "#E5F0FF",
       },
+      aspectRatio: {
+        "3/4": "3 / 4",
+        "4/3": "4 / 3",
+      },
     },
     fontFamily: {
       saira: ["Saira", "sans-serif"],
-      mulish:["Mulish","sans-serif"]
+      mulish: ["Mulish", "sans-serif"],
     },
   },
   plugins: [hide, nextui(), require("flowbite/plugin")],
