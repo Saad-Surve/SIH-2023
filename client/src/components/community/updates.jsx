@@ -2,9 +2,12 @@ import { ScrollShadow } from "@nextui-org/react";
 import logo from "../../assets/quick.jpg";
 import movie from "../../assets/Sample.mp4";
 import movie2 from "../../assets/mov.mp4";
+import ServerUrl from "../../constants";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 const Updates = () => {
-  const videos = [
+  const videoss = [
     {
       title: "Video Title 1",
       thumbnail: "../../assets/contactbg.webp",
@@ -47,6 +50,22 @@ const Updates = () => {
     },
   ];
 
+  const [videos, setVideos] = useState([]);
+
+  const fetchVideos = async () => {
+    try {
+      const response = await axios.get(`${ServerUrl}/api/community/getVideos`);
+      console.log(response.data);
+      setVideos(response.data);
+    } catch (error) {
+      console.error("Error fetching Videos:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchVideos();
+  }, []);
+
   return (
     <div className="h-1/3 border-b-1 border-gray-500 flex items-center">
       <ScrollShadow
@@ -55,6 +74,7 @@ const Updates = () => {
         className="flex justify-start gap-6"
         size={5}
       >
+        {console.log(videos)}
         {videos.map((video, index) => (
           <div
             className="flex flex-col justify-center items-center ml-4 gap-2"
@@ -66,12 +86,15 @@ const Updates = () => {
                 muted
                 className="object-cover h-full w-full rounded-lg"
                 poster={logo}
+                autoPlay
               >
+                {/* {console.log(video)}
                 {index % 2 ? (
                   <source src={movie} type="video/mp4" />
                 ) : (
                   <source src={movie2} type="video/mp4" />
-                )}
+                )} */}
+                <source src={video.path} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>

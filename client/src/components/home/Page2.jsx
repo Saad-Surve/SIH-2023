@@ -22,7 +22,7 @@ const Page2 = () => {
     };
     return (
         <div className="relative font-mulish">
-        <div className="bg-[#f1f1f4] p-6 text-base z-10 font-medium flex items-center justify-around ">
+        <div className="bg-[#f1f1f4] gap-6 lg:gap-0 p-6 text-base z-10 font-medium flex flex-col lg:flex-row items-center justify-around ">
             <div className="flex items-center gap-2">
             <div className="bg-white rounded-full p-2">
                 <Icon
@@ -51,7 +51,7 @@ const Page2 = () => {
             <span className="text-center">Connect with Multiple Lawyers</span>
             </div>
         </div>
-        <div className="text-white flex flex-col gap-6 justify-center items-center h-[calc(100vh-64px-3rem)]">
+        {/* <div className="text-white flex flex-col gap-6 justify-center items-center h-[calc(100vh-64px-3rem)]">
             <div className="font-semibold">Still trying to find your way?</div>
             <motion.div
                 onClick={handleOverview}
@@ -72,7 +72,7 @@ const Page2 = () => {
             modalRef={modalRef}
             handleOverview={handleOverview}
             open={open}
-        />
+        /> */}
         </div>
     );
 };

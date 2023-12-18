@@ -70,7 +70,7 @@ const AddVideo = (props) => {
         icon="mdi:video"
         className="text-text-gray border-2 border-solid border-current h-10 w-10 p-2 mr-4 rounded-[50%] hover:text-primary hover:cursor-pointer"
       />
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} hideCloseButton>
         <ModalContent>
           {(onClose) => (
             <form
@@ -105,6 +105,14 @@ const AddVideo = (props) => {
                 />
               </ModalBody>
               <ModalFooter>
+                <Button
+                  color="danger"
+                  type="outline"
+                  variant="flat"
+                  onPress={onClose}
+                >
+                  {"Cancel"}
+                </Button>
                 <Button
                   type="submit"
                   color="primary"

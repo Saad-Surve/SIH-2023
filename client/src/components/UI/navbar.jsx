@@ -34,11 +34,11 @@ const Navbar = (props) => {
   };
   return (
     <div className="bg-white top-0 sticky z-10 border-b-1 p-3 px-6 flex flex-row border-l shadow-md">
-      <form className="w-full flex gap-3" onSubmit={props.handleSearch}>
+      <form className="w-full flex  gap-3" onSubmit={props.handleSearch}>
         <input
           type="text"
           placeholder="Search"
-          className="w-4/5 h-10 p-4 bg-gray-100 text-text-gray rounded-xl border-inherit focus:outline-none text-base"
+          className="lg:w-4/5 w-full  h-10 p-4 bg-gray-100 text-text-gray rounded-xl border-inherit focus:outline-none text-base"
           onChange={handleDataChange}
         />
         <Button color="primary" className="rounded-full" type="submit">

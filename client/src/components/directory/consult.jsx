@@ -257,7 +257,7 @@ const Consult = ({ user, role }) => {
 
         if (response.data.message === "Help added in database") {
           alert("Help Requested!");
-          setHelp({})   
+          location.reload();
         } else {
           alert("Help not Requested!");
         }

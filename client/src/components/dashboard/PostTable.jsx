@@ -6,31 +6,76 @@ import {
   PopoverContent,
   Button,
   Tooltip,
-} from "@nextui-org/react"; 
-import axios from 'axios'
-import ServerUrl from '../../constants'
+} from "@nextui-org/react";
+import ServerUrl from "../../constants";
+import axios from "axios";
 
 const PostTable = ({ username, rows }) => {
+  const deleteArticle = async (rowId, rowType) => {
+    const token = document.cookie.split("token=")[1];
 
-  const token = document.cookie.split("token=")[1];
-  const deleteArticle = async(articleId) => {
-
-      const data = {
-        articleId : articleId,
-        lawyerUsername: username
-      }
+    if (rowType === "Article") {
+      const article = {
+        articleId: rowId,
+        lawyerUsername: username,
+      };
 
       try {
-        const response = await axios.post(`${ServerUrl}/api/lawyer/deleteArticle`, data,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        const response = await axios.post(
+          `${ServerUrl}/api/lawyer/deleteArticle`,
+          article,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        // console.log(response);
+        if (response.data.message === "Article deleted")
+          alert("Article deleted successfully");
+        else alert("Article not deleted ");
       } catch (error) {
-        console.error('error deleting article: ',error)
+        console.error("error deleting article: ", error);
       }
-  }
+    } else if (rowType === "Video") {
+      const video = {
+        videoId: rowId,
+        lawyerUsername: username,
+      };
+
+      try {
+        const response = await axios.post(
+          `${ServerUrl}/api/lawyer/deleteVideo`,
+          video,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        // console.log(response);
+        if (response.data.message === "Video deleted")
+          alert("Video deleted successfully");
+        else alert("Video not deleted ");
+      } catch (error) {
+        console.error("error deleting Video: ", error);
+      }
+    }
+    location.reload();
+  };
+  // use the navigator share 
+  const share = async () => {
+    try {
+      await navigator.share({
+        title: "LegalTek",
+        text: "LegalTek",
+        url: "https://legaltek.vercel.app/",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <table className="w-full">
       <thead>
@@ -42,9 +87,10 @@ const PostTable = ({ username, rows }) => {
         </tr>
       </thead>
       <tbody>
+        {console.log(rows)}
         {rows.length > 0 ? (
           rows.map((row, index) => {
-            console.log(row)
+            // console.log(row);
             const [date, fullTime] = row.postedOn.split("T");
             const [time, seconds] = fullTime.split(".");
 
@@ -97,11 +143,18 @@ const PostTable = ({ username, rows }) => {
                       />
                     </PopoverTrigger>
                     <PopoverContent>
-                      <Button color="primary" variant="light" className=" px-4">
+                      <Button onPress={share} color="primary" variant="light" className=" px-4">
                         <Icon icon="ri:send-plane-fill" />
                         Share
                       </Button>
-                      <Button color="danger" variant="light" className="px-4" onClick={() => {deleteArticle(row._id)}}>
+                      <Button
+                        color="danger"
+                        variant="light"
+                        className="px-4"
+                        onClick={() => {
+                          deleteArticle(row._id, row.type);
+                        }}
+                      >
                         <Icon icon="mdi:bin" />
                         Delete
                       </Button>

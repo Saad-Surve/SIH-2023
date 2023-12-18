@@ -8,12 +8,13 @@ import CustModal from "../UI/Modal";
 import axios from "axios";
 import ServerUrl from "../../constants";
 
-const LoginUser = () => {
+const LoginUser = ({ history }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
+  //  history = useHistory();
   const [contentModal, setContentModal] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -53,19 +54,19 @@ const LoginUser = () => {
   };
 
   return (
-    <section className="w-full relative">
+    <section className="w-full relative h-[calc(100vh-5rem)]">
       <div
-        className="bg-cover bg-center w-full h-full absolute  opacity-10"
+        className="bg-cover bg-center w-full h-[calc(100vh-5rem)] absolute  opacity-10"
         style={{ backgroundImage: `url(${registerUser})` }}
       ></div>
 
-      <div className="flex h-full">
-        <div className="w-[35%] gap-6 items-center justify-center h-full flex flex-col">
+      <div className="flex flex-col h-full justify-center items-center lg:pt-8 lg:flex-row lg:justify-center lg:items-center ">
+        <div className="lg:w-[35%] gap-6  items-center justify-center h-full flex flex-col">
           <span>Login as a User </span>
           <form
             autoComplete="off"
             onSubmit={handleSubmit}
-            className=" w-[80%] flex flex-col justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl"
+            className=" lg:w-[80%] flex flex-col justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl"
           >
             <Input
               type="text"
@@ -96,25 +97,25 @@ const LoginUser = () => {
               {isLoading ? "Logging" : "Login"}
             </Button>
             <span className="text-sm">
-              Don't have an account?{" "}
+              Don't have an account?
               <Link className="text-sm" href="/registerUser">
                 Register
               </Link>
             </span>
           </form>
         </div>
-        <div className="w-[65%] h-full flex flex-col gap-6  justify-center">
-          <div className="text-xl flex flex-col gap-2 font-medium">
-            <h1 className="text-2xl">
+        <div className="w-full p-3 lg:w-[65%] flex flex-col gap-6 justify-center">
+          <div className="text-base lg:text-xl hidden lg:flex flex-col gap-2 font-medium">
+            <h1 className="lg:text-2xl hidden lg:flex">
               Get full access of our website by signing up as a user!
             </h1>
-            <ul className="list-disc list-inside font-light">
+            <ul className=" list-disc list-inside font-light">
               <li>Consult a lawyer</li>
               <li>Talk with a lawyer near you</li>
               <li>Explore user benefits</li>
             </ul>
           </div>
-          <div className="bg-[#A8A8BD] w-[95%] p-6 text-base rounded-xl font-medium flex items-center justify-around ">
+          <div className="bg-[#A8A8BD] hidden flex-col lg:flex-row gap-6 lg:gap-0 w-[95%] p-6 text-base rounded-xl font-medium lg:flex items-center justify-around ">
             <div className="flex items-center gap-2">
               <div className="bg-white rounded-full p-2">
                 <Icon
@@ -143,7 +144,7 @@ const LoginUser = () => {
               <span className="text-center">Connect with Multiple Lawyers</span>
             </div>
           </div>
-          <div className="text-xl flex flex-col gap-2 font-medium">
+          <div className="text-base lg:text-xl hidden lg:flex flex-col gap-2 font-medium">
             <h1 className="text-2xl">Want to contribute as a lawyer?</h1>
             <ul className="list-disc list-inside font-light">
               <li>Take up cases in your area</li>
@@ -151,7 +152,7 @@ const LoginUser = () => {
               <li>Provide consultation in your expertise</li>
             </ul>
           </div>
-          <div className="bg-[#C3DDFF] w-3/4 rounded-xl flex items-center p-3">
+          <div className="bg-[#C3DDFF] lg:w-3/4 rounded-xl flex items-center p-3">
             <Link
               className="font-semibold text-xl flex gap-3 w-full pl-6"
               href="/loginLawyer"

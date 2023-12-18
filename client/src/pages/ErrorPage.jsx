@@ -40,7 +40,7 @@ const ErrorPage = () => {
     //     If this keeps happening, try again later
     //   </p>
     // </div>
-    <div className="h-screen w-full flex ">
+    <div className="h-screen w-full flex flex-col ">
       <Sidebar />
       <div className="w-full h-screen flex flex-col justify-center items-center ">
         <img src={image} alt="" className="" />
