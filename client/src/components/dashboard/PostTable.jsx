@@ -6,10 +6,31 @@ import {
   PopoverContent,
   Button,
   Tooltip,
-} from "@nextui-org/react";
+} from "@nextui-org/react"; 
+import axios from 'axios'
+import ServerUrl from '../../constants'
 
 const PostTable = ({ username, rows }) => {
-  // console.log(username);
+
+  const token = document.cookie.split("token=")[1];
+  const deleteArticle = async(articleId) => {
+
+      const data = {
+        articleId : articleId,
+        lawyerUsername: username
+      }
+
+      try {
+        const response = await axios.post(`${ServerUrl}/api/lawyer/deleteArticle`, data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+      } catch (error) {
+        console.error('error deleting article: ',error)
+      }
+  }
   return (
     <table className="w-full">
       <thead>
@@ -23,6 +44,7 @@ const PostTable = ({ username, rows }) => {
       <tbody>
         {rows.length > 0 ? (
           rows.map((row, index) => {
+            console.log(row)
             const [date, fullTime] = row.postedOn.split("T");
             const [time, seconds] = fullTime.split(".");
 
@@ -79,7 +101,7 @@ const PostTable = ({ username, rows }) => {
                         <Icon icon="ri:send-plane-fill" />
                         Share
                       </Button>
-                      <Button color="danger" variant="light" className="px-4">
+                      <Button color="danger" variant="light" className="px-4" onClick={() => {deleteArticle(row._id)}}>
                         <Icon icon="mdi:bin" />
                         Delete
                       </Button>

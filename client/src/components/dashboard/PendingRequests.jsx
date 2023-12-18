@@ -21,33 +21,6 @@ import ServerUrl from "../../constants";
 import { jwtDecode } from "jwt-decode";
 import "./pendingRequests.css";
 
-// const requests = [
-//   {
-//     name: "Shri Narayan",
-//     type: "Breach of Contract",
-//     icon: "images/nyaaydoot.png",
-//   },
-//   {
-//     name: "Shri Narayan",
-//     type: "Breach of Contract",
-//     icon: "images/nyaaydoot.png",
-//   },
-//   {
-//     name: "Shri Narayan",
-//     type: "Breach of Contract",
-//     icon: "images/nyaaydoot.png",
-//   },
-//   {
-//     name: "Shri Narayan",
-//     type: "Breach of Contract",
-//     icon: "images/nyaaydoot.png",
-//   },
-//   {
-//     name: "Shri Narayan",
-//     type: "Breach of Contract",
-//     icon: "images/nyaaydoot.png",
-//   },
-// ];
 
 const PendingRequests = ({ user }) => {
   const [requests, setRequests] = useState([]);
@@ -63,7 +36,7 @@ const PendingRequests = ({ user }) => {
         params: {
           username: username,
         },
-        headers: {
+        headers: {  
           Authorization: `Bearer ${token}`,
         },
       });
@@ -76,12 +49,15 @@ const PendingRequests = ({ user }) => {
 
   const acceptHelp = async (helpId) => {
     setIsLoading(true);
+    console.log(".",username)
     try {
+      console.log("A",username)
       const requestBody = {
         helpId: helpId,
         lawyerUserName: username,
         response: lawyerResponse,
       };
+      console.log(requestBody) 
       const response = await axios.post(
         `${ServerUrl}/api/client/acceptHelp`,
         requestBody,
@@ -94,8 +70,9 @@ const PendingRequests = ({ user }) => {
       //   setRequests((prevRequests) =>
       //   prevRequests.filter((request) => request._id !== helpId)
       // );
+
     } catch (error) {
-      alert("An Error Occurred! Please Try Again Later");
+      alert("An Error Occurred! Please Try Again Later: ",error);
       console.error("Error accepting request: ", error);
     }
     setIsLoading(false);
@@ -114,9 +91,10 @@ const PendingRequests = ({ user }) => {
 
       <ScrollShadow
         size={20}
-        className="flex flex-col px-5 gap-4 h-[400px] random overflow-y-scroll"
+        className="flex flex-col px-5  h-[400px] random overflow-y-scroll"
       >
         {requests.map((request, index) => (
+          
           <div
             key={index}
             className={classNames(
@@ -134,10 +112,12 @@ const PendingRequests = ({ user }) => {
               </span>
               <span className="text-sm">{request.category}</span>
             </div>
-            <Button color="success" variant="light" size="md" onClick={onOpen}>
+            <Button color="primary" variant="light" size="md" onClick={onOpen}>
               <Icon icon="teenyicons:tick-circle-outline" fontSize={20} />
             </Button>
-            <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+            <Modal isOpen={isOpen} onOpenChange={onOpenChange} classNames={{
+          backdrop: "bg-white/20 backdrop-opacity-40",
+        }}>
               <ModalContent>
                 {(onClose) => (
                   <>

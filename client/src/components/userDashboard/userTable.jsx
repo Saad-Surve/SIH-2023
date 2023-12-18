@@ -28,6 +28,7 @@ const UserTable = ({ user }) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log(response.data);
       setRequests(response.data);
     } catch (error) {
       console.error("Error fetching Articles:", error);
