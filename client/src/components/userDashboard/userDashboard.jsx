@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from "../UI/Navbar";
-import UserTable from "./UserTable";
+import UserTable from "./userTable";
 import { jwtDecode } from "jwt-decode";
 import ServerUrl from "../../constants";
 import axios from "axios";

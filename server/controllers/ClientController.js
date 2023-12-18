@@ -31,7 +31,9 @@ const acceptHelp = asyncHandler(async (req, res) => {
     res.status(400).json({ message: "No help found" });
     return;
   }
+  console.log("kkkkkk",lawyerUserName)
   const lawyer = await Lawyer.findOne({ username: lawyerUserName });
+  console.log(lawyer)
   if (!lawyer) {
     res.status(400).json({ message: "No lawyer found" });
     return;
