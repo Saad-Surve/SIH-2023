@@ -9,7 +9,33 @@ import ServerUrl from "../../constants";
 import { jwtDecode } from "jwt-decode";
 
 const Directory = () => {
-  const [lawyers, setLawyers] = useState([]);
+  const [lawyers, setLawyers] = useState([
+    {
+    name:'saad',
+    expertise:'cyber',
+    experience:'5',
+    location:'mumbai',
+    emailID:'saad.surve@spit.ac.in',
+    phoneNo:'8355989770'
+  },
+    {
+    name:'saad',
+    expertise:'cyber',
+    experience:'5',
+    location:'mumbai',
+    emailID:'saad.surve@spit.ac.in',
+    phoneNo:'8355989770'
+  },
+    {
+    name:'saad',
+    expertise:'cyber',
+    experience:'5',
+    location:'mumbai',
+    emailID:'saad.surve@spit.ac.in',
+    phoneNo:'8355989770'
+  },
+
+]);
   const [searchTerm, setSearchTerm] = useState("");
 
   const fetchLawyers = async () => {
@@ -93,40 +119,64 @@ const Directory = () => {
         user={user}
         role={role}
       />
-      <div className="h-[calc(100vh-4rem-4px)] flex flex-row overflow-y-hidden">
-        <div className="max-w-7/12 flex flex-col p-10">
-          <div className="flex flex-row p-10 m-1 mb-4 border rounded-lg bg-blue-100 items-center font-extrabold text-base">
-            <div className="flex flex-row justify-center items-center border rounded-full p-2 border-white bg-white">
+      <div className="lg:h-[calc(100vh-5rem)] pt-8 flex lg:flex-row flex-col-reverse overflow-y-hidden">
+        <div className="w-full lg:max-w-7/12 flex flex-col p-10">
+          <div className="lg:flex hidden lg:flex-row gap-6 flex-col p-6 lg:p-10 lg:m-1 mb-4 border rounded-lg bg-blue-100 items-center font-extrabold text-base">
+            <div className="flex lg:hidden flex-row justify-center items-center border rounded-full p-2 border-white bg-white">
+              <Icon icon="tabler:phone" color="rgb(0,106,255)" fontSize={25} />
+              <span className=" text-center">Talk in your Language</span>
+            </div>
+            {/* for pc only */}
+            <div className="lg:flex hidden flex-row justify-center items-center border rounded-full p-2 border-white bg-white">
               <Icon icon="tabler:phone" color="rgb(0,106,255)" fontSize={25} />
             </div>
-            <span className="text-center">Talk in your Language</span>
-            <div className="flex flex-row justify-center items-center border rounded-full p-2 border-white bg-white">
+              <span className="lg:flex hidden text-center">Talk in your Language</span>
+              {/* for mobile only */}
+            <div className="flex lg:hidden flex-row justify-center items-center border rounded-full p-2 border-white bg-white">
+              <Icon
+                icon="mdi:encryption-check-outline"
+                color="rgb(0,106,255)"
+                fontSize={25}
+              />
+              <span className="text-center">Secure and confidential</span>
+            </div>
+            {/* for pc only */}
+            <div className="lg:flex hidden flex-row justify-center items-center border rounded-full p-2 border-white bg-white">
               <Icon
                 icon="mdi:encryption-check-outline"
                 color="rgb(0,106,255)"
                 fontSize={25}
               />
             </div>
-            <span className="text-center">Secure and confidential</span>
-            <div className="flex flex-row justify-center items-center border rounded-full p-2 border-white bg-white">
+              <span className="lg:flex hidden text-center">Secure and confidential</span>
+              {/* for mobile only */}
+            <div className="flex lg:hidden flex-row justify-center items-center border rounded-full p-2 border-white bg-white">
+              <Icon
+                icon="fluent:notepad-person-20-regular"
+                color="rgb(0,106,255)"
+                fontSize={25}
+              />
+              <span className="text-center">Consult Multiple Lawyers</span>
+            </div>
+            <div className="lg:flex hidden flex-row justify-center items-center border rounded-full p-2 border-white bg-white">
               <Icon
                 icon="fluent:notepad-person-20-regular"
                 color="rgb(0,106,255)"
                 fontSize={25}
               />
             </div>
-            <span className="text-center">Consult Multiple Lawyers</span>
+              <span className="lg:flex hidden text-center">Consult Multiple Lawyers</span>
           </div>
           <ScrollShadow
             size={10}
-            className="flex flex-col items-center px-5  gap-4 h-[600px] random overflow-y-scroll"
+            className="flex flex-col items-center lg:px-5  gap-4 h-[600px] random overflow-y-scroll"
           >
             {lawyers.map((lawyer, index) => (
               <LawyerCard key={index} lawyer={lawyer} />
             ))}
           </ScrollShadow>
         </div>
-        <div className="w-5/12 flex justify-center items-center">
+        <div className="w-full lg:w-5/12 flex justify-center items-center">
           <Consult user={user} role={role} />
         </div>
       </div>

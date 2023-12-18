@@ -68,19 +68,19 @@ const RegisterUser = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   return (
-    <section className="w-full relative">
+    <section className="w-full h-[calc(100vh-5rem)] relative">
       <div
-        className="bg-cover bg-center w-full h-full absolute  opacity-10"
+        className="bg-cover bg-center w-full h-[calc(100vh-5rem)] absolute  opacity-10"
         style={{ backgroundImage: `url(${registerUser})` }}
       ></div>
 
-      <div className="flex h-full">
-        <div className="w-[35%] gap-6 items-center justify-center h-full flex flex-col">
+      <div className="flex flex-col h-full lg:justify-center  lg:items-center lg:flex-row lg:pt-8">
+        <div className="lg:w-[35%] gap-6 items-center pt-8 justify-center h-full flex flex-col">
           <span>Register as a User </span>
           <form
             onSubmit={handleSubmit}
             autoComplete="off"
-            className=" w-[80%] flex flex-col justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl"
+            className=" lg:w-[80%] flex flex-col justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl"
           >
             <Input
               type=""
@@ -141,9 +141,9 @@ const RegisterUser = () => {
             </span>
           </form>
         </div>
-        <div className="w-[65%] h-full flex flex-col gap-6  justify-center">
-          <div className="text-xl flex flex-col gap-2 font-medium">
-            <h1 className="text-2xl">
+        <div className=" w-full lg:w-[65%] h-full flex flex-col gap-6  lg:justify-center">
+          <div className="text-xl hidden lg:flex flex-col gap-2 font-medium">
+            <h1 className="text-2xl hidden lg:flex">
               Get full access of our website by signing up as a user!
             </h1>
             <ul className="list-disc list-inside font-light">
@@ -152,7 +152,7 @@ const RegisterUser = () => {
               <li>Explore user benefits</li>
             </ul>
           </div>
-          <div className="bg-[#A8A8BD] w-[95%] p-6 text-base rounded-xl font-medium flex items-center justify-around ">
+          <div className="bg-[#A8A8BD] w-[95%] p-6 text-base rounded-xl font-medium hidden lg:flex items-center justify-around ">
             <div className="flex items-center gap-2">
               <div className="bg-white rounded-full p-2">
                 <Icon
@@ -181,7 +181,7 @@ const RegisterUser = () => {
               <span className="text-center">Connect with Multiple Lawyers</span>
             </div>
           </div>
-          <div className="text-xl flex flex-col gap-2 font-medium">
+          <div className="lg:text-xl hidden lg:flex flex-col gap-2 font-medium">
             <h1 className="text-2xl">Want to contribute as a lawyer?</h1>
             <ul className="list-disc list-inside font-light">
               <li>Take up cases in your area</li>
@@ -189,7 +189,7 @@ const RegisterUser = () => {
               <li>Provide consultation in your expertise</li>
             </ul>
           </div>
-          <div className="bg-[#C3DDFF] w-3/4 rounded-xl flex items-center p-3">
+          <div className="bg-[#C3DDFF] m-3 lg:m-0 lg:w-3/4 rounded-xl flex items-center   p-3">
             <Link
               className="font-semibold text-xl flex gap-3 w-full pl-6"
               href="/registerLawyer"

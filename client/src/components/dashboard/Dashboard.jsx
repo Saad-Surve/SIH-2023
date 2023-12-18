@@ -47,10 +47,10 @@ const Dashboard = () => {
   return (
     <div className="w-full ">
       <Navbar user={user} role={role} />
-      <div className="flex w-full h-fit text-base text-text-black mt-2 pl-6">
-        <div className="w-4/6 h-full">
+      <div className="lg:flex flex-col w-full h-fit text-base text-text-black mt-2 lg:pl-6">
+        <div className="lg:w-4/6 lg:h-full">
           <PostMaker user={user} />
-          <div className="w-full pr-4">
+          <div className="w-full flex  lg:pr-4">
             <Posts user={user} />
           </div>
         </div>

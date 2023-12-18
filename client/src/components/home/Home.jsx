@@ -12,15 +12,15 @@ const Home = () => {
   return (
     <section className="w-full flex flex-col relative">
       <div
-        className="bg-cover bg-center w-full h-screen absolute opacity-90 bg-gradient-to-t brightness-[25%] saturate-150"
+        className="bg-cover bg-center w-full h-[calc(100vh-4rem)] absolute opacity-90 bg-gradient-to-t brightness-[25%] saturate-150"
         style={{ backgroundImage: `url(${home1})` }}
       ></div>
-      <Header />
+      {/* <Header /> */}
       <Page1 />
-      {/* <div className='bg-cover bg-center top-[100vh]  w-full h-screen absolute opacity-90 bg-gradient-to-t brightness-[25%] saturate-150' style={{backgroundImage:`url(${home2})`}}></div> */}
+      {/*  {/* <div className='bg-cover bg-center top-[100vh]  w-full h-screen absolute opacity-90 bg-gradient-to-t brightness-[25%] saturate-150' style={{backgroundImage:`url(${home2})`}}></div> */}
       <Page5 />
       <Page3 />
-      <Page4 />
+      <Page4 /> 
     </section>
   );
 };

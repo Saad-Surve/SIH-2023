@@ -16,15 +16,23 @@ const Posts = ({ user }) => {
 
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
-  const currentRows = allPosts.slice(firstPostIndex, lastPostIndex);
+  const currentRows = allPosts?.slice(firstPostIndex, lastPostIndex)||[
+    {
+      headline: "No Posts",
+      description: "No Posts",
+      type: "No Posts",
+      postedOn: '2017-05-21T00:00:00',
+      id: "No Posts",
+    },
+  ];
   return (
-    <div className="bg-white rounded-md w-full ml-4 h-full ">
+    <div className="bg-white m-3 rounded-md w-full lg:ml-4  h-full ">
       <div className="flex justify-between items-center font-light p-4 pl-6">
         <h1 className="font-bold text-header-black">All Posts</h1>
       </div>
       <PostTable username={user.username} rows={currentRows} />
       <Pagination
-        totalPosts={allPosts.length}
+        totalPosts={allPosts?.length||0}
         postsPerPage={postsPerPage}
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
