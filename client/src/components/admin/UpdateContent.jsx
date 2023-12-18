@@ -44,12 +44,27 @@ const UpdateContent = () => {
       changes: "default_thumbnail.jpg",
     },
   ];
+
+  const logout = () => {
+    document.cookie = `token=; path=/; max-age=0`;
+    window.location.href = "/";
+  };
+
   return (
     <div className="w-full  flex justify-center items-center relative h-screen">
       <div
         className="bg-cover bg-center w-full h-full absolute opacity-90 bg-gradient-to-t brightness-[25%] saturate-150"
         style={{ backgroundImage: `url(${admin})` }}
       ></div>
+      <Button
+        onPress={logout}
+        color="danger"
+        className="absolute top-0 right-0 mt-4 mr-4 text-red-600 bg-white hover:bg-red-400 hover:text-white"
+      >
+        <Icon icon="material-symbols:logout" />
+        Logout
+      </Button>
+
       <div className="w-3/5 h-[90%] flex flex-col py-6 items-center justify-center  rounded-[40px] z-10 ">
         <div className="w-[90%] h-1/5 bg-white rounded-lg flex flex-col justify-center items-center">
           <div className="w-full text-center font-saira pt-4">
@@ -128,12 +143,12 @@ const UpdateContent = () => {
 
         <div className="w-3/5 h-1/5 flex gap-10">
           <Link href="/pendingRequests" className="w-full">
-            <Button className="w-full" color="secondary" size="large">
+            <Button className="w-full" color="primary" size="large">
               Pending Lawyer Requests
             </Button>
           </Link>
           <Link href="/newAdmin" className="w-full">
-            <Button className="w-full" color="secondary" size="large">
+            <Button className="w-full" color="primary" size="large">
               Make New Admin
             </Button>
           </Link>

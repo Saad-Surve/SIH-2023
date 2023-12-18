@@ -6,15 +6,15 @@ const Page3 = () => {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 
   return (
-    <div className="h-screen bg-[#006AFF]/[0.68] flex flex-col gap-20 items-center justify-center">
-        <span className="text-white text-6xl">FAQs</span> 
+    <div className="lg:h-screen pb-6 bg-[#006AFF]/[0.68] flex flex-col gap-10 lg:gap-20 items-center justify-center">
+        <span className="pt-6 lg:p-0 text-white lg:text-6xl">FAQs</span> 
         <div className="w-4/5 font-mulish">
             <Accordion 
                 className="bg-[#E5F0FF]"
                 variant="shadow"
                 itemClasses={{
-                    title:'text-2xl',
-                    content:'text-lg'
+                    title:'lg:text-2xl',
+                    content:'text-base lg:text-lg'
                 }}
             >
                 <AccordionItem key="1" aria-label="Accordion 1" title="What are my rights as a citizen?">

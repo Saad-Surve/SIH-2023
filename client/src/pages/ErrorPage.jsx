@@ -9,7 +9,6 @@ import Sidebar from "../components/UI/Sidebar";
 const ErrorPage = () => {
   const navigate = useNavigate();
   const error = useRouteError();
-  // console.log(error);
   let title = "An error occurred";
   let message = error?.message || "Something went wrong";
   if (error?.status === 404) {
@@ -41,7 +40,7 @@ const ErrorPage = () => {
     //     If this keeps happening, try again later
     //   </p>
     // </div>
-    <div className="h-screen w-full flex ">
+    <div className="h-screen w-full flex flex-col ">
       <Sidebar />
       <div className="w-full h-screen flex flex-col justify-center items-center ">
         <img src={image} alt="" className="" />

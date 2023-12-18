@@ -13,69 +13,13 @@ import { Icon } from "@iconify/react";
 import "./Admin.css";
 import axios from "axios";
 import ServerUrl from "../../constants";
+import { useLoaderData } from "react-router-dom";
 
 const PendingRequests = () => {
-  const data = [
-    {
-      username: "Mrumayee123",
-      name: "Adv. Mrunmayee Deshmukh",
-      idProof: "default_thumbnail.jpg",
-    },
-    {
-      username: "Mrumayee",
-      name: "Adv. Mrunmayee Deshmukh",
-      idProof: "default_thumbnail.jpg",
-    },
-    {
-      username: "Mrume123",
-      name: "Adv. Mrunmayee Deshmukh",
-      idProof: "default_thumbnail.jpg",
-    },
-    {
-      username: "Mrumaye=123",
-      name: "Adv. Mrunmayee Deshmukh",
-      idProof: "default_thumbnail.jpg",
-    },
-    {
-      username: "Mrumayfaefaee123",
-      name: "Adv. Mrunmayee Deshmukh",
-      idProof: "default_thumbnail.jpg",
-    },
-    {
-      username: "Mayee123",
-      name: "Adv. Mrunmayee Deshmukh",
-      idProof: "default_thumbnail.jpg",
-    },
-    {
-      username: "Mree123",
-      name: "Adv. Mrunmayee Deshmukh",
-      idProof: "default_thumbnail.jpg",
-    },
-  ];
-
-  const [allRequests, setAllRequests] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const token = document.cookie.split("token=")[1];
-      console.log(token);
-      try {
-        const response = await axios.get(`${ServerUrl}/api/admin/getRequests`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setAllRequests(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
+  const allRequests = useLoaderData();
 
   const handleAccept = async (lawyer) => {
     const token = document.cookie.split("token=")[1];
-    console.log("Token : ", token);
     let response = await axios
       .post(`${ServerUrl}/api/admin/acceptLawyer`, lawyer, {
         headers: {
@@ -85,14 +29,28 @@ const PendingRequests = () => {
       .catch((err) => {
         console.log(err);
       });
-    location.reload();
   };
+
+  const logout = () => {
+    document.cookie = `token=; path=/; max-age=0`;
+    window.location.href = "/";
+  };
+
   return (
     <div className="w-full flex justify-center items-center relative h-screen">
       <div
         className="bg-cover bg-center w-full h-full absolute opacity-90 bg-gradient-to-t brightness-[25%] saturate-150"
         style={{ backgroundImage: `url(${admin})` }}
       ></div>
+
+      <Button
+        onPress={logout}
+        color="danger"
+        className="absolute top-0 right-0 mt-4 mr-4 text-red-600 bg-white hover:bg-red-400 hover:text-white"
+      >
+        <Icon icon="material-symbols:logout" />
+        Logout
+      </Button>
 
       <div className="w-3/5 h-[90%] flex flex-col py-6 items-center justify-center  rounded-[40px] z-10 ">
         <div className="w-[90%] h-1/5 bg-white rounded-lg flex flex-col justify-center items-center">
@@ -108,7 +66,6 @@ const PendingRequests = () => {
         <ScrollShadow className="w-[90%] text-text-gray h-max mt-4 pr-2 admin  overflow-y-auto text-xl ">
           {/* <div className="flex flex-col justify-start bg-red-500"> */}
           {allRequests.map((item, index) => {
-            // console.log(allRequests);
             return (
               <div
                 key={index}
@@ -184,3 +141,22 @@ const PendingRequests = () => {
 };
 
 export default PendingRequests;
+
+export async function loader() {
+  const token = document.cookie.split("token=")[1];
+  const options = {
+    method: "GET",
+    url: `${ServerUrl}/api/admin/getRequests`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  let response;
+  try {
+    response = await axios.request(options);
+  } catch (error) {
+    response = { data: null };
+    console.error(error);
+  }
+  return response.data;
+}

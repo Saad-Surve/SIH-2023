@@ -8,9 +8,9 @@ import Directory from "./components/directory/Directory";
 import Community from "./components/community/Community";
 import Resources from "./components/resources/Resources";
 import Dashboard from "./components/dashboard/Dashboard";
+import { loader as LawyerDashboardLoader } from "./components/dashboard/Posts";
 import RegisterUser from "./components/auth/RegisterUser";
 import RegisterLawyer from "./components/auth/RegisterLawyer";
-import LawyerDashboard from "./components/lawyerDashboard/LawyerDashboard";
 import LoginUser from "./components/auth/LoginUser";
 import LoginLawyer from "./components/auth/LoginLawyer";
 import LoginAdmin from "./components/auth/LoginAdmin";
@@ -18,7 +18,9 @@ import UserDashboard from "./components/userDashboard/userDashboard";
 import ErrorPage from "./pages/ErrorPage";
 import NewAdmin from "./components/admin/NewAdmin";
 import UpdateContent from "./components/admin/UpdateContent";
-import PendingRequests from "./components/admin/PendingRequests";
+import PendingRequests, {
+  loader as PendingRequestsLoader,
+} from "./components/admin/PendingRequests";
 import Statistics from "./components/statistics/Statistics";
 
 const router = createBrowserRouter([
@@ -50,20 +52,12 @@ const router = createBrowserRouter([
         element: <Resources />,
       },
       {
-        path: "dashboard",
-        element: <Dashboard />,
-      },
-      {
         path: "registerUser",
         element: <RegisterUser />,
       },
       {
         path: "registerLawyer",
         element: <RegisterLawyer />,
-      },
-      {
-        path: "lawyerDashboard",
-        element: <Dashboard />,
       },
       {
         path: "loginUser",
@@ -78,8 +72,17 @@ const router = createBrowserRouter([
         element: <LoginAdmin />,
       },
       {
+        path: "lawyerDashboard",
+        element: <Dashboard />,
+        loader: LawyerDashboardLoader,
+      },
+      {
         path: "userDashboard",
         element: <UserDashboard />,
+      },
+      {
+        path: "adminDashboard",
+        element: <NewAdmin />,
       },
       {
         path: "newAdmin",
@@ -92,6 +95,11 @@ const router = createBrowserRouter([
       {
         path: "pendingRequests",
         element: <PendingRequests />,
+        loader: PendingRequestsLoader,
+      },
+      {
+        path: "statistics",
+        element: <Statistics />,
       },
       {
         path: "statistics",

@@ -19,10 +19,12 @@ const RegisterLawyer = () => {
     experience: "",
     idProof: "",
     location: "",
+    phoneNo:""
   });
 
   const [isLoading, setIsLoading] = useState(false);
   const [usernameExists, setUsernameExists] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,28 +38,11 @@ const RegisterLawyer = () => {
         lawyer.password &&
         lawyer.expertise &&
         lawyer.experience &&
-        lawyer.idProof &&
-        lawyer.location
+        lawyer.location &&
+        lawyer.phoneNo
       )
     ) {
-      alert(
-        "Please fill all the fields",
-        +lawyer.name +
-          " " +
-          lawyer.username +
-          " " +
-          lawyer.emailID +
-          " " +
-          lawyer.password +
-          " " +
-          lawyer.expertise +
-          " " +
-          lawyer.experience +
-          " " +
-          lawyer.idProof +
-          " " +
-          lawyer.location
-      );
+      alert("Please fill all the fields");
       setIsLoading(false);
       return;
     }
@@ -66,21 +51,27 @@ const RegisterLawyer = () => {
     //   return;
     // }
 
-    const formData = new FormData(document.querySelector("form"));
+    // const formData = new FormData(document.querySelector("form"));
     // Object.entries(lawyer).forEach(([key, value]) => {
     //   formData.append(key, value);
     // });
+    const formData = new FormData();
+    Object.entries(lawyer).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    formData.append("idProof", selectedFile);
+    // console.log(formData);
 
     try {
       let response = await axios.post(
-        `${ServerUrl}/api/auth/registerLawyer`,formData,{
+        `${ServerUrl}/api/auth/registerLawyer`,
+        formData,
+        {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         }
       );
-
-      console.log(response.data);
 
       if (response.data.userExists) {
         alert("User already exists");
@@ -112,21 +103,24 @@ const RegisterLawyer = () => {
   const handleChange = (e) => {
     if (e.target.name === "idProof") {
       const file = e.target.files[0];
-      setLawyer({ ...lawyer, idProof: file });
+      // setSelectedFile(e.target.files[0]);
+      // setLawyer({ ...lawyer, idProof: file });
+      setSelectedFile(file); // Update selected file in state
+      // console.log(file);
     } else {
       setLawyer({ ...lawyer, [e.target.name]: e.target.value });
     }
   };
 
   return (
-    <section className="w-full relative">
-      <div
-        className="bg-cover bg-center w-full h-full absolute  opacity-10"
+    <section className="w-full min-h-[calc(100vh-5rem)] relative">
+      {/* <div
+        className="bg-cover bg-center w-full min-h-[calc(100vh-5rem)] absolute  opacity-10"
         style={{ backgroundImage: `url(${registerUser})` }}
-      ></div>
+      ></div> */}
 
-      <div className="flex flex-col items-center justify-center gap-6 h-full">
-        <div className="flex items-center justify-around w-full">
+      <div className="flex flex-col pt-8 items-center justify-center gap-6 h-full">
+        <div className="hidden lg:flex items-center justify-around w-full">
           <span>Register as a Lawyer </span>
           <ul className="list-disc list-inside text-lg font-light">
             <li>Take up cases in your area</li>
@@ -143,7 +137,7 @@ const RegisterLawyer = () => {
             <div className="w-full flex flex-wrap items-center gap-6">
               <Input
                 type="text"
-                className="w-[45%] m-auto"
+                className="lg:w-[45%] m-auto"
                 classNames={{
                   input: ["p-0", "focus:ring-0", "border-none"],
                 }}
@@ -154,7 +148,7 @@ const RegisterLawyer = () => {
               />
               <Input
                 type="email"
-                className="w-[45%] m-auto"
+                className="lg:w-[45%] m-auto"
                 classNames={{
                   input: ["p-0", "focus:ring-0", "border-none"],
                 }}
@@ -165,10 +159,21 @@ const RegisterLawyer = () => {
               />
               <Input
                 type="text"
+                className="lg:w-[45%] m-auto"
+                classNames={{
+                  input: ["p-0", "focus:ring-0", "border-none"],
+                }}
+                label="Phone Number"
+                placeholder="Enter your email id"
+                name="phoneNo"
+                onChange={handleChange}
+              />
+              <Input
+                type="text"
                 color={usernameExists ? "danger" : ""}
                 isInvalid={usernameExists}
                 errorMessage={usernameExists ? "Username already taken" : ""}
-                className="w-[45%] m-auto"
+                className="lg:w-[45%] m-auto"
                 classNames={{
                   input: ["p-0", "focus:ring-0", "border-none"],
                 }}
@@ -179,7 +184,7 @@ const RegisterLawyer = () => {
               />
               <Input
                 type="password"
-                className="w-[45%] m-auto"
+                className="lg:w-[45%] m-auto"
                 classNames={{
                   input: ["p-0", "focus:ring-0", "border-none"],
                 }}
@@ -190,7 +195,7 @@ const RegisterLawyer = () => {
               />
               <Input
                 type="text"
-                className="w-[45%] m-auto"
+                className="lg:w-[45%] m-auto"
                 classNames={{
                   input: ["p-0", "focus:ring-0", "border-none"],
                 }}
@@ -201,7 +206,7 @@ const RegisterLawyer = () => {
               />
               <Input
                 type="text"
-                className="w-[45%] m-auto"
+                className="lg:w-[45%] m-auto"
                 classNames={{
                   input: ["p-0", "focus:ring-0", "border-none"],
                 }}
@@ -212,7 +217,7 @@ const RegisterLawyer = () => {
               />
               <Input
                 type="text"
-                className="w-[45%] m-auto"
+                className="lg:w-[45%] m-auto"
                 classNames={{
                   input: ["p-0", "focus:ring-0", "border-none"],
                 }}
@@ -223,7 +228,7 @@ const RegisterLawyer = () => {
               />
               <Input
                 type="file"
-                className="w-[45%] m-auto"
+                className="lg:w-[45%] m-auto"
                 classNames={{
                   // input: ["p-0", "focus:ring-0", "border-none"],
                   input: ["p-0", "ml-16", "focus:ring-0", "border-none"],
@@ -232,6 +237,7 @@ const RegisterLawyer = () => {
                 label="ID Proof"
                 placeholder="Upload an ID Proof"
                 name="idProof"
+                // value={selectedFile}
                 onChange={handleChange}
               />
             </div>
@@ -245,7 +251,7 @@ const RegisterLawyer = () => {
                 {isLoading ? "Registering" : "Register"}
               </Button>
 
-              <span className="text-lg">
+              <span className="text-lg text-center">
                 Already have an account?{" "}
                 <Link className="text-lg font-semibold" href="/loginLawyer">
                   Login
@@ -255,12 +261,12 @@ const RegisterLawyer = () => {
           </form>
         </div>
         <div>
-          <div className="text-xl flex flex-col gap-2 font-medium">
-            <h1 className="text-2xl">
+          <div className="text-xl  flex flex-col gap-2 font-medium">
+            <h1 className="text-2xl lg:flex hidden">
               Get full access of our website by signing up as a user!
             </h1>
-            <div className="flex items-center justify-between w-full">
-              <ul className="list-disc list-inside w-1/2 font-light">
+            <div className="lg:flex items-center justify-between w-full">
+              <ul className="hidden lg:block list-disc list-inside w-1/2 font-light">
                 <li>Consult a lawyer</li>
                 <li>Talk with a lawyer near you</li>
                 <li>Explore user benefits</li>

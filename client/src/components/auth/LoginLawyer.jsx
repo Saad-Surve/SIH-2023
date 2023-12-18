@@ -38,25 +38,23 @@ const LoginLawyer = () => {
       document.cookie = `token=${response.data.token}; path=/; max-age=${
         60 * 60 * 24 * 30
       }`;
-      // onOpen();
-      // alert("Login Successful");
       setIsLoading(false);
       window.location.href = "/lawyerDashboard";
     } else {
       // onOpen();
-      alert("Login Unsuccessful" + response.data.message);
+      alert("Login failed : " + response.data.message);
     }
     setIsLoading(false);
   };
   return (
-    <section className="w-full relative">
+    <section className="w-full h-[calc(100vh-5rem)] relative">
       <div
-        className="bg-cover bg-center w-full h-full absolute  opacity-10"
+        className="bg-cover bg-center w-full h-[calc(100vh-5rem)] absolute  opacity-10"
         style={{ backgroundImage: `url(${registerUser})` }}
       ></div>
 
-      <div className="flex h-full">
-        <div className="w-[35%] gap-6 items-center justify-center h-full flex flex-col">
+      <div className="flex flex-col justify-center items-center pt-8 lg:pt-8 h-full">
+        <div className="lg:w-[35%] gap-6 items-center justify-center h-full flex flex-col">
           <span>Login as a Lawyer </span>
           <form
             onSubmit={handleSubmit}
@@ -99,8 +97,8 @@ const LoginLawyer = () => {
             </span>
           </form>
         </div>
-        <div className="w-[65%] h-full flex flex-col gap-6  justify-center">
-          <div className="text-xl flex flex-col gap-2 font-medium">
+        <div className="w-full lg:w-[65%] h-full flex flex-col gap-6  justify-center">
+          <div className="text-xl hidden lg:flex flex-col gap-2 font-medium">
             <h1 className="text-2xl">Want to contribute as a lawyer?</h1>
             <ul className="list-disc list-inside font-light">
               <li>Take up cases in your area</li>
@@ -108,7 +106,7 @@ const LoginLawyer = () => {
               <li>Provide consultation in your expertise</li>
             </ul>
           </div>
-          <div className="bg-[#A8A8BD] w-[95%] p-6 text-base rounded-xl font-medium flex items-center justify-around ">
+          <div className="bg-[#A8A8BD] w-[95%] hidden p-6 text-base rounded-xl font-medium lg:flex items-center justify-around ">
             <div className="flex items-center gap-2">
               <div className="bg-white rounded-full p-2">
                 <Icon
@@ -137,7 +135,7 @@ const LoginLawyer = () => {
               <span className="text-center">Connect with Multiple Lawyers</span>
             </div>
           </div>
-          <div className="text-xl flex flex-col gap-2 font-medium">
+          <div className="text-xl hidden lg:flex flex-col gap-2 font-medium">
             <h1 className="text-2xl">
               Get full access of our website as a user!
             </h1>
@@ -147,7 +145,7 @@ const LoginLawyer = () => {
               <li>Explore user benefits!</li>
             </ul>
           </div>
-          <div className="bg-[#C3DDFF] w-3/4 rounded-xl flex items-center p-3">
+          <div className="bg-[#C3DDFF] lg:w-3/4 rounded-xl flex items-center p-3">
             <Link
               className="font-semibold text-xl flex gap-3 w-full pl-6"
               href="/loginUser"
