@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import { Chip, Button, useDisclosure, Modal,
-import React, { useState } from "react";
 import Avatar from "react-avatar";
 import {
   Chip,

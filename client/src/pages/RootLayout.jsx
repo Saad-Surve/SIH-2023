@@ -6,7 +6,7 @@ import { CircularProgress } from "@nextui-org/react";
 const RootLayout = () => {
   const navigation = useNavigation();
   return (
-    <main className="flex text-3xl">
+    <main className="flex flex-col text-3xl">
       <Sidebar />
       {navigation.state === "loading" ? (
         <div className="flex flex-col items-center h-screen bg-gray-200 w-full justify-center gap-3 sm:text-base">

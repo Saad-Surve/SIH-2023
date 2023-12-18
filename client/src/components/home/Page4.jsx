@@ -34,13 +34,13 @@ const Page4 = () => {
       , [index])
     return (
         <>
-            <div className='h-screen w-full flex justify-center items-center bg-[#9ED0FF]'>
-                <div className='w-[30%]'>
+            <div className='h-screen w-full flex flex-col lg:flex-row gap-6 lg:gap-0 justify-center items-center bg-[#9ED0FF]'>
+                <div className='w-1/2 lg:w-[30%]'>
                     <Image src={bulb} />
                 </div>
                 <div className='w-[70%] pr-6 flex flex-col gap-10 justify-center'>
-                    <span className='text-9xl font-mulish font-black text-[#05114f]'>Did You Know?</span>
-                    <motion.div key={index} variants={variants} animate={'show'} initial="hide">
+                    <span className='lg:text-9xl text-center w-full font-mulish font-black text-[#05114f]'>Did You Know?</span>
+                    <motion.div className='text-lg lg:text-3xl' key={index} variants={variants} animate={'show'} initial="hide">
                         {selectedItems[index]}
                     </motion.div>    
                 </div>

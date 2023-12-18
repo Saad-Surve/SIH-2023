@@ -5,7 +5,7 @@ import AddVideo from "./AddVideo";
 
 const PostMaker = (props) => {
   return (
-    <div className="flex gap-8 m-4">
+    <div className="flex gap-2 lg:gap-8 p-2 lg:m-4">
       {/* Post + Video Container */}
       <AddPost user={props.user} />
       <AddVideo user={props.user} />

@@ -394,7 +394,7 @@ const News = () => {
         className="bg-cover bg-center w-full h-screen absolute opacity-75 bg-gradient-to-b brightness-[25%] saturate-150"
         style={{ backgroundImage: `url(${home1})` }}
       ></div>
-      <div className="flex flex-col  px-6 gap-6 w-3/4">
+      <div className="flex flex-col  px-6 gap-6 w-full lg:w-3/4">
         <h1 className="pt-6 pl-4 text-4xl font-bold font-saira text-white z-10">
           {" "}
           Trending Legal news in India{" "}
@@ -421,7 +421,7 @@ const News = () => {
             })}
         </ScrollShadow>
       </div>
-      <ScrollShadow className="w-1/4 h-[calc(100vh-2rem)] scrollbar mr-4 my-2 py-4 pr-2 overflow-y-auto z-10">
+      <ScrollShadow className="lg:w-1/4 hidden lg:flex h-[calc(100vh-2rem)] scrollbar mr-4 my-2 py-4 pr-2 overflow-y-auto z-10">
         <div className="centerContent overflow-y-auto">
           <div className="selfCenter spaceBetween ">
             <TwitterTimelineEmbed

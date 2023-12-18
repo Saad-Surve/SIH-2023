@@ -22,15 +22,15 @@ const LawyerCard = ({ lawyer }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <div className="">
-      <Card className="min-w-[600px] shadow-sm p-8 z-5">
+    <div className="w-full">
+      <Card className="rounded-2xl w-full lg:min-w-[600px] shadow-sm p-8 z-5">
         <CardHeader className="flex gap-3 items-start flex-col text-3xl font-bold z-5">
           <span>{lawyer.name}</span>
-          <span className="text-blue-500 text-2xl"> Practice Areas: {lawyer.expertise}</span>
+          <span className="text-blue-500 text-base lg:text-2xl"> Practice Areas: {lawyer.expertise}</span>
         </CardHeader>
         <Divider />
         <CardBody>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between lg:flex-row flex-col gap-3 lg:gap-0 lg:items-center">
             <div>
               <div className="flex flex-row p-1 items-center gap-1 text-sm">
                 <Icon icon="system-uicons:location" />

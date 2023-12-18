@@ -4,7 +4,7 @@ const DocumentCard = (props) => {
     <Card
       isFooterBlurred
       radius="lg"
-      className="border-none z-5 items-center h-[220px]"
+      className="border-none z-5 items-center h-[150px] lg:h-[220px]"
     >
       <Image
         removeWrapper
