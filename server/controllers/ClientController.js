@@ -62,23 +62,17 @@ const getAllHelp = asyncHandler(async (req, res) => {
   const lawyerUserName = req.query.username;
   // console.log(req.query);
   const lawyer = await Lawyer.findOne({ username: lawyerUserName });
+  // console.log(lawyer)
   if (!lawyer) {
     res.status(400).json({ message: "No lawyer found" });
     return;
   }
   const cases = await Help.find().sort({ createdAt: -1 }).populate("sentBy");
-
-  const responseCases = cases.map((c) => {
-    return {
-      ...c._doc,
-      alreadySent: c.interestedLawyers.some((item) =>
-        item.lawyer.equals(lawyer._id)
-      ),
-    };
-  });
+  console.log(cases)
+  Case = cases.filter(caseItem => !caseItem.interestedLawyers.some(item => item.lawyer.toString() === lawyer._id.toString()));
 
   // console.log(responseCases);
-  res.status(200).json(responseCases);
+  res.status(200).json(Case);
 });
 
 const getClientHelp = asyncHandler(async (req, res) => {
