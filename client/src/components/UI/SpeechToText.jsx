@@ -44,7 +44,7 @@ const SpeechToText = () => {
   };
 
   return (
-    <div id='mic' className='hidden fixed z-[9999] right-10 bottom-10  '>
+    <div className='flex fixed z-[9999] right-10 bottom-10 '>
       
       <button onClick={handleToggleRecording}>{!isRecording ? <Icon icon={'material-symbols:mic'} className='w-8 h-8' /> : <Icon icon={'ph:waveform'} className='w-8 h-8' /> }</button>
     </div>

@@ -43,7 +43,7 @@ const UserTable = ({ user }) => {
   }, []);
 
   return (
-    <div className="w-[90%] h-[90%] bg-white rounded-3xl">
+    <div className="w-[90%]  bg-white rounded-3xl">
       <div className="p-6 text-2xl font-bold">Your Requests</div>
       <ScrollShadow
         size={10}

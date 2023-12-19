@@ -32,7 +32,7 @@ const PendingRequests = ({ user }) => {
   const username = jwtDecode(token).id.username;
   const fetchHelp = async () => {
     try {
-      const response = await axios.get(`${ServerUrl}/api/client/getAllHelp`, {
+      const response = await axios.get(`${ServerUrl}/api/client/getAllHelp?username=${username}`, {
         params: {
           username: user.username,
         },
@@ -78,12 +78,13 @@ const PendingRequests = ({ user }) => {
           },
         }
       );
+      alert('Help extended')
       //   setRequests((prevRequests) =>
       //   prevRequests.filter((request) => request._id !== helpId)
       // );
 
     } catch (error) {
-      alert("An Error Occurred! Please Try Again Later: ",error);
+      alert("You have already extended your help: ",error);
       console.error("Error accepting request: ", error);
     }
     setIsLoading(false);
