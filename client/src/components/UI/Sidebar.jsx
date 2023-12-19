@@ -24,11 +24,11 @@ const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
   const isMobile = useMediaQuery({ maxWidth: 1000 });
-  const token = document?.cookie?.split("token=")[1]?.split(';')[0];
+  const token = document?.cookie?.split("token=")[1]?.split(";")[0];
   const location = useLocation();
   const role =
-     token &&
-    jwtDecode(document?.cookie?.split("token=")[1]?.split(';')[0]).id.role;
+    token &&
+    jwtDecode(document?.cookie?.split("token=")[1]?.split(";")[0]).id.role;
   const sidebarItems = [
     // {
     //   name: "Home",
@@ -37,22 +37,22 @@ const Sidebar = () => {
     // },
 
     {
-      name: "Legal News",
+      name: "Law News",
       icon: <Icon className="w-8 h-8" icon="fluent:news-28-regular" />,
       path: "/news",
     },
     {
-      name: "Legal Directory",
+      name: "Lawyer Contacts",
       icon: <Icon className="w-8 h-8" icon="clarity:directory-line" />,
       path: "/directory",
     },
     {
-      name: "Community Connect",
+      name: "Lawyer Blogs",
       icon: <Icon className="w-8 h-8" icon="iconoir:community" />,
       path: "/community",
     },
     {
-      name: "Legal Junction",
+      name: "Legal Resources",
       icon: <Icon className="w-8 h-8" icon="system-uicons:message-writing" />,
       path: "/documents",
     },
@@ -88,12 +88,14 @@ const Sidebar = () => {
   useEffect(() => {
     // Extract the path from the URL and find the corresponding index in sidebarItems
     let currentPath = `/${location.pathname.slice(1)}`;
+    console.log(currentPath);
     if (currentPath === "") currentPath = "/";
     if (currentPath === "pendingRequests" || currentPath === "updateContent")
       currentPath = "adminDashboard";
     const selectedIndex = sidebarItems.findIndex(
       (item) => item.path === currentPath
     );
+    console.log(selectedIndex);
 
     // Update the selected item only if a match is found
     if (selectedIndex !== -1) {
@@ -106,6 +108,7 @@ const Sidebar = () => {
   };
 
   const handleItemClick = (index) => {
+    console.log("Item clicked:", index);
     setSelectedItem(index);
   };
   return (
@@ -218,8 +221,7 @@ const Sidebar = () => {
       </NavbarContent>
       {token ? (
         // If user is logged in, render nothing
-        <>
-        </>
+        <></>
       ) : (
         // If user is not logged in, render Register and Login buttons
         <NavbarContent justify="end">

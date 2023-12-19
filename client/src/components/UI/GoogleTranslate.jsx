@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "./GoogleTranslate.css";
 const GoogleTranslate = () => {
   useEffect(() => {
@@ -23,8 +23,12 @@ const GoogleTranslate = () => {
     };
   }, []); // Empty dependency array ensures this effect runs only once
 
-  return <div id="google_element" className="google-translate-container"></div>;
+  return (
+    <div
+      id="google_element"
+      className="google-translate-container [&>*]:opacity-1 [&>*]:text-transparent "
+    ></div>
+  );
 };
 
 export default GoogleTranslate;
-   
