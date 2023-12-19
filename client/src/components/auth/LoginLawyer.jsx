@@ -53,7 +53,7 @@ const LoginLawyer = () => {
         style={{ backgroundImage: `url(${registerUser})` }}
       ></div>
 
-      <div className="flex flex-col justify-center items-center pt-8 lg:pt-8 h-full">
+      <div className="flex flex-col lg:flex-row justify-center items-center pt-8 lg:pt-8 h-full">
         <div className="lg:w-[35%] gap-6 items-center justify-center h-full flex flex-col">
           <span>Login as a Lawyer </span>
           <form

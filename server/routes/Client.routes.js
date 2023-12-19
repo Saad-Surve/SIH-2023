@@ -12,7 +12,7 @@ const {
   protectUser,
   protectLawyer,
   protectAdmin,
-} = require("../middleware/authmiddleware");
+} = require("../middleware/AuthMiddleware");
 
 router.post("/addHelp", protectUser, addHelp);
 router.post("/acceptHelp", protectLawyer, acceptHelp);

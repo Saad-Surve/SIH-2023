@@ -22,6 +22,7 @@ import PendingRequests, {
   loader as PendingRequestsLoader,
 } from "./components/admin/PendingRequests";
 import Statistics from "./components/statistics/Statistics";
+import SpeechToText from "./components/UI/SpeechToText";
 
 const router = createBrowserRouter([
   {
@@ -101,11 +102,19 @@ const router = createBrowserRouter([
         path: "statistics",
         element: <Statistics />,
       },
+<<<<<<< HEAD
+=======
+      // {
+      //   path:'speech',
+      //   element:<SpeechToText />
+      // }
+>>>>>>> 58fde5a4420e54380780004921ad2cdd6c95a196
     ],
   },
 ]);
 
 function App() {
+ 
   return (
     <div className="bg-background-gray">
       <RouterProvider router={router} />
