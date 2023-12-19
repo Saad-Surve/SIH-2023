@@ -104,19 +104,18 @@ const router = createBrowserRouter([
         element: <Statistics />,
       },
       {
-        path:'speech',
-        element:<SpeechToText />
+        path: "speech",
+        element: <SpeechToText />,
       },
       {
-        path:'googleSpeech',
-        element:<GoogleSpeechToText />
-      }
+        path: "googleSpeech",
+        element: <GoogleSpeechToText />,
+      },
     ],
   },
 ]);
 
 function App() {
- 
   return (
     <div className="bg-background-gray">
       <RouterProvider router={router} />

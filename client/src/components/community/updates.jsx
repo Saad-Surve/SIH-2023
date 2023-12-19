@@ -5,7 +5,7 @@ import movie2 from "../../assets/mov.mp4";
 import ServerUrl from "../../constants";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import video from '../../assets/a.mp4'
+import video from "../../assets/a.mp4";
 
 const Updates = () => {
   // const videoss = [
@@ -105,7 +105,7 @@ const Updates = () => {
                 muted
                 className="object-cover h-full w-full rounded-lg"
                 poster={logo}
-                autoplay
+                autoPlay
               >
                 {/* {console.log(video)}
                 {index % 2 ? (
@@ -113,7 +113,10 @@ const Updates = () => {
                 ) : (
                   <source src={movie2} type="video/mp4" />
                 )} */}
-                <source src={`${ServerUrl}/uploads/${video.path}`} type="video/mp4" />
+                <source
+                  src={`${ServerUrl}/uploads/${video.path}`}
+                  type="video/mp4"
+                />
                 Your browser does not support the video tag.
               </video>
             </div>
