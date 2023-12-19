@@ -102,13 +102,10 @@ const router = createBrowserRouter([
         path: "statistics",
         element: <Statistics />,
       },
-<<<<<<< HEAD
-=======
-      // {
-      //   path:'speech',
-      //   element:<SpeechToText />
-      // }
->>>>>>> 58fde5a4420e54380780004921ad2cdd6c95a196
+      {
+        path:'speech',
+        element:<SpeechToText />
+      }
     ],
   },
 ]);
