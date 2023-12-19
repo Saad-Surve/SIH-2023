@@ -7,6 +7,7 @@ import CustTable from "../UI/CustTable";
 import { jwtDecode } from "jwt-decode";
 import ServerUrl from "../../constants";
 import axios from "axios";
+import './pendingRequests.css'
 
 const Dashboard = () => {
   //add custom user data here
@@ -45,9 +46,9 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="w-full ">
+    <div className="w-full">
       <Navbar user={user} role={role} />
-      <div className="lg:flex flex-col w-full h-fit text-base text-text-black mt-2 lg:pl-6">
+      <div className="lg:flex  w-full h-screen text-base text-text-black mt-2 lg:pl-6 random overflow-y-scroll">
         <div className="lg:w-4/6 lg:h-full">
           <PostMaker user={user} />
           <div className="w-full flex  lg:pr-4">

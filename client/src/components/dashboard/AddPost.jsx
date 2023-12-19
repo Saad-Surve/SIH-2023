@@ -17,7 +17,7 @@ import ServerUrl from "../../constants";
 const AddPost = ({ user }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const username = user.username || "2102ankit";
+  const username = user.username;
 
   const [isLoading, setIsLoading] = useState(false);
   const [post, setPost] = useState({

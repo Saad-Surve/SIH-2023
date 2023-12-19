@@ -16,7 +16,7 @@ export default function SpeechToText() {
 
   if (error) return <p>Web Speech API is not available in this browser 🤷‍</p>;
   if(!isRecording){
-    console.log(results.at(-1))
+    // console.log(results.at(-1))
     window.botpressWebChat.sendPayload({ type: 'text', text: results.at(-1).transcript})
   }
   return (

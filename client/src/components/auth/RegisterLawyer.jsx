@@ -164,7 +164,7 @@ const RegisterLawyer = () => {
                   input: ["p-0", "focus:ring-0", "border-none"],
                 }}
                 label="Phone Number"
-                placeholder="Enter your email id"
+                placeholder="Enter your Phone Number"
                 name="phoneNo"
                 onChange={handleChange}
               />

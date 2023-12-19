@@ -87,7 +87,7 @@ const PostTable = ({ username, rows }) => {
         </tr>
       </thead>
       <tbody>
-        {console.log(rows)}
+        {/* {console.log(rows)} */}
         {rows.length > 0 ? (
           rows.map((row, index) => {
             // console.log(row);

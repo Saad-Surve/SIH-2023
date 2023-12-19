@@ -13,10 +13,10 @@ import {
 import axios from "axios";
 import ServerUrl from "../../constants";
 
-const AddVideo = (props) => {
+const AddVideo = ({ user }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const username = props.username || "2102ankit";
+  const username = user;
 
   // /api/lawyer
   // const [post, setPost] = useState({
@@ -33,7 +33,7 @@ const AddVideo = (props) => {
 
     const formData = new FormData(e.target);
     formData.append("lawyerUsername", username);
-
+    // console.log(formData)
     try {
       const token = document.cookie.split("token=")[1];
 

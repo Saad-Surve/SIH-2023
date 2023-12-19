@@ -26,23 +26,25 @@ const addHelp = asyncHandler(async (req, res) => {
 
 const acceptHelp = asyncHandler(async (req, res) => {
   const { helpId, lawyerUserName, response } = req.body;
+  // console.log("helpId: ",helpId)
   const help = await Help.findById(helpId);
+  // console.log("HElp: ",help)
   if (!help) {
     res.status(400).json({ message: "No help found" });
     return;
   }
-  console.log("kkkkkk",lawyerUserName)
+  // console.log("kkkkkk",lawyerUserName)
   const lawyer = await Lawyer.findOne({ username: lawyerUserName });
-  console.log(lawyer)
+  // console.log("aaaaaa",lawyer)
   if (!lawyer) {
     res.status(400).json({ message: "No lawyer found" });
     return;
   }
-
+  // console.log("WWWWW",help.interestedLawyers)
   const existingLawyer = help.interestedLawyers.find(
     (interestedLawyer) => interestedLawyer.lawyer.equals(lawyer._id)
   );
-
+  // console.log("AAAAAAA",existingLawyer)
   if (existingLawyer) {
     res.status(400).json({ message: "Lawyer already exists in the array" });
     return;
@@ -90,6 +92,7 @@ const getClientHelp = asyncHandler(async (req, res) => {
     .sort({ createdAt: -1 })
     .populate("interestedLawyers.lawyer");
   res.status(200).json(cases);
+  // console.log(cases)
 });
 
 const getAllLawyers = asyncHandler(async (req, res) => {
