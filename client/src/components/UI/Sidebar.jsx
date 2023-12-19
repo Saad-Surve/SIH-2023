@@ -66,7 +66,7 @@ const Sidebar = () => {
               icon="material-symbols-light:dashboard-outline"
             />
           ),
-          path: `${role.toLowerCase()}Dashboard`,
+          path: `/${role.toLowerCase()}Dashboard`,
         }
       : {},
   ];
@@ -88,14 +88,14 @@ const Sidebar = () => {
   useEffect(() => {
     // Extract the path from the URL and find the corresponding index in sidebarItems
     let currentPath = `/${location.pathname.slice(1)}`;
-    console.log(currentPath);
+    // console.log(currentPath);
     if (currentPath === "") currentPath = "/";
     if (currentPath === "pendingRequests" || currentPath === "updateContent")
       currentPath = "adminDashboard";
     const selectedIndex = sidebarItems.findIndex(
       (item) => item.path === currentPath
     );
-    console.log(selectedIndex);
+    // console.log(selectedIndex);
 
     // Update the selected item only if a match is found
     if (selectedIndex !== -1) {
@@ -108,7 +108,7 @@ const Sidebar = () => {
   };
 
   const handleItemClick = (index) => {
-    console.log("Item clicked:", index);
+    // console.log("Item clicked:", index);
     setSelectedItem(index);
   };
   return (
@@ -184,7 +184,7 @@ const Sidebar = () => {
         <Link href="/">
           <NavbarBrand>
             <img src={logo} width={50} height={50} />
-            <p className="font-bold text-inherit">Nyaydoot</p>
+            <p className="font-bold text-inherit font-saira">Nyaydoot</p>
           </NavbarBrand>
         </Link>
       </NavbarContent>
@@ -193,20 +193,21 @@ const Sidebar = () => {
         {sidebarItems.map((item, index) => (
           <Link
             className={classNames("rounded-2xl", {
-              "bg-light-blue p-2  text-primary": selectedItem === index,
+              "bg-light-blue p-2 -m-2  text-primary": selectedItem === index,
             })}
             href={`${item.path}`}
             // size="lg"
             onClick={() => handleItemClick(index)}
             key={index}
           >
+            {/* {console.log(item)} */}
             <div
               className={classNames("flex text-center text-icon-gray", {
                 "text-primary": selectedItem === index,
               })}
             >
               <span
-                className={classNames("ml-2 text-primary", {
+                className={classNames("mx-2 text-primary", {
                   "text-text-gray": selectedItem != index,
                 })}
               >

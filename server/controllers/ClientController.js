@@ -80,7 +80,7 @@ const acceptHelp = asyncHandler(async (req, res) => {
   const { helpId, lawyerUserName, response } = req.body;
   // console.log("helpId: ",helpId)
   const help = await Help.findById(helpId).populate("sentBy");
-  console.log(help);
+  // console.log(help);
   // console.log("HElp: ",help)
   if (!help) {
     res.status(400).json({ message: "No help found" });
