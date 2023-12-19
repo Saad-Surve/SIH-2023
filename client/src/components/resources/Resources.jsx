@@ -149,6 +149,7 @@ const Resources = () => {
           );
         })}
       </div>
+      {/* <GoogleTranslate /> */}
     </div>
   );
 };

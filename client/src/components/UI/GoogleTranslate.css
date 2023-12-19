@@ -1,0 +1,11 @@
+/* GoogleTranslate.css */
+
+.VIpgJd-ZVi9od-l4eHX-hSRGPd {
+  display: none;
+}
+.skiptranslate {
+  visibility: hidden;
+}
+.skiptranslate:first-child:first-child {
+  visibility: visible;
+}

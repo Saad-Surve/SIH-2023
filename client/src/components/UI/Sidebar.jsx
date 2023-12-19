@@ -4,14 +4,26 @@ import { Icon } from "@iconify/react";
 import classNames from "classnames";
 import "./styles/Sidebar.css";
 import { jwtDecode } from "jwt-decode";
-import logo from '../../assets/logoblack.png'
-import { Button,Link, Image,Navbar,NavbarBrand,NavbarContent,NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, } from "@nextui-org/react";
-import { useMediaQuery } from 'react-responsive'
+import logo from "../../assets/logoblack.png";
+import {
+  Button,
+  Link,
+  Image,
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
+} from "@nextui-org/react";
+import { useMediaQuery } from "react-responsive";
+import GoogleTranslate from "./GoogleTranslate";
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
-  const isMobile = useMediaQuery({maxWidth:1000})
+  const isMobile = useMediaQuery({ maxWidth: 1000 });
   const location = useLocation();
   const role =
     document.cookie.split("token=")[1] &&
@@ -22,11 +34,7 @@ const Sidebar = () => {
       icon: <Icon className="w-8 h-8" icon="majesticons:home-line" />,
       path: "/",
     },
-    // {
-    //   name: "Legal Documents",
-    //   icon: <Icon className="w-8 h-8" icon="carbon:document" />,
-    //   path: "/documents",
-    // },
+
     {
       name: "Legal News",
       icon: <Icon className="w-8 h-8" icon="fluent:news-28-regular" />,
@@ -47,6 +55,7 @@ const Sidebar = () => {
       icon: <Icon className="w-8 h-8" icon="system-uicons:message-writing" />,
       path: "/documents",
     },
+
     role
       ? {
           name: `${role ? role : ""} Dashboard`,
@@ -117,10 +126,10 @@ const Sidebar = () => {
     //       height={50}
     //     />
     //     <h1>Nyaydoot</h1>
-        
+
     //   </Link>
     //   {
-        // !isMobile?
+    // !isMobile?
     //     <nav className="flex justify-end w-[85%]">
     //       <ul className="flex items-center pr-3 gap-2">
     //         {sidebarItems.map((item, index) => (
@@ -152,61 +161,59 @@ const Sidebar = () => {
     //         ))}
     //       </ul>
     //     </nav>:''
-      
+
     //   }
     //   {/* Sidebar Open */}
     //   </div>
-    <Navbar classNames={{
-      wrapper:'max-w-full'
-    }} className="w-full py-2  justify-between " onMenuOpenChange={setIsMenuOpen}>
+    <Navbar
+      classNames={{
+        wrapper: "max-w-full",
+      }}
+      className="w-full py-2  justify-between "
+      onMenuOpenChange={setIsMenuOpen}
+    >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
         <Link href="/">
-          <NavbarBrand >
-          <img
-            src={logo}
-            width={50}
-            height={50}
-          />
-            <p className="font-bold text-inherit">
-              Nyaydoot
-            </p>
+          <NavbarBrand>
+            <img src={logo} width={50} height={50} />
+            <p className="font-bold text-inherit">Nyaydoot</p>
           </NavbarBrand>
         </Link>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-6" justify="">
-      {sidebarItems.map((item, index) => (
-            <Link
-              className={classNames("rounded-2xl", {
-                             "bg-light-blue p-2  text-primary": selectedItem === index,
-                        })}
-              href={`${item.path}`}
-              // size="lg"
-              onClick={() => handleItemClick(index)}
-              key={index}
+        {sidebarItems.map((item, index) => (
+          <Link
+            className={classNames("rounded-2xl", {
+              "bg-light-blue p-2  text-primary": selectedItem === index,
+            })}
+            href={`${item.path}`}
+            // size="lg"
+            onClick={() => handleItemClick(index)}
+            key={index}
+          >
+            <div
+              className={classNames("flex text-center text-icon-gray", {
+                "text-primary": selectedItem === index,
+              })}
             >
-                  <div
-                    className={classNames(
-                      "flex text-center text-icon-gray",
-                      {
-                        "text-primary": selectedItem === index,
-                      }
-                    )}
-                  >
-                    <span
-                      className={classNames("ml-2 text-primary", {
-                        "text-text-gray": selectedItem != index,
-                      })}
-                    >
-                      {item.name}
-                    </span>
-                  </div>
-              </Link>
+              <span
+                className={classNames("ml-2 text-primary", {
+                  "text-text-gray": selectedItem != index,
+                })}
+              >
+                {item.name}
+              </span>
+            </div>
+          </Link>
         ))}
+      </NavbarContent>
+      <NavbarContent>
+        <GoogleTranslate className="p-3" />
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
@@ -215,7 +222,7 @@ const Sidebar = () => {
             className="bg-white text-primary py-2 px-6 rounded-lg"
           >
             Register
-          </Link>        
+          </Link>
         </NavbarItem>
         <NavbarItem>
           <Link
@@ -226,41 +233,41 @@ const Sidebar = () => {
           </Link>
         </NavbarItem>
       </NavbarContent>
+
       <NavbarMenu className="mt-4 pt-4">
         {sidebarItems.map((item, index) => (
           <NavbarMenuItem key={`${item.name}-${index}`}>
             <Link
               className={classNames("rounded-2xl", {
-                             "  text-primary": selectedItem === index,
-                        })}
+                "  text-primary": selectedItem === index,
+              })}
               href={`${item.path}`}
               // size="lg"
               onClick={() => handleItemClick(index)}
               key={index}
             >
-                  <div
-                    className={classNames(
-                      "flex text-center text-icon-gray",
-                      {
-                        "text-primary": selectedItem === index,
-                      }
-                    )}
-                  >
-                    <span
-                      className={classNames("ml-2 flex items-center gap-3 text-primary", {
-                        "text-text-gray": selectedItem != index,
-                      })}
-                    >
-                      <span>{item.icon}</span>
-                      <span>{item.name}</span>
-                    </span>
-                  </div>
-              </Link>
+              <div
+                className={classNames("flex text-center text-icon-gray", {
+                  "text-primary": selectedItem === index,
+                })}
+              >
+                <span
+                  className={classNames(
+                    "ml-2 flex items-center gap-3 text-primary",
+                    {
+                      "text-text-gray": selectedItem != index,
+                    }
+                  )}
+                >
+                  <span>{item.icon}</span>
+                  <span>{item.name}</span>
+                </span>
+              </div>
+            </Link>
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
     </Navbar>
-
   );
 };
 
