@@ -102,11 +102,11 @@ const acceptHelp = asyncHandler(async (req, res) => {
     res.status(400).json({ message: "Lawyer already exists in the array" });
     return;
   }
-  const userEmails = help.sentBy.map(user => user.email);
+  const userEmails = help.sentBy.emailID;
 
   var mailOptions = {
     from: 'saad.surve@spit.ac.in',
-    to: userEmails.join(','),
+    to: userEmails,
     subject: 'New Help Request',
     text: `
       Hello,
