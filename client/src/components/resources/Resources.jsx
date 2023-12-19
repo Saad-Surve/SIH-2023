@@ -10,26 +10,28 @@ import {
 } from "@nextui-org/react";
 import "./resources.css";
 import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/react";
-import GoogleTranslate from "../UI/GoogleTranslate";
+import rti_logo from 'C:/Users/Neha/OneDrive/Desktop/SIH-2023/client/src/assets/rti_logo.png';
+import crpc_logo from 'C:/Users/Neha/OneDrive/Desktop/SIH-2023/client/src/assets/crpc_logo.png';
+import cyber_logo from 'C:/Users/Neha/OneDrive/Desktop/SIH-2023/client/src/assets/cyber_logo.png';
 
 function CustCard({ logo, title, link, description }) {
   return (
-    <Card className="max-w-[400px] border">
-      <CardHeader className="flex gap-3">
+    <Card className="max-w-[500px] border ">
+      <CardHeader className="flex gap-3 h-[100px]">
         <Image
           alt="nextui logo"
-          height={40}
+          height={60}
           radius="sm"
           src={logo}
-          width={40}
+          width={80}
         />
         <div className="flex flex-col">
-          <p className="text-md">{title}</p>
+          <p className="text-2xl ">{title}</p>
           <p className="text-small text-default-500">{link}</p>
         </div>
       </CardHeader>
       <Divider />
-      <CardBody className="text-sm">{description}</CardBody>
+      <CardBody className="text-sm h-[100px] px-4 py-2">{description}</CardBody>
       <Divider />
       <CardFooter>
         <Link isExternal showAnchorIcon href={link}>
@@ -65,24 +67,22 @@ function CustNav() {
 const Resources = () => {
   const data = [
     {
-      logo: "lawmin.gov.in/sites/all/themes/landj/images/emblem-dark.png",
+      logo: "https://d2f2ht52r1pvo3.cloudfront.net/static/dist/images/logo/dept-of-justice-logo-update.png",
       title: "Ministry of Law and Justice",
       link: "https://lawmin.gov.in/",
-      description: `Honourable Minister
-      Shri Arjun Ram Meghwal
-      Hon'ble Minister of State, Ministry of Law and Justice (Independent Charge)`,
+      description: `The Ministry of Law and Justice deals with the management of the legal affairs, legislative activities and administration of justice through its three departments. `,
     },
     {
-      logo: "lawmin.gov.in/sites/all/themes/landj/images/emblem-dark.png",
+      logo: rti_logo,
       title: "Right to Information",
       link: "https://rti.gov.in/",
-      description: `Right to Information Act 2005 mandates timely response to citizen requests for government information.It is an initiative taken by Department of Personnel and Training, Ministry of Personnel, Public Grievances and Pensions.`,
+      description: `An initiative taken by Department of Personnel and Training, Ministry of Personnel, Public Grievances and Pensions to provide a– RTI  Portal Gateway to the citizens for quick search of information.`,
     },
     {
       logo: "https://ncsc.nic.in/upload/logo/logo.png",
       title: "First Information Report",
       link: "https://ncsc.nic.in/pages/display/135-how-to-file-a-police-fir-complaint-online",
-      description: `It is prepared when the police receive information about the commission of a cognizable offence. Anyone can make such a report either orally or in writing to the police and also lodge an FIR through online medium.`,
+      description:`FIR is a complaint lodged with the police by the victim of a cognizable offence or by someone on his or her behalf, but anyone can make such a report either orally or in writing to the police.`,
     },
     {
       logo: "https://www.indiacode.nic.in/image/final-logo_update.jpg",
@@ -103,7 +103,7 @@ const Resources = () => {
       logo: "https://d2f2ht52r1pvo3.cloudfront.net/static/dist/images/logo/dept-of-justice-logo-update.png",
       title: "Tele Law by Department of Justice",
       link: "https://www.tele-law.in/",
-      description: `This e-interaction between lawyers and people would be through the video-conferencing infrastructure available at the CSCs.`,
+      description: `Tele-Law means the use of communications and information technology for e-interaction between lawyers and people for the delivery of legal information and advice.`,
     },
     {
       logo: "https://upload.wikimedia.org/wikipedia/commons/1/13/Logo_of_Income_Tax_Department_India.png",
@@ -118,17 +118,16 @@ const Resources = () => {
       description: `This website has been launched by the Department of Consumer Affairs to create awareness,advise and redress consumer grievances and act as a central registry for lodging consumer grievances.`,
     },
     {
-      logo: "https://www.crpc.in/images/logo.png",
+      logo: crpc_logo,
       title: "Citizen Rights Protection Council",
       link: "https://www.crpc.in/",
-      description: `ABOUT CRPC:
-      Citizen Rights Protection Council (CRPC) is a civil rights’ group comprised of advocates, social activists and grassroots para- legal social workers dedicated to using the legal system to protect and advance the civil and human rights in India.`,
+      description: `Citizen Rights Protection Council (CRPC) is a civil rights’ group dedicated to using the legal system to protect and advance the civil and human rights in India.`,
     },
     {
-      logo: "https://www.crpc.in/images/logo.png",
+      logo: cyber_logo,
       title: "National Cyber Crime Reporting Portal",
       link: "https://cybercrime.gov.in/",
-      description: `This portal is an initiative of Government of India to facilitate victims/complainants to report cyber crime complaints online. This portal caters to complaints pertaining to cyber crimes only with special focus on cyber crimes against women and children.`,
+      description: `An initiative of Government of India to facilitate victims/complainants to report cyber crime complaints online. This portal caters to complaints pertaining to cyber crimes only.`,
     },
   ];
 
@@ -136,10 +135,10 @@ const Resources = () => {
     <div className="w-full">
       <CustNav />
       <div className="text-center text-text-black font-bold bg-white top-0 sticky z-10 border-b-1 py-6 border-l shadow-md"></div>
-      <div className="p-10 py-6 justify-center flex-col gap-6 flex-wrap grid lg:grid-cols-3 z-5">
+      <div className="px-6 py-6 justify-center flex-col flex-wrap grid lg:grid-cols-2 z-5 justify-items-center ">
         {data.map((item) => {
           return (
-            <div key={item.title} className="border-4 border-black">
+            <div key={item.title} className="p-3 px-3 py-3 ">
               <CustCard
                 logo={item.logo}
                 title={item.title}
