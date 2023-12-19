@@ -7,7 +7,7 @@ const {
   protectUser,
   protectLawyer,
   protectAdmin,
-} = require("../middleware/authmiddleware");
+} = require("../middleware/AuthMiddleware");
 // const { uploadThumbnail, uploadVideo } = require("../utils/utils");
 
 router.get("/getUser", [protectUser], getUser);

@@ -8,7 +8,7 @@ const {
   rejectChanges,
   rejectLawyer,
 } = require("../controllers/AdminController");
-const { protectAdmin } = require("../middleware/authmiddleware");
+const { protectAdmin } = require("../middleware/AuthMiddleware");
 
 router.get("/getRequests", protectAdmin, getRequests);
 router.post("/acceptLawyer", protectAdmin, acceptLawyer);
