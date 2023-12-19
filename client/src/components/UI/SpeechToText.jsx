@@ -1,25 +1,54 @@
-import React, { useEffect } from 'react';
-// import SpeechRecognition,{useSpeechRecognition} from 'react-speech-recognition';
+import { Icon } from '@iconify/react';
+import React, { useState } from 'react';
 
-export default function SpeechToText() {
-    // const {
-    //     transcript,
-    //     listening,
-    //     resetTranscript,
-    //     browserSupportsSpeechRecognition
-    // } = useSpeechRecognition();
+
+const SpeechToText = () => {
+  const [transcript, setTranscript] = useState('');
+  const [isRecording, setIsRecording] = useState(false);
+  let recognition = null;
+
+  const initializeRecognition = () => {
+    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+      // Use the standard or webkit-prefixed SpeechRecognition object
+      recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.onresult = handleResult;
+    } else {
+      console.error('Speech recognition is not supported in this browser.');
+    }
+  };
+
+  const handleToggleRecording = () => {
+    if (isRecording) {
+      recognition.stop();
+    } else {
+      if (!recognition) {
+        initializeRecognition();
+      }
+      recognition.start();
+    }
     
-    // if (!browserSupportsSpeechRecognition) {
-    //     return <span>Browser doesn't support speech recognition.</span>;
-    // }
-    
-    return (
-        <div>
-            {/* <p>Microphone: {listening ? 'on' : 'off'}</p>
-            <button onClick={SpeechRecognition.startListening}>Start</button>
-            <button onClick={SpeechRecognition.stopListening}>Stop</button>
-            <button onClick={resetTranscript}>Reset</button>
-            <p>{transcript}</p> */}
-        </div>
-    );
-}
+    setIsRecording(!isRecording);
+  };
+
+  const handleResult = (event) => {
+    const result = event.results[0][0].transcript;
+    setTranscript(result);
+    handleSendPayload(result);
+    setIsRecording(false)
+  };
+
+  const handleSendPayload = (text) => {
+    // Replace this with your code to send the payload
+    window.botpressWebChat.sendPayload({ type: 'text', text });
+  };
+
+  return (
+    <div id='mic' className='hidden fixed z-[9999] right-10 bottom-10  '>
+      
+      <button onClick={handleToggleRecording}>{!isRecording ? <Icon icon={'material-symbols:mic'} className='w-8 h-8' /> : <Icon icon={'ph:waveform'} className='w-8 h-8' /> }</button>
+    </div>
+  );
+};
+
+export default SpeechToText;
