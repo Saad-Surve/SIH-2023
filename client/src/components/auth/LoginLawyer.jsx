@@ -145,9 +145,9 @@ const LoginLawyer = () => {
               <li>Explore user benefits!</li>
             </ul>
           </div>
-          <div className="bg-[#C3DDFF] lg:w-3/4 rounded-xl flex items-center p-3">
+          <div className="bg-[#C3DDFF] lg:w-3/4 rounded-xl flex items-center p-3 m-5">
             <Link
-              className="font-semibold text-xl flex gap-3 w-full pl-6"
+              className="font-semibold text-xl flex gap-3 w-full pl-6 "
               href="/loginUser"
             >
               <span>Login as a User </span>
