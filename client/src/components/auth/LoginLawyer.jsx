@@ -47,7 +47,7 @@ const LoginLawyer = () => {
     setIsLoading(false);
   };
   return (
-    <section className="w-full h-[calc(100vh-5rem)] relative">
+    <section className="w-full relative h-[calc(100vh-5rem)]">
       <div
         className="bg-cover bg-center w-full h-[calc(100vh-5rem)] absolute  opacity-10"
         style={{ backgroundImage: `url(${registerUser})` }}

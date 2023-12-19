@@ -51,12 +51,12 @@ const Dashboard = () => {
       <div className="lg:flex  w-full h-screen text-base text-text-black mt-2 lg:pl-6 random overflow-y-scroll">
         <div className="lg:w-4/6 lg:h-full">
           <PostMaker user={user} />
-          <div className="w-full flex  lg:pr-4">
+          <div className="w-full flex lg:pr-4">
             <Posts user={user} />
           </div>
         </div>
 
-        <div className="w-2/5 px-8 ">
+        <div className="w-auto px-4 lg:w-2/5 lg:px-8 ">
           <PendingRequests user={user} />
         </div>
       </div>
