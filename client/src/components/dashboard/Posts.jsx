@@ -46,6 +46,7 @@ export default Posts;
 export async function loader() {
   const token = document.cookie.split("token=")[1];
   const username = jwtDecode(token).id.username;
+  console.log(token)
   const options = {
     method: "GET",
     url: `${ServerUrl}/api/lawyer/getLawyerPosts`,

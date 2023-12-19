@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
-const generateToken = (id,role,username) => {
+const generatetoken = (id,role,username) => {
   return jwt.sign({ id:id , role:role, username:username }, process.env.JWT_SECRET, {
     expiresIn: "10d",
   });
@@ -72,7 +72,7 @@ const uploadVideo = multer({
   },
 });
 module.exports = {
-  generateToken,
+  generatetoken,
   fileStorage,
   uploadImage,
   fileStorageThumbnail,
