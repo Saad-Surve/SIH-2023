@@ -37,7 +37,7 @@ const Sidebar = () => {
     // },
 
     {
-      name: "Legal News",
+      name: "Law News",
       icon: <Icon className="w-8 h-8" icon="fluent:news-28-regular" />,
       path: "/news",
     },
