@@ -103,7 +103,7 @@ const Resources = () => {
       logo: "https://d2f2ht52r1pvo3.cloudfront.net/static/dist/images/logo/dept-of-justice-logo-update.png",
       title: "Tele Law by Department of Justice",
       link: "https://www.tele-law.in/",
-      description: `This e-interaction between lawyers and people would be through the video-conferencing infrastructure available at the CSCs.`,
+      description: `Tele-Law means the use of communications and information technology for e-interaction between lawyers and people for the delivery of legal information and advice.`,
     },
     {
       logo: "https://upload.wikimedia.org/wikipedia/commons/1/13/Logo_of_Income_Tax_Department_India.png",
