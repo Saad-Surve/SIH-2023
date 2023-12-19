@@ -35,7 +35,7 @@ const AddVideo = ({ user }) => {
     formData.append("lawyerUsername", username);
     // console.log(formData)
     try {
-      const token = document.cookie.split("token=")[1];
+      const token = document.cookie.split("token=")[1].split(';')[0];
 
       const response = await axios.post(
         `${ServerUrl}/api/lawyer/createVideoPost`,

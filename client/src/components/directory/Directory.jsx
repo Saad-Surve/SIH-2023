@@ -72,7 +72,7 @@ const Directory = () => {
     emailID: "",
   });
 
-  const token = document.cookie.split("token=")[1];
+  const token = document.cookie.split("token=")[1].split(';')[0];
   // console.log(token);
 
   let username = "",

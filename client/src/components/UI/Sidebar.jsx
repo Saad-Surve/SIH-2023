@@ -24,11 +24,11 @@ const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
   const isMobile = useMediaQuery({ maxWidth: 1000 });
-  const token = document.cookie.split("token=")[1];
+  const token = document?.cookie?.split("token=")[1]?.split(';')[0];
   const location = useLocation();
   const role =
      token &&
-    jwtDecode(document.cookie.split("token=")[1]).id.role;
+    jwtDecode(document?.cookie?.split("token=")[1]?.split(';')[0]).id.role;
   const sidebarItems = [
     // {
     //   name: "Home",

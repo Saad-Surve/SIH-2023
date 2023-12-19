@@ -28,7 +28,7 @@ const PendingRequests = ({ user }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [isLoading, setIsLoading] = useState(false);
 
-  const token = document.cookie.split("token=")[1];
+  const token = document.cookie.split("token=")[1].split(';')[0];
   const username = jwtDecode(token).id.username;
   const fetchHelp = async () => {
     try {

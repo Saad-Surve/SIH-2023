@@ -44,7 +44,7 @@ const Posts = ({ user }) => {
 export default Posts;
 
 export async function loader() {
-  const token = document.cookie.split("token=")[1];
+  const token = document.cookie.split("token=")[1].split(';')[0];
   const username = jwtDecode(token).id.username;
   console.log(token)
   const options = {

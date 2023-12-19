@@ -17,7 +17,7 @@ const UserTable = ({ user }) => {
 
   const fetchHelp = async () => {
     // console.log(document.cookie)
-    const token = document.cookie.split("token=")[1];
+    const token = document.cookie.split("token=")[1].split(';')[0];
     // console.log(token)
     const username = jwtDecode(token).id.username;
     try {

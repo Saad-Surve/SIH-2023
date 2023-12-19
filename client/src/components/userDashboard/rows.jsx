@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import Avatar from "react-avatar";
+import React, { useState } from "react";
 import {
   Chip,
   Button,
@@ -9,11 +8,14 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  Tooltip,
+  Avatar,
 } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 import axios from "axios";
 import ServerUrl from "../../constants";
 import { jwtDecode } from "jwt-decode";
+import MyAvatar from "./avatar";
 
 const rows = (props) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -31,9 +33,10 @@ const rows = (props) => {
       return "pending";
     }
   };
+
   const handleDelete = async () => {
     setIsLoading(true);
-    const token = document.cookie.split("token=")[1];
+    const token = document.cookie.split("token=")[1].split(";")[0];
     const username = jwtDecode(token).id.username;
     const helpId = props.id;
     // console.log(helpId)
@@ -70,56 +73,69 @@ const rows = (props) => {
   // // Extracting the last two parts of the array (first part is 'Adv.')
   // const extractedName = nameParts.slice(1).join(' ');
 
-    return (
-      <div className='flex p-6 justify-between'>
-          <div className='flex gap-4 justify-center items-center'>
-          <div className='flex flex-col'>
-              <span className='text-lg font-bold'>{props.category}</span>
-              <span className='text-sm font-light'>{props.description}</span>
-          </div>
-          </div>
-          <div className='flex flex-col items-center justify-center gap-2'>
-            {
-              (props.lawyers.map((item,index) => (
-                <>
-                <div className='flex justify-between items-center h-[20px] random overflow-y-scroll text-xs gap-2'>
-                      <Avatar name={item.lawyer.name} size="20px" round/>
-                    <span>{item.responseByLawyer}</span>
+  return (
+    <div className="flex p-6 justify-between">
+      <div className="w-1/4 flex gap-4 justify-start items-center">
+        <div className="flex flex-col">
+          <span className="text-lg font-bold">{props.category}</span>
+          <span className="w-3/4 text-sm font-light">{props.description}</span>
+        </div>
+      </div>
+      <div className="flex items-center justify-center gap-2">
+        {console.log(props.lawyers)}
+        {props.lawyers.map((item, index) => (
+          <>
+            <Tooltip
+              showArrow={true}
+              size="sm"
+              content={
+                <div className="flex flex-col font-semibold">
+                  <div>Name: {item.lawyer.name}</div>
+                  <div>Email: {item.lawyer.emailID}</div>
+                  <div>Experience: {item.lawyer.experience} yrs</div>
+                  <div>Expertise: {item.lawyer.expertise}</div>
+                  <div>Response: {item.responseByLawyer}</div>
                 </div>
-                </>
-              )))
-            }
-          </div>
-          <div className='flex gap-8 justify-center items-center'>
-          <Chip className="capitalize" color={color()} size="md" variant="flat">
-            {status()}
-          </Chip>
-          <Button color='danger' variant='light' size='sm' onClick={onOpen}>
+              }
+            >
+              <MyAvatar />
+            </Tooltip>
+          </>
+        ))}
+      </div>
+      <div className="flex gap-8 justify-center items-center">
+        <Chip className="capitalize" color={color()} size="md" variant="flat">
+          {status()}
+        </Chip>
+        <Button color="danger" variant="light" size="sm" onClick={onOpen}>
           <Icon icon="mi:delete" fontSize={20} />
           <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
             <ModalContent>
               {(onClose) => (
                 <>
                   <ModalHeader> Delete Request </ModalHeader>
-                  <ModalBody> Are you sure you want to delete the request </ModalBody>
+                  <ModalBody>
+                    {" "}
+                    Are you sure you want to delete the request{" "}
+                  </ModalBody>
                   <ModalFooter>
                     <Button
-                    color='danger'
-                    isLoading={isLoading}
-                    onClick={handleDelete}
-                    onPress={onClose}
+                      color="danger"
+                      isLoading={isLoading}
+                      onClick={handleDelete}
+                      onPress={onClose}
                     >
-                    {isLoading ? "Deleting" : "Delete"}
+                      {isLoading ? "Deleting" : "Delete"}
                     </Button>
-                  </ModalFooter> 
-              </>           
-            )}
+                  </ModalFooter>
+                </>
+              )}
             </ModalContent>
           </Modal>
-          </Button>
-          </div>
+        </Button>
       </div>
-    )
-  }
+    </div>
+  );
+};
 
 export default rows;

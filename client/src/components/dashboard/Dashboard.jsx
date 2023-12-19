@@ -16,7 +16,7 @@ const Dashboard = () => {
     emailID: "",
   });
 
-  const token = document.cookie.split("token=")[1];
+  const token = document.cookie.split("token=")[1].split(';')[0];
   const username = jwtDecode(token).id.username;
   const role = jwtDecode(token).id.role;
 
