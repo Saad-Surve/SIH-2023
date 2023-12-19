@@ -66,7 +66,7 @@ const Sidebar = () => {
               icon="material-symbols-light:dashboard-outline"
             />
           ),
-          path: `${role.toLowerCase()}Dashboard`,
+          path: `/${role.toLowerCase()}Dashboard`,
         }
       : {},
   ];
@@ -193,20 +193,21 @@ const Sidebar = () => {
         {sidebarItems.map((item, index) => (
           <Link
             className={classNames("rounded-2xl", {
-              "bg-light-blue p-2  text-primary": selectedItem === index,
+              "bg-light-blue p-2 -m-2  text-primary": selectedItem === index,
             })}
             href={`${item.path}`}
             // size="lg"
             onClick={() => handleItemClick(index)}
             key={index}
           >
+            {console.log(item)}
             <div
               className={classNames("flex text-center text-icon-gray", {
                 "text-primary": selectedItem === index,
               })}
             >
               <span
-                className={classNames("ml-2 text-primary", {
+                className={classNames("mx-2 text-primary", {
                   "text-text-gray": selectedItem != index,
                 })}
               >
