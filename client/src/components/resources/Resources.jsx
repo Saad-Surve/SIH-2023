@@ -10,14 +10,14 @@ import {
 } from "@nextui-org/react";
 import "./resources.css";
 import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/react";
-import rti_logo from 'C:/Users/Neha/OneDrive/Desktop/SIH-2023/client/src/assets/rti_logo.png';
-import crpc_logo from 'C:/Users/Neha/OneDrive/Desktop/SIH-2023/client/src/assets/crpc_logo.png';
-import cyber_logo from 'C:/Users/Neha/OneDrive/Desktop/SIH-2023/client/src/assets/cyber_logo.png';
+import rti_logo from '../../assets/rti_logo.png';
+import crpc_logo from '../../assets/crpc_logo.png';
+import cyber_logo from '../../assets/cyber_logo.png';
 
 function CustCard({ logo, title, link, description }) {
   return (
     <Card className="max-w-[500px] border ">
-      <CardHeader className="flex gap-3 h-[100px]">
+      <CardHeader className="flex gap-3 h-[100px]"> 
         <Image
           alt="nextui logo"
           height={60}
