@@ -10,6 +10,7 @@ import {
 } from "@nextui-org/react";
 import "./resources.css";
 import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/react";
+import GoogleTranslate from "../UI/GoogleTranslate";
 
 function CustCard({ logo, title, link, description }) {
   return (
@@ -149,6 +150,7 @@ const Resources = () => {
           );
         })}
       </div>
+      {/* <GoogleTranslate /> */}
     </div>
   );
 };

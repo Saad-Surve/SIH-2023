@@ -101,10 +101,6 @@ const router = createBrowserRouter([
         path: "statistics",
         element: <Statistics />,
       },
-      {
-        path: "statistics",
-        element: <Statistics />,
-      },
     ],
   },
 ]);
