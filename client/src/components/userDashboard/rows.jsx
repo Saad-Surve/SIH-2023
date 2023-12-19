@@ -97,6 +97,17 @@ const rows = (props) => {
                   <div>Response: {item.responseByLawyer}</div>
                 </div>
               }
+              placement="bottom"
+              classNames={{
+                base: [
+                  //arrow color
+                  "before:bg-blue-950 :before:bg-white",
+                ],
+                content: [
+                  "py-2 px-4 shadow-xl",
+                  "text-white  bg-blue-950",
+                ],
+              }}
             >
               <MyAvatar />
             </Tooltip>
