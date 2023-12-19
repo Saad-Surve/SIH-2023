@@ -26,6 +26,7 @@ const acceptLawyer = asyncHandler(async (req, res) => {
     username: lawyerDetails.username,
     password: lawyerDetails.password,
     name: lawyerDetails.name,
+    phoneNo: lawyerDetails.phoneNo,
     location: lawyerDetails.location,
     expertise: lawyerDetails.expertise,
     experience: lawyerDetails.experience,
