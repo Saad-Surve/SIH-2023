@@ -3,7 +3,7 @@ const multer = require("multer");
 const path = require("path");
 const generateToken = (id,role,username) => {
   return jwt.sign({ id:id , role:role, username:username }, process.env.JWT_SECRET, {
-    expiresIn: "1d",
+    expiresIn: "10d",
   });
 };
 const fileStorage = multer.diskStorage({
