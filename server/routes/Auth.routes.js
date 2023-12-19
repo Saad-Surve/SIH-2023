@@ -16,7 +16,7 @@ const {
   protectUser,
   protectLawyer,
   protectAdmin,
-} = require("../middleware/authmiddleware");
+} = require("../middleware/AuthMiddleware");
 const { uploadImage } = require("../utils/utils");
 
 router.post("/registerLawyer", uploadImage.single("idProof"), registerLawyer);
