@@ -88,14 +88,14 @@ const Sidebar = () => {
   useEffect(() => {
     // Extract the path from the URL and find the corresponding index in sidebarItems
     let currentPath = `/${location.pathname.slice(1)}`;
-    console.log(currentPath);
+    // console.log(currentPath);
     if (currentPath === "") currentPath = "/";
     if (currentPath === "pendingRequests" || currentPath === "updateContent")
       currentPath = "adminDashboard";
     const selectedIndex = sidebarItems.findIndex(
       (item) => item.path === currentPath
     );
-    console.log(selectedIndex);
+    // console.log(selectedIndex);
 
     // Update the selected item only if a match is found
     if (selectedIndex !== -1) {
@@ -108,7 +108,7 @@ const Sidebar = () => {
   };
 
   const handleItemClick = (index) => {
-    console.log("Item clicked:", index);
+    // console.log("Item clicked:", index);
     setSelectedItem(index);
   };
   return (
@@ -184,7 +184,7 @@ const Sidebar = () => {
         <Link href="/">
           <NavbarBrand>
             <img src={logo} width={50} height={50} />
-            <p className="font-bold text-inherit">Nyaydoot</p>
+            <p className="font-bold text-inherit font-saira">Nyaydoot</p>
           </NavbarBrand>
         </Link>
       </NavbarContent>
@@ -200,7 +200,7 @@ const Sidebar = () => {
             onClick={() => handleItemClick(index)}
             key={index}
           >
-            {console.log(item)}
+            {/* {console.log(item)} */}
             <div
               className={classNames("flex text-center text-icon-gray", {
                 "text-primary": selectedItem === index,

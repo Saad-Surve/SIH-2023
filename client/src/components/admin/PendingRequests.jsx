@@ -154,7 +154,7 @@ export async function loader() {
   let response;
   try {
     response = await axios.request(options);
-    console.log(response.data)
+    // console.log(response.data)
   } catch (error) {
     response = { data: null };
     console.error(error);
