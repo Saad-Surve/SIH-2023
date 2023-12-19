@@ -65,7 +65,7 @@ const Articles = () => {
         size={10}
         className=" h-[calc(100vh-18rem-1px)] overflow-y-scroll p-4 mr-4 pb-2 random"
       >
-        {console.log(articles)}
+        {/* {console.log(articles)} */}
         {articles.map((article, index) => (
           <ArticleCard
             key={index}

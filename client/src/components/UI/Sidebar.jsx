@@ -24,16 +24,17 @@ const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
   const isMobile = useMediaQuery({ maxWidth: 1000 });
+  const token = document.cookie.split("token=")[1];
   const location = useLocation();
   const role =
-    document.cookie.split("token=")[1] &&
+     token &&
     jwtDecode(document.cookie.split("token=")[1]).id.role;
   const sidebarItems = [
-    {
-      name: "Home",
-      icon: <Icon className="w-8 h-8" icon="majesticons:home-line" />,
-      path: "/",
-    },
+    // {
+    //   name: "Home",
+    //   icon: <Icon className="w-8 h-8" icon="majesticons:home-line" />,
+    //   path: "/",
+    // },
 
     {
       name: "Legal News",
@@ -215,25 +216,31 @@ const Sidebar = () => {
       <NavbarContent>
         <GoogleTranslate className="p-3" />
       </NavbarContent>
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link
-            href="/registerUser"
-            className="bg-white text-primary py-2 px-6 rounded-lg"
-          >
-            Register
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link
-            href="/loginUser"
-            className="bg-primary text-white py-2 px-6 rounded-lg"
-          >
-            Login
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
-
+      {token ? (
+        // If user is logged in, render nothing
+        <>
+        </>
+      ) : (
+        // If user is not logged in, render Register and Login buttons
+        <NavbarContent justify="end">
+          <NavbarItem className="hidden lg:flex">
+            <Link
+              href="/registerUser"
+              className="bg-white text-primary py-2 px-6 rounded-lg"
+            >
+              Register
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link
+              href="/loginUser"
+              className="bg-primary text-white py-2 px-6 rounded-lg"
+            >
+              Login
+            </Link>
+          </NavbarItem>
+        </NavbarContent>
+      )}
       <NavbarMenu className="mt-4 pt-4">
         {sidebarItems.map((item, index) => (
           <NavbarMenuItem key={`${item.name}-${index}`}>

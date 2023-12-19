@@ -34,30 +34,41 @@ const PendingRequests = ({ user }) => {
     try {
       const response = await axios.get(`${ServerUrl}/api/client/getAllHelp`, {
         params: {
-          username: username,
+          username: user.username,
         },
         headers: {  
           Authorization: `Bearer ${token}`,
         },
       });
       setRequests(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error("Error fetching Articles:", error);
     }
   };
 
+  // Use a map to store modal states for each request
+  const [modalStates, setModalStates] = useState({});
+
+  // Function to toggle modal state for a specific request
+  const toggleModal = (helpId) => {
+    setModalStates((prevStates) => ({
+      ...prevStates,
+      [helpId]: !prevStates[helpId],
+    }));
+  };
+
   const acceptHelp = async (helpId) => {
     setIsLoading(true);
-    console.log(".",username)
+    // console.log(".",username)
     try {
-      console.log("A",username)
+      // console.log("A",username)
       const requestBody = {
         helpId: helpId,
         lawyerUserName: username,
         response: lawyerResponse,
       };
-      console.log(requestBody) 
+      // console.log(requestBody) 
       const response = await axios.post(
         `${ServerUrl}/api/client/acceptHelp`,
         requestBody,
@@ -112,10 +123,10 @@ const PendingRequests = ({ user }) => {
               </span>
               <span className="text-sm">{request.category}</span>
             </div>
-            <Button color="primary" variant="light" size="md" onClick={onOpen}>
+            <Button color="primary" variant="light" size="md" onClick={() => toggleModal(request._id)}>
               <Icon icon="teenyicons:tick-circle-outline" fontSize={20} />
             </Button>
-            <Modal isOpen={isOpen} onOpenChange={onOpenChange} classNames={{
+            <Modal isOpen={modalStates[request._id]} onOpenChange={() => toggleModal(request._id)} classNames={{
           backdrop: "bg-white/20 backdrop-opacity-40",
         }}>
               <ModalContent>
