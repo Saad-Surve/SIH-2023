@@ -152,7 +152,7 @@ const LoginUser = ({ history }) => {
               <li>Provide consultation in your expertise</li>
             </ul>
           </div>
-          <div className="bg-[#C3DDFF] lg:w-3/4 rounded-xl flex items-center p-3">
+          <div className="bg-[#C3DDFF] lg:w-3/4 rounded-xl flex items-center p-3 m-5">
             <Link
               className="font-semibold text-xl flex gap-3 w-full pl-6"
               href="/loginLawyer"
