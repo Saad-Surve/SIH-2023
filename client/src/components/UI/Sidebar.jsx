@@ -22,11 +22,11 @@ const Sidebar = () => {
       icon: <Icon className="w-8 h-8" icon="majesticons:home-line" />,
       path: "/",
     },
-    {
-      name: "Legal Documents",
-      icon: <Icon className="w-8 h-8" icon="carbon:document" />,
-      path: "/documents",
-    },
+    // {
+    //   name: "Legal Documents",
+    //   icon: <Icon className="w-8 h-8" icon="carbon:document" />,
+    //   path: "/documents",
+    // },
     {
       name: "Legal News",
       icon: <Icon className="w-8 h-8" icon="fluent:news-28-regular" />,
@@ -43,9 +43,9 @@ const Sidebar = () => {
       path: "/community",
     },
     {
-      name: "Legal Resources",
+      name: "Legal Junction",
       icon: <Icon className="w-8 h-8" icon="system-uicons:message-writing" />,
-      path: "/resources",
+      path: "/documents",
     },
     role
       ? {

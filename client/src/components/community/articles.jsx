@@ -14,7 +14,7 @@ const Articles = () => {
       const response = await axios.get(
         `${ServerUrl}/api/community/getArticles`
       );
-      setArticles(response.data);
+      setArticles(response.data.reverse());
     } catch (error) {
       console.error("Error fetching Articles:", error);
     }

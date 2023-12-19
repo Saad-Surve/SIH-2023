@@ -8,12 +8,13 @@ import CustModal from "../UI/Modal";
 import axios from "axios";
 import ServerUrl from "../../constants";
 
-const LoginUser = () => {
+const LoginUser = ({ history }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
+  //  history = useHistory();
   const [contentModal, setContentModal] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -96,7 +97,7 @@ const LoginUser = () => {
               {isLoading ? "Logging" : "Login"}
             </Button>
             <span className="text-sm">
-              Don't have an account?{" "}
+              Don't have an account?
               <Link className="text-sm" href="/registerUser">
                 Register
               </Link>

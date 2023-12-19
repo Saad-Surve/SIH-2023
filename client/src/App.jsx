@@ -21,6 +21,7 @@ import UpdateContent from "./components/admin/UpdateContent";
 import PendingRequests, {
   loader as PendingRequestsLoader,
 } from "./components/admin/PendingRequests";
+import Statistics from "./components/statistics/Statistics";
 
 const router = createBrowserRouter([
   {
@@ -95,6 +96,14 @@ const router = createBrowserRouter([
         path: "pendingRequests",
         element: <PendingRequests />,
         loader: PendingRequestsLoader,
+      },
+      {
+        path: "statistics",
+        element: <Statistics />,
+      },
+      {
+        path: "statistics",
+        element: <Statistics />,
       },
     ],
   },

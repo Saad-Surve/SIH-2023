@@ -70,48 +70,56 @@ const rows = (props) => {
   // // Extracting the last two parts of the array (first part is 'Adv.')
   // const extractedName = nameParts.slice(1).join(' ');
 
-  return (
-    <div className="flex p-6 justify-between">
-      <div className="flex gap-4 justify-center items-center">
-        {/* <Avatar name={extractedName} size='35px' round/> */}
-        <div className="flex flex-col">
-          <span className="text-lg font-bold">{props.category}</span>
-          <span className="text-sm font-light">{props.description}</span>
-        </div>
-      </div>
-      <div className="flex gap-8 justify-center items-center">
-        <Chip className="capitalize" color={color()} size="md" variant="flat">
-          {status()}
-        </Chip>
-        <Button color="danger" variant="light" size="sm" onClick={onOpen}>
+    return (
+      <div className='flex p-6 justify-between'>
+          <div className='flex gap-4 justify-center items-center'>
+          <div className='flex flex-col'>
+              <span className='text-lg font-bold'>{props.category}</span>
+              <span className='text-sm font-light'>{props.description}</span>
+          </div>
+          </div>
+          <div className='flex flex-col items-center justify-center gap-2'>
+            {
+              (props.lawyers.map((item,index) => (
+                <>
+                <div className='flex justify-between items-center h-[20px] random overflow-y-scroll text-xs gap-2'>
+                      <Avatar name={item.lawyer.name} size="20px" round/>
+                    <span>{item.responseByLawyer}</span>
+                </div>
+                </>
+              )))
+            }
+          </div>
+          <div className='flex gap-8 justify-center items-center'>
+          <Chip className="capitalize" color={color()} size="md" variant="flat">
+            {status()}
+          </Chip>
+          <Button color='danger' variant='light' size='sm' onClick={onOpen}>
           <Icon icon="mi:delete" fontSize={20} />
           <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
             <ModalContent>
               {(onClose) => (
                 <>
                   <ModalHeader> Delete Request </ModalHeader>
-                  <ModalBody>
-                    {" "}
-                    Are you sure you want to delete the request{" "}
-                  </ModalBody>
+                  <ModalBody> Are you sure you want to delete the request </ModalBody>
                   <ModalFooter>
                     <Button
-                      color="danger"
-                      isLoading={isLoading}
-                      onClick={handleDelete}
-                      onPress={onClose}
+                    color='danger'
+                    isLoading={isLoading}
+                    onClick={handleDelete}
+                    onPress={onClose}
                     >
-                      {isLoading ? "Deleting" : "Delete"}
+                    {isLoading ? "Deleting" : "Delete"}
                     </Button>
-                  </ModalFooter>
-                </>
-              )}
+                  </ModalFooter> 
+              </>           
+            )}
             </ModalContent>
           </Modal>
-        </Button>
+          </Button>
+          </div>
       </div>
-    </div>
-  );
-};
+    )
+  }
 
 export default rows;

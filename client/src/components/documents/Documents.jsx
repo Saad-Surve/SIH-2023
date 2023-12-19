@@ -1,6 +1,28 @@
 import DocumentCard from "./DocumentCard";
-// import Navbar from "../UI/Navbar";
 import "./Documents.css";
+import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/react";
+import { Link } from "@nextui-org/react";
+
+function CustNav() {
+  return (
+    <Navbar position="static"
+      style={{ width: "100%", backgroundColor: "lightblue", color: "#fff" }}
+    >
+      <NavbarContent style={{ display: "flex", justifyContent: "center" }}>
+        <NavbarItem isActive>
+          <Link aria-current="page" href="/documents">
+            Legal Documents
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link href="/resources" color="foreground">
+            Legal Resources
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+    </Navbar>
+  );
+}
 
 const Documents = () => {
   const data = [
@@ -67,8 +89,11 @@ const Documents = () => {
   ];
   return (
     <div className="w-full">
+      <CustNav />
       <div className="text-center text-text-black font-bold bg-white top-0 sticky z-10 border-b-1 py-6 border-l shadow-md">
-        <h1 className="text-base lg:text-3xl">Most frequently used Legal Documents</h1>
+        {/* <h1 className="text-base lg:text-3xl">
+          Most frequently used Legal Documents
+        </h1> */}
       </div>
       <div className="p-10 py-6 justify-center flex-col gap-6 flex-wrap grid lg:grid-cols-3 z-5">
         {data.map((item, index) => (
