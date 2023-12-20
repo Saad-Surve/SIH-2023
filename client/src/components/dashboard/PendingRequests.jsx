@@ -95,7 +95,7 @@ const PendingRequests = ({ user }) => {
   }, []);
 
   return (
-    <div className="h-[490px]  rounded-3xl bg-white m-12 mr-4 mt-4 ">
+    <div className="h-[490px]  rounded-3xl bg-white items-center m-3 lg:m-12 lg:mr-4 mt-4 ">
       {/* {console.log(requests)} */}
       <h1 className="border-b-2 border-b-grey-50 py-5 pl-8 font-bold text-xl mt-2">
         Pending Requests
