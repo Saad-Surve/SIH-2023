@@ -7,7 +7,7 @@ import CustTable from "../UI/CustTable";
 import { jwtDecode } from "jwt-decode";
 import ServerUrl from "../../constants";
 import axios from "axios";
-import './pendingRequests.css'
+import "./pendingRequests.css";
 
 const Dashboard = () => {
   //add custom user data here
@@ -16,7 +16,7 @@ const Dashboard = () => {
     emailID: "",
   });
 
-  const token = document.cookie.split("token=")[1].split(';')[0];
+  const token = document.cookie.split("token=")[1].split(";")[0];
   const username = jwtDecode(token).id.username;
   const role = jwtDecode(token).id.role;
 

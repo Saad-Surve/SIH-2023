@@ -33,19 +33,19 @@ const Navbar = (props) => {
     window.location.href = "/";
   };
   return (
-    <div className="bg-white top-0 sticky z-10 border-b-1 p-3 px-6 flex flex-row border-l shadow-md">
+    <div className="bg-white top-0 sticky z-10 border-b-1 p-3 lg:px-6 flex flex-row lg:justify-center border-l shadow-md">
       <form className="w-full flex  gap-3" onSubmit={props.handleSearch}>
         <input
           type="text"
           placeholder="Search"
-          className="lg:w-4/5 w-full  h-10 p-4 bg-gray-100 text-text-gray rounded-xl border-inherit focus:outline-none text-base"
+          className="lg:w-4/5 w-full h-10 p-4 bg-gray-100 text-text-gray rounded-xl border-inherit focus:outline-none text-base"
           onChange={handleDataChange}
         />
         <Button color="primary" className="rounded-full" type="submit">
           <Icon icon="eva:search-fill" />
         </Button>
       </form>
-      <div className="w-full h-10  gap-2 flex flex-row text-icon-gray justify-end items-center">
+      <div className="w-full h-10 gap-2 flex flex-row text-icon-gray justify-end items-center">
         {user.username && (
           <>
             {role === "User" && location.pathname.slice(1) === "directory" && (
@@ -68,7 +68,7 @@ const Navbar = (props) => {
             )}
 
             <Avatar name={user.username} size="35px" round />
-            <div className="flex flex-col text-text-black">
+            <div className="hidden lg:flex lg:flex-col lg:text-text-black">
               <span className="text-sm font-bold">{user.username}</span>
               <span className="text-xs text-text-gray">{user.emailID}</span>
             </div>

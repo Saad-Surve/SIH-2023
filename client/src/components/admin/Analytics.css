@@ -1,0 +1,36 @@
+/* Add this to your existing CSS or create a new CSS file and import it */
+
+.container {
+    max-width: 800px;/* Adjust the max-width as needed*/
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 20px;
+    align-items: center;
+  }
+  
+  /* Add styles for the chart container */
+  .chart-container {
+    position: relative;
+    max-width: 100%;
+    margin: 0 22%;
+    max-width: 50%;
+    max-height: 100%;
+
+  }
+  
+  
+  
+  /* Add styles for the loading message */
+  .loading-message {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  /* Optionally, you can style the chart title */
+  .chart-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
