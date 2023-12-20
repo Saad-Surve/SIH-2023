@@ -24,6 +24,7 @@ import PendingRequests, {
 import Statistics from "./components/statistics/Statistics";
 import SpeechToText from "./components/UI/SpeechToText";
 import GoogleSpeechToText from "./components/UI/GoogleSpeechToText";
+import ConvertTextToMp3 from "./components/UI/ConvertTextToMp3";
 
 const router = createBrowserRouter([
   {
@@ -119,6 +120,7 @@ function App() {
   return (
     <div className="bg-background-gray">
       <RouterProvider router={router} />
+      <ConvertTextToMp3 />
     </div>
   );
 }

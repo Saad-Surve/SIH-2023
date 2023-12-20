@@ -135,11 +135,7 @@ const Carousel = () => {
                 >
                   <p
                     className="w-full h-full text-sm text-black relative hover:text-white"
-                    style={{
-                      position: "absolute",
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                    }}
+                    
                   >
                     {resource.question || ""}
                   </p>
