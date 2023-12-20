@@ -19,6 +19,7 @@ import {
 } from "@nextui-org/react";
 import { useMediaQuery } from "react-responsive";
 import GoogleTranslate from "./GoogleTranslate";
+import SpeechToText from "./SpeechToText";
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);

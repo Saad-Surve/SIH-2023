@@ -24,6 +24,8 @@ import PendingRequests, {
 import Statistics from "./components/statistics/Statistics";
 import SpeechToText from "./components/UI/SpeechToText";
 import GoogleSpeechToText from "./components/UI/GoogleSpeechToText";
+import AudioRecorder from "./components/UI/AudioRecorder";
+import AudioRecorder2 from "./components/UI/AudioRecorder";
 
 const router = createBrowserRouter([
   {
@@ -109,7 +111,7 @@ const router = createBrowserRouter([
       },
       {
         path:'googleSpeech',
-        element:<GoogleSpeechToText />
+        element:<AudioRecorder2 />
       }
     ],
   },
@@ -120,6 +122,7 @@ function App() {
   return (
     <div className="bg-background-gray">
       <RouterProvider router={router} />
+      <SpeechToText />
     </div>
   );
 }
