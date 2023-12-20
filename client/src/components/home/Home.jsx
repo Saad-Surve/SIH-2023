@@ -7,6 +7,7 @@ import Page5 from "./Page5";
 import Header from "./Header";
 import Page3 from "./Page3";
 import Page4 from "./Page4";
+import Carousel from "./Carousel";
 import "./Arrow.css";
 
 const Home = () => {
@@ -23,6 +24,7 @@ const Home = () => {
       {/* <Page5 /> */}
       <Page3 />
       <Page4 />
+      {/* <Carousel /> */}
     </section>
   );
 };
