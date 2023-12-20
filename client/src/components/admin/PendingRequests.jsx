@@ -37,9 +37,9 @@ const PendingRequests = () => {
   };
 
   return (
-    <div className="w-full flex justify-center items-center relative h-screen">
+    <div className="w-full relative h-[calc(100vh-5rem-2px)] flex justify-center items-center">
       <div
-        className="bg-cover bg-center w-full h-full absolute opacity-90 bg-gradient-to-t brightness-[25%] saturate-150"
+        className="bg-cover bg-center w-full h-[calc(100vh-5rem)] absolute  opacity-90 first-letter:0 bg-gradient-to-t brightness-[25%] saturate-150"
         style={{ backgroundImage: `url(${admin})` }}
       ></div>
 

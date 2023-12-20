@@ -53,7 +53,7 @@ const NewAdmin = () => {
   };
 
   return (
-    <div className="w-full flex justify-center items-center relative">
+    <div className="w-full h-[calc(100vh-10rem)] flex justify-center items-center relative">
       <div
         className="bg-cover bg-center w-full h-screen absolute opacity-90 bg-gradient-to-t brightness-[25%] saturate-150"
         style={{ backgroundImage: `url(${adminLogo})` }}
@@ -66,7 +66,7 @@ const NewAdmin = () => {
         <Icon icon="material-symbols:logout" />
         Logout
       </Button>
-      <div className="bg-white w-[40%] h-[70%] flex flex-col gap-6 items-center justify-center  rounded-[20px] z-10 ">
+      <div className="bg-white w-[40%] h-[85%] flex flex-col  gap-6 items-center justify-center  rounded-[20px] z-10 mt-16">
         <div className="border-b-2 border-[#6E6E91] w-4/5 text-center pb-4 font-saira">
           Make New Admin
         </div>

@@ -7,7 +7,6 @@ import axios from "axios";
 import ServerUrl from "../../constants";
 import { jwtDecode } from "jwt-decode";
 
-  
 const Posts = ({ user }) => {
   const allPosts = useLoaderData();
 
@@ -16,12 +15,12 @@ const Posts = ({ user }) => {
 
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
-  const currentRows = allPosts?.slice(firstPostIndex, lastPostIndex)||[
+  const currentRows = allPosts?.slice(firstPostIndex, lastPostIndex) || [
     {
       headline: "No Posts",
       description: "No Posts",
       type: "No Posts",
-      postedOn: '2017-05-21T00:00:00',
+      postedOn: "2017-05-21T00:00:00",
       id: "No Posts",
     },
   ];
@@ -32,7 +31,7 @@ const Posts = ({ user }) => {
       </div>
       <PostTable username={user.username} rows={currentRows} />
       <Pagination
-        totalPosts={allPosts?.length||0}
+        totalPosts={allPosts?.length || 0}
         postsPerPage={postsPerPage}
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
@@ -44,9 +43,9 @@ const Posts = ({ user }) => {
 export default Posts;
 
 export async function loader() {
-  const token = document.cookie.split("token=")[1].split(';')[0];
+  const token = document.cookie.split("token=")[1].split(";")[0];
   const username = jwtDecode(token).id.username;
-  console.log(token)
+  // console.log(token)
   const options = {
     method: "GET",
     url: `${ServerUrl}/api/lawyer/getLawyerPosts`,
