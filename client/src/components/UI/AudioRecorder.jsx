@@ -50,7 +50,7 @@ const AudioRecorder = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data)
+        // console.log(data)
         setTranscription(data.transcription);
       } else {
         console.error('Server Error:', response.statusText);

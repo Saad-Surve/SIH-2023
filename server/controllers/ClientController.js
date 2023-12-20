@@ -63,7 +63,7 @@ const addHelp = asyncHandler(async (req, res) => {
       if (error) {
         console.log(error);
       } else {
-        console.log("Email sent: " + info.response);
+        // console.log("Email sent: " + info.response);
       }
     });
 
@@ -116,7 +116,7 @@ const acceptHelp = asyncHandler(async (req, res) => {
     if (error) {
       console.log(error);
     } else {
-      console.log("Email sent: " + info.response);
+      // console.log("Email sent: " + info.response);
     }
   });
 
@@ -139,7 +139,7 @@ const getAllHelp = asyncHandler(async (req, res) => {
     return;
   }
   const cases = await Help.find().sort({ createdAt: -1 }).populate("sentBy");
-  console.log(cases);
+  // console.log(cases);
   Case = cases.filter(
     (caseItem) =>
       !caseItem.interestedLawyers.some(

@@ -82,7 +82,7 @@ const rows = (props) => {
         </div>
       </div>
       <div className="flex items-center justify-center gap-2">
-        {console.log(props.lawyers)}
+        {/* {console.log(props.lawyers)} */}
         {props.lawyers.map((item, index) => (
           <>
             <Tooltip
