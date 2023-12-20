@@ -1,96 +1,72 @@
-import React, { useState, useRef } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 
 const AudioRecorder = () => {
+  const [transcription, setTranscription] = useState('');
   const [recording, setRecording] = useState(false);
-  const [audioBlob, setAudioBlob] = useState(null);
-  const [transcripts, setTranscripts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const mediaRecorderRef = useRef(null);
-  const audioChunksRef = useRef([]);
 
-  const startRecording = () => {
-    navigator.mediaDevices.getUserMedia({ audio: true })
-      .then((stream) => {
-        const mediaRecorder = new MediaRecorder(stream);
-        mediaRecorderRef.current = mediaRecorder;
+  const startRecording = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mediaRecorder = new MediaRecorder(stream);
+      const chunks = [];
 
-        mediaRecorder.ondataavailable = (event) => {
-          if (event.data.size > 0) {
-            audioChunksRef.current.push(event.data);
-          }
-        };
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          chunks.push(event.data);
+        }
+      };
 
-        mediaRecorder.onstop = async () => {
-          const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/mp3' });
-          setAudioBlob(audioBlob);
-          setRecording(false);
-          audioChunksRef.current = [];
-        };
+      mediaRecorder.onstop = async () => {
+        const audioBlob = new Blob(chunks, { type: 'audio/mp3' });
 
-        mediaRecorder.start();
-        setRecording(true);
-      })
-      .catch((error) => {
-        console.error('Error accessing microphone:', error);
+        // Send the recorded audio to the server
+        await submitAudio(audioBlob);
+
+        // Reset the recording state
+        setRecording(false);
+      };
+
+      mediaRecorder.start();
+      setRecording(true);
+
+      // Stop recording after 10 seconds (adjust as needed)
+      setTimeout(() => {
+        mediaRecorder.stop();
+      }, 1000);
+    } catch (error) {
+      console.error('Error starting recording:', error.message);
+    }
+  };
+
+  const submitAudio = async (audioBlob) => {
+    const formData = new FormData();
+    formData.append('audio', audioBlob);
+
+    try {
+      const response = await fetch('http://localhost:3000/transcribe', {
+        method: 'POST',
+        body: formData,
       });
-  };
 
-  const stopRecording = () => {
-    const mediaRecorder = mediaRecorderRef.current;
-
-    if (mediaRecorder && recording) {
-      mediaRecorder.stop();
-    }
-  };
-
-  const downloadAudio = () => {
-    if (audioBlob) {
-      const downloadLink = document.createElement('a');
-      downloadLink.href = URL.createObjectURL(audioBlob);
-      downloadLink.download = 'recorded_audio.mp3';
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-    }
-  };
-
-  const sendToServer = async () => {
-    if (audioBlob) {
-      setLoading(true);
-      console.log(audioBlob.size)
-
-      try {
-        const response = await axios.post('http://127.0.0.1:5001/transcribe', audioBlob, {
-          headers: {
-            'Content-Type': 'audio/mp3',
-          },
-        });
-
-        setTranscripts(response.data.transcripts);
-      } catch (error) {
-        console.error('Error sending audio to server:', error);
-      } finally {
-        setLoading(false);
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data)
+        setTranscription(data.transcription);
+      } else {
+        console.error('Server Error:', response.statusText);
       }
+    } catch (error) {
+      console.error('Network Error:', error.message);
     }
   };
 
   return (
     <div>
-      <h1>Audio Recorder</h1>
       <button onClick={startRecording} disabled={recording}>
         Start Recording
       </button>
-      <button onClick={stopRecording} disabled={!recording}>
-        Stop Recording
-      </button>
-      <button onClick={downloadAudio} disabled={!audioBlob}>
-        Download Audio
-      </button>
-      <button onClick={sendToServer} disabled={!audioBlob || loading}>
-        {loading ? 'Transcribing...' : 'Send to Server'}
-      </button>
+      {recording && <p>Recording...</p>}
+      {transcription && <p>Transcription: {transcription}</p>}
     </div>
   );
 };

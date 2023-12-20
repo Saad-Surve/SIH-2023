@@ -111,7 +111,7 @@ const router = createBrowserRouter([
       },
       {
         path: "googleSpeech",
-        element: <GoogleSpeechToText />,
+        element: <AudioRecorder />,
       },
     ],
   },
