@@ -127,6 +127,8 @@ function App() {
   return (
     <div className="bg-background-gray">
       <RouterProvider router={router} />
+      <SpeechToText />
+      <ConvertTextToMp3 />
     </div>
   );
 }
