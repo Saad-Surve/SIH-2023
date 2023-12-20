@@ -165,7 +165,7 @@ const PostTable = ({ username, rows }) => {
             );
           })
         ) : (
-          <tr className="flex font-bold  text-lg justify-center items-center text-header-black border-b-2 border-grey-200 py-10 ">
+          <tr className="flex font-bold text-center px-5 lg:px-0 text-md lg:text-lg justify-center items-center text-header-black border-b-2 border-grey-200 py-10 ">
             <td>No Posts Yet, Click on Start a Post to add new Posts</td>
           </tr>
         )}
