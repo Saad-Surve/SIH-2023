@@ -6,13 +6,12 @@ const nodemailer = require("nodemailer");
 
 // Create a nodemailer transporter
 var transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   auth: {
-    user: 'saad.surve@spit.ac.in',
-    pass: '8355989770'
-  }
+    user: "saad.surve@spit.ac.in",
+    pass: "8355989770",
+  },
 });
-
 
 const addHelp = asyncHandler(async (req, res) => {
   const { username, category, location, description } = req.body;
@@ -40,31 +39,31 @@ const addHelp = asyncHandler(async (req, res) => {
     await user.save();
 
     // Send emails to lawyers
-    const lawyers = await Lawyer.find({}).select('emailID');
+    const lawyers = await Lawyer.find({}).select("emailID");
 
-    const lawyerEmails = lawyers.map(lawyer => lawyer.emailID);
+    const lawyerEmails = lawyers.map((lawyer) => lawyer.emailID);
 
-// Join the email IDs into a comma-separated string
-    const toEmails = lawyerEmails.join(',');
-     
+    // Join the email IDs into a comma-separated string
+    const toEmails = lawyerEmails.join(",");
+
     var mailOptions = {
-      from: 'saad.surve@spit.ac.in',
+      from: "saad.surve@spit.ac.in",
       to: toEmails,
-      subject: 'New Help Request',
+      subject: "New Help Request",
       text: `
         Hello,
         You have a new help request from ${user.username}.
-        Please check your dashboard for details. `
+        Please check your dashboard for details. `,
     };
 
     // // lawyers.forEach(async (lawyer) => {
     // // });
     // await sendEmail("neha.gode@spit.ac.in", emailSubject, emailHtml);
-    transporter.sendMail(mailOptions, function(error, info){
+    transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         console.log(error);
       } else {
-        console.log('Email sent: ' + info.response);
+        console.log("Email sent: " + info.response);
       }
     });
 
@@ -74,7 +73,6 @@ const addHelp = asyncHandler(async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 
 const acceptHelp = asyncHandler(async (req, res) => {
   const { helpId, lawyerUserName, response } = req.body;
@@ -94,31 +92,31 @@ const acceptHelp = asyncHandler(async (req, res) => {
     return;
   }
   // console.log("WWWWW",help.interestedLawyers)
-  const existingLawyer = help.interestedLawyers.find(
-    (interestedLawyer) => interestedLawyer.lawyer.equals(lawyer._id)
+  const existingLawyer = help.interestedLawyers.find((interestedLawyer) =>
+    interestedLawyer.lawyer.equals(lawyer._id)
   );
   // console.log("AAAAAAA",existingLawyer)
   if (existingLawyer) {
     res.status(400).json({ message: "Lawyer already exists in the array" });
     return;
   }
-  const userEmails = help.sentBy.map(user => user.email);
+  const userEmails = help.sentBy.map((user) => user.email);
 
   var mailOptions = {
-    from: 'saad.surve@spit.ac.in',
-    to: userEmails.join(','),
-    subject: 'New Help Request',
+    from: "saad.surve@spit.ac.in",
+    to: userEmails.join(","),
+    subject: "New Help Request",
     text: `
       Hello,
       You have a new help request from ${lawyerUserName}.
-      Please check your dashboard for details. `
+      Please check your dashboard for details. `,
   };
 
-  transporter.sendMail(mailOptions, function(error, info){
+  transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
     } else {
-      console.log('Email sent: ' + info.response);
+      console.log("Email sent: " + info.response);
     }
   });
 
@@ -127,7 +125,6 @@ const acceptHelp = asyncHandler(async (req, res) => {
     responseByLawyer: response,
   });
   await help.save();
-
 
   res.status(200).json({ message: "Help accepted" });
 });
@@ -142,8 +139,13 @@ const getAllHelp = asyncHandler(async (req, res) => {
     return;
   }
   const cases = await Help.find().sort({ createdAt: -1 }).populate("sentBy");
-  console.log(cases)
-  Case = cases.filter(caseItem => !caseItem.interestedLawyers.some(item => item.lawyer.toString() === lawyer._id.toString()));
+  console.log(cases);
+  Case = cases.filter(
+    (caseItem) =>
+      !caseItem.interestedLawyers.some(
+        (item) => item.lawyer.toString() === lawyer._id.toString()
+      )
+  );
 
   // console.log(responseCases);
   res.status(200).json(Case);

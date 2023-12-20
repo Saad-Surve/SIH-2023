@@ -21,24 +21,26 @@ import ServerUrl from "../../constants";
 import { jwtDecode } from "jwt-decode";
 import "./pendingRequests.css";
 
-
 const PendingRequests = ({ user }) => {
   const [requests, setRequests] = useState([]);
   const [lawyerResponse, setLawyerResponse] = useState("");
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [isLoading, setIsLoading] = useState(false);
 
-  const token = document.cookie.split("token=")[1].split(';')[0];
+  const token = document.cookie.split("token=")[1].split(";")[0];
   const username = jwtDecode(token).id.username;
   const fetchHelp = async () => {
     try {
-      const response = await axios.get(`${ServerUrl}/api/client/getAllHelp?username=${username}`, {
-        headers: {  
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        `${ServerUrl}/api/client/getAllHelp?username=${username}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setRequests(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error("Error fetching Articles:", error);
     }
@@ -66,7 +68,7 @@ const PendingRequests = ({ user }) => {
         response: lawyerResponse,
       };
       // console.log(requests)
-      // console.log(requestBody) 
+      // console.log(requestBody)
       const response = await axios.post(
         `${ServerUrl}/api/client/acceptHelp`,
         requestBody,
@@ -76,13 +78,12 @@ const PendingRequests = ({ user }) => {
           },
         }
       );
-      alert('Help extended')
+      alert("Help extended");
       //   setRequests((prevRequests) =>
       //   prevRequests.filter((request) => request._id !== helpId)
       // );
-
     } catch (error) {
-      alert("You have already extended your help: ",error);
+      alert("You have already extended your help: ", error);
       console.error("Error accepting request: ", error);
     }
     setIsLoading(false);
@@ -105,7 +106,7 @@ const PendingRequests = ({ user }) => {
         className="flex flex-col px-5  h-[400px] random overflow-y-scroll"
       >
         {requests.length > 0 ? (
-        requests.map((request, index) => (
+          requests.map((request, index) => (
             <div
               key={index}
               className={classNames(
@@ -123,12 +124,21 @@ const PendingRequests = ({ user }) => {
                 </span>
                 <span className="text-sm">{request.category}</span>
               </div>
-              <Button color="primary" variant="light" size="md" onClick={() => toggleModal(request._id)}>
+              <Button
+                color="primary"
+                variant="light"
+                size="md"
+                onClick={() => toggleModal(request._id)}
+              >
                 <Icon icon="teenyicons:tick-circle-outline" fontSize={20} />
               </Button>
-              <Modal isOpen={modalStates[request._id]} onOpenChange={() => toggleModal(request._id)} classNames={{
-            backdrop: "bg-white/20 backdrop-opacity-40",
-          }}>
+              <Modal
+                isOpen={modalStates[request._id]}
+                onOpenChange={() => toggleModal(request._id)}
+                classNames={{
+                  backdrop: "bg-white/20 backdrop-opacity-40",
+                }}
+              >
                 <ModalContent>
                   {(onClose) => (
                     <>
@@ -224,7 +234,12 @@ const PendingRequests = ({ user }) => {
                 </PopoverContent>
               </Popover> */}
             </div>
-          ))):(<span className="h-full w-full flex justify-center items-center font-bold">No pending Requests</span>)}
+          ))
+        ) : (
+          <span className="h-full w-full flex justify-center items-center font-bold">
+            No pending Requests
+          </span>
+        )}
       </ScrollShadow>
     </div>
   );

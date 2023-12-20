@@ -189,7 +189,7 @@ const Sidebar = () => {
         </Link>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-6" justify="">
+      <NavbarContent className="hidden sm:flex gap-6 left-0 mr-auto" justify="">
         {sidebarItems.map((item, index) => (
           <Link
             className={classNames("rounded-2xl", {
@@ -225,7 +225,7 @@ const Sidebar = () => {
         <></>
       ) : (
         // If user is not logged in, render Register and Login buttons
-        <NavbarContent justify="end">
+        <NavbarContent justify="end" className="min-w-max max-w-max">
           <NavbarItem className="hidden lg:flex">
             <Link
               href="/registerUser"

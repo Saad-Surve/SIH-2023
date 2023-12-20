@@ -1,4 +1,10 @@
 /* GoogleTranslate.css */
+.google-translate-container{
+  @media (max-width: 600px) {
+    /* display: none; */
+    /* margin-left: 100% !important; */
+  }
+}
 
 .VIpgJd-ZVi9od-l4eHX-hSRGPd {
   display: none;

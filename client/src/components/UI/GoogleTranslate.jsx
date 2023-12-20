@@ -1,6 +1,18 @@
 import { useEffect } from "react";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@nextui-org/react";
+
 import "./GoogleTranslate.css";
 const GoogleTranslate = () => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   useEffect(() => {
     // Define the function for initializing the Google Translate Element
     window.googleTranslateElementInit = () => {
@@ -26,7 +38,7 @@ const GoogleTranslate = () => {
   return (
     <div
       id="google_element"
-      className="google-translate-container [&>*]:opacity-1 [&>*]:text-transparent "
+      className="google-translate-container hidden sm:block [&>*]:opacity-1 [&>*]:text-transparent w-[2px] bg-red-500"
     ></div>
   );
 };
