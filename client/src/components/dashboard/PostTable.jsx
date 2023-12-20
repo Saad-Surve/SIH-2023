@@ -96,12 +96,12 @@ const PostTable = ({ username, rows }) => {
 
             return (
               <tr key={index} className="flex border-b-2 border-grey-200 py-4">
-                <td className="w-2/5 font-medium  pl-6 flex items-center">
+                <td className="w-2/5 font-medium  pl-8 flex items-center">
                   <Avatar
                     name={username}
                     size="35px"
                     round
-                    className="-m-3 sm:mr-4 hidden sm:block"
+                    className="-m-3 -mt-1 sm:mr-4  sm:block"
                   />
                   <div className="flex flex-col">
                     <Tooltip
