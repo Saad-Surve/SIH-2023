@@ -38,7 +38,7 @@ const GoogleTranslate = () => {
   return (
     <div
       id="google_element"
-      className="google-translate-container hidden sm:block [&>*]:opacity-1 [&>*]:text-transparent w-[2px] bg-red-500"
+      className="google-translate-container hidden sm:block [&>*]:opacity-1 [&>*]:text-transparent w-[2px]"
     ></div>
   );
 };
