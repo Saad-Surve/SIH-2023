@@ -1,5 +1,9 @@
 /* GoogleTranslate.css */
-.google-translate-container{
+
+/* Import Inter font family */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+.google-translate-container {
   @media (max-width: 600px) {
     /* display: none; */
     /* margin-left: 100% !important; */
@@ -9,13 +13,16 @@
 .VIpgJd-ZVi9od-l4eHX-hSRGPd {
   display: none;
 }
+
 .skiptranslate {
-  visibility:visible ;
+  visibility: visible;
   display: flex;
 }
-.skiptranslate>*{
-  display:none;
+
+.skiptranslate > * {
+  display: none;
 }
+
 div#\:0\.targetLanguage {
   display: flex;
 }
@@ -24,8 +31,22 @@ div#\:0\.targetLanguage {
 .goog-te-combo {
   /* Your styles here */
   /* font-size: 14px; */
-  color: #333 !important;
+  color: #585874 !important;
   opacity: 1 !important;
+  border-radius: 20px;
+  font-weight: 500 !important;
+  font-size:14px;
+
   /* margin-right: 2px !important; */
   /* Add any other styles you want to customize */
+
+  /* Use the Inter font family */
+  font-family: 'Inter', sans-serif;
+}
+
+.goog-te-combo:hover {
+  border: 1px solid #006AFF;
+  background-color: #E5F0FF;
+  color: #006AFF !important;
+  font-weight: medium;
 }

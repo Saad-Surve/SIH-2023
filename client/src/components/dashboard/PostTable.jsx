@@ -12,7 +12,7 @@ import axios from "axios";
 
 const PostTable = ({ username, rows }) => {
   const deleteArticle = async (rowId, rowType) => {
-    const token = document.cookie.split("token=")[1].split(';')[0];
+    const token = document.cookie.split("token=")[1].split(";")[0];
 
     if (rowType === "Article") {
       const article = {
@@ -63,7 +63,7 @@ const PostTable = ({ username, rows }) => {
     }
     location.reload();
   };
-  // use the navigator share 
+  // use the navigator share
   const share = async () => {
     try {
       await navigator.share({
@@ -97,7 +97,12 @@ const PostTable = ({ username, rows }) => {
             return (
               <tr key={index} className="flex border-b-2 border-grey-200 py-4">
                 <td className="w-2/5 font-medium  pl-6 flex items-center">
-                  <Avatar name={username} size="35px" round className="mr-4" />
+                  <Avatar
+                    name={username}
+                    size="35px"
+                    round
+                    className="-m-3 sm:mr-4 hidden sm:block"
+                  />
                   <div className="flex flex-col">
                     <Tooltip
                       showArrow={true}
@@ -143,7 +148,12 @@ const PostTable = ({ username, rows }) => {
                       />
                     </PopoverTrigger>
                     <PopoverContent>
-                      <Button onPress={share} color="primary" variant="light" className=" px-4">
+                      <Button
+                        onPress={share}
+                        color="primary"
+                        variant="light"
+                        className=" px-4"
+                      >
                         <Icon icon="ri:send-plane-fill" />
                         Share
                       </Button>

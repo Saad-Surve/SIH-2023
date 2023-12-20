@@ -26,6 +26,7 @@ import SpeechToText from "./components/UI/SpeechToText";
 import GoogleSpeechToText from "./components/UI/GoogleSpeechToText";
 import AudioRecorder from "./components/UI/AudioRecorder";
 import AudioRecorder2 from "./components/UI/AudioRecorder";
+import Analytics from "./components/admin/Analytics";
 
 const router = createBrowserRouter([
   {
@@ -112,6 +113,10 @@ const router = createBrowserRouter([
       {
         path: "googleSpeech",
         element: <GoogleSpeechToText />,
+      },
+      {
+        path: "analytics",
+        element: <Analytics />,
       },
     ],
   },
