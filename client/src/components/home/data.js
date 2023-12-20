@@ -1,54 +1,58 @@
-import img1 from "../../assets/1.jpg";
-import img2 from "../../assets/2.jpg";
-import img3 from "../../assets/3.jpg";
-import img4 from "../../assets/4.jpg";
-import img5 from "../../assets/5.jpg";
-import img6 from "../../assets/6.jpg";
-import img7 from "../../assets/7.jpg";
-import img8 from "../../assets/8.jpg";
-import img9 from "../../assets/9.jpg";
-import img10 from "../../assets/10.jpg";
-
 const resources = [
   {
-    title: `A law says we have to wait for a "walk" signal before we cross the street. The law helps keep us safe from passing cars.`,
-    imageUrl: img1,
+    choice: [
+      { option: `Assault`, correct: false },
+      { option: `Libel`, correct: false },
+      { option: `Double Jeopardy`, correct: false },
+      { option: `Breach of Contract`, correct: true },
+    ],
+    question: `Sarah borrows money from John and promises to repay it within a specified period. However, Sarah fails to repay the loan on the
+    agreed-upon date. What legal concept is applicable in this situation?`,
   },
   {
-    title: `A law says kids have to ride special seats in cars. The law helps keep kids safe.`,
-    imageUrl: img2,
+    choice: [
+      { option: `Subpoena`, correct: false },
+      { option: `Affidavit`, correct: false },
+      { option: `Writ of Mandamus`, correct: false },
+      { option: `Indictment`, correct: true },
+    ],
+    question: ` In a legal context, what is the term for a formal written accusation that initiates a criminal case and is issued by a grand jury?`,
   },
   {
-    title: `Laws are rules that everyone must follow. Laws protect people and the things they own.`,
-    imageUrl: img3,
+    choice: [
+      { option: `Habeas Corpus`, correct: false },
+      { option: `Libel`, correct: false },
+      { option: `Due Process`, correct: false },
+      { option: `Presumption of Innocence`, correct: true },
+    ],
+    question: ` Which legal principle holds that a person is innocent until proven guilty in a court of law?`,
   },
   {
-    title: `A law says Doggy must be on a leash when we walk. The law helps keep Doggy and others safe.`,
-    imageUrl: img4,
+    choice: [
+      { option: `Rescission`, correct: false },
+      { option: `Estoppel `, correct: false },
+      { option: `Duress`, correct: false },
+      { option: `Specific Performance`, correct: true },
+    ],
+    question: `Mary enters into a contract with Tom to purchase his car. However, Mary later changes her mind and refuses to complete the purchase. What legal concept is applicable in this situation?`,
   },
   {
-    title: `A law says we have to wait for a "walk" signal before we cross the street. The law helps keep us safe from passing cars.`,
-    imageUrl: img5,
+    choice: [
+      { option: `Grand Jury Indictment`, correct: false },
+      { option: ` Plea Bargain`, correct: false },
+      { option: `Self-Incrimination`, correct: false },
+      { option: ` Double Jeopardy`, correct: true },
+    ],
+    question: `Jack is accused of stealing a valuable painting from a museum. What legal principle ensures that he cannot be tried for the same offense more than once?`,
   },
   {
-    title: `A law says bike riders must follow the traffic laws. The law helps keep bike riders safe.`,
-    imageUrl: img6,
-  },
-  {
-    title: `A law says bike riders must wear helmets when they ride. The law helps protect us if we have an accident.`,
-    imageUrl: img7,
-  },
-  {
-    title: `A law says people shouldn't pick flowers in the park. The law helps more people enjoy the flowers.`,
-    imageUrl: img8,
-  },
-  {
-    title: `A law says people should put their trash in trash cans. The law helps keep the park clean for everyone.`,
-    imageUrl: img9,
-  },
-  {
-    title: `Breaking laws can get you into trouble. Following the laws helps everyone stay safe.`,
-    imageUrl: img10,
+    choice: [
+      { option: `Grand Jury Indictment`, correct: false },
+      { option: ` Plea Bargain`, correct: false },
+      { option: `Self-Incrimination`, correct: false },
+      { option: ` Double Jeopardy`, correct: true },
+    ],
+    question: `Jack is accused of stealing a valuable painting from a museum. What legal principle ensures that he cannot be tried for the same offense more than once?`,
   },
 ];
 

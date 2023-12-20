@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from "react";
+import React from "react";
+import { Button } from "@nextui-org/react";
 
 // Data
 import resources from "./data.js";
@@ -66,8 +68,8 @@ const Carousel = () => {
 
   return (
     <div className="carousel my-12 mx-auto">
-      <h2 className="text-5xl leading-8 font-semibold mb-12 text-[#05114f] text-center">
-        Legal Toons
+      <h2 className="text-5xl  leading-8 font-semibold mb-12 text-[#05114f] text-center hover:text-white">
+        Legal Quiz
       </h2>
       <div className="relative overflow-hidden">
         <div className="flex justify-between absolute top left w-full h-full">
@@ -94,7 +96,7 @@ const Carousel = () => {
           </button>
           <button
             onClick={moveNext}
-            className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+            className="hover:bg-black text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
             disabled={isDisabled("next")}
           >
             <svg
@@ -116,31 +118,56 @@ const Carousel = () => {
         </div>
         <div
           ref={carousel}
-          className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
+          className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-100"
         >
           {resources.map((resource, index) => {
             return (
               <div
+                className="border-black carousel-item w-[300px] h-[400px] text-center relative snap-start "
                 key={index}
-                className="carousel-item w-[300px] h-[400px] text-center relative snap-start"
               >
                 <div
-                  // href={resource.link}
-                  className="h-full w-full aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
-                  style={{ backgroundImage: `url(${resource.imageUrl || ""})` }}
+                  className="h-full w-full aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat hover:z-20 relative"
+                  style={{
+                    backgroundImage: `url(${resource.question || ""})`,
+                    position: "relative",
+                  }}
                 >
-                  <img
-                    src={resource.imageUrl || ""}
-                    alt={resource.title}
-                    className="w-full h-full object-cover"
-                  />
+                  <p
+                    className="w-full h-full text-sm text-black relative hover:text-white"
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                    }}
+                  >
+                    {resource.question || ""}
+                  </p>
                 </div>
-                <div
-                  // href={resource.link}
-                  className="h-full w-full aspect-square block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-blue-800/75 z-10"
-                >
-                  <h3 className="text-white py-6 px-3 flex items-center justify-center text-xl">
-                    {resource.title}
+                {/* hover */}
+                <div className="h-full w-full aspect-square block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-70 bg-sky-600 z-10">
+                  <h3 className="py-6 px-3 flex flex-col mt-[8rem] items-center justify-center text-xl z-10">
+                    {resource.choice.map((choice) => (
+                      <div key={choice} className="flex flex-col">
+                        {choice.correct ? (
+                          <div>
+                            <CustButton
+                              key={choice.option}
+                              color="success"
+                              value={choice.option}
+                            />
+                          </div>
+                        ) : (
+                          <div className="flex flex-col">
+                            <CustButton
+                              key={choice.option}
+                              color="danger"
+                              value={choice.option}
+                            />
+                          </div>
+                        )}
+                      </div>
+                    ))}
                   </h3>
                 </div>
               </div>
@@ -151,5 +178,13 @@ const Carousel = () => {
     </div>
   );
 };
+
+function CustButton({ value, color }) {
+  return (
+    <Button color={color} variant="ghost" className="text-white m-1">
+      {value}
+    </Button>
+  );
+}
 
 export default Carousel;

@@ -20,7 +20,7 @@ const Home = () => {
       {/*  {/* <div className='bg-cover bg-center top-[100vh]  w-full h-screen absolute opacity-90 bg-gradient-to-t brightness-[25%] saturate-150' style={{backgroundImage:`url(${home2})`}}></div> */}
       <Page5 />
       <Page3 />
-      <Page4 /> 
+      <Page4 />
     </section>
   );
 };
