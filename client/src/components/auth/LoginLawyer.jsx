@@ -47,7 +47,7 @@ const LoginLawyer = () => {
     setIsLoading(false);
   };
   return (
-    <section className="w-full h-[calc(100vh-5rem)] relative">
+    <section className="w-full relative h-[calc(100vh-5rem)]">
       <div
         className="bg-cover bg-center w-full h-[calc(100vh-5rem)] absolute  opacity-10"
         style={{ backgroundImage: `url(${registerUser})` }}
@@ -145,9 +145,9 @@ const LoginLawyer = () => {
               <li>Explore user benefits!</li>
             </ul>
           </div>
-          <div className="bg-[#C3DDFF] lg:w-3/4 rounded-xl flex items-center p-3">
+          <div className="bg-[#C3DDFF] lg:w-3/4 rounded-xl flex items-center p-3 m-5">
             <Link
-              className="font-semibold text-xl flex gap-3 w-full pl-6"
+              className="font-semibold text-xl flex gap-3 w-full pl-6 "
               href="/loginUser"
             >
               <span>Login as a User </span>

@@ -72,7 +72,7 @@ const Directory = () => {
     emailID: "",
   });
 
-  const token = document.cookie.split("token=")[1];
+  const token = document.cookie.split("token=")[1].split(';')[0];
   // console.log(token);
 
   let username = "",
@@ -177,7 +177,7 @@ const Directory = () => {
           </ScrollShadow>
         </div>
         <div className="w-full lg:w-5/12 flex justify-center items-center">
-          <Consult user={user} role={role} />
+          <Consult user={user} role={role} lawyers={lawyers}/>
         </div>
       </div>
     </div>

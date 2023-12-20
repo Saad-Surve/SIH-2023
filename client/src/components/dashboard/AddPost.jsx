@@ -17,7 +17,7 @@ import ServerUrl from "../../constants";
 const AddPost = ({ user }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const username = user.username || "2102ankit";
+  const username = user.username;
 
   const [isLoading, setIsLoading] = useState(false);
   const [post, setPost] = useState({
@@ -48,7 +48,7 @@ const AddPost = ({ user }) => {
     // console.log(formData);
 
     try {
-      const token = document.cookie.split("token=")[1];
+      const token = document.cookie.split("token=")[1].split(';')[0];
 
       const response = await axios.post(
         `${ServerUrl}/api/lawyer/createArticle`,

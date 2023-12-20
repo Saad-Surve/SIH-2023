@@ -1,36 +1,54 @@
-import React from 'react';
-import useSpeechToText from 'react-hook-speech-to-text';
+import { Icon } from '@iconify/react';
+import React, { useState } from 'react';
 
-export default function SpeechToText() {
-  const {
-    error,
-    interimResult,
-    isRecording,
-    results,
-    startSpeechToText,
-    stopSpeechToText,
-  } = useSpeechToText({
-    continuous: true,
-    useLegacyResults: false
-  });
 
-  if (error) return <p>Web Speech API is not available in this browser 🤷‍</p>;
-  if(!isRecording){
-    console.log(results.at(-1))
-    window.botpressWebChat.sendPayload({ type: 'text', text: results.at(-1).transcript})
-  }
+const SpeechToText = () => {
+  const [transcript, setTranscript] = useState('');
+  const [isRecording, setIsRecording] = useState(false);
+  let recognition = null;
+
+  const initializeRecognition = () => {
+    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+      // Use the standard or webkit-prefixed SpeechRecognition object
+      recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.onresult = handleResult;
+    } else {
+      console.error('Speech recognition is not supported in this browser.');
+    }
+  };
+
+  const handleToggleRecording = () => {
+    if (isRecording) {
+      recognition.stop();
+    } else {
+      if (!recognition) {
+        initializeRecognition();
+      }
+      recognition.start();
+    }
+    
+    setIsRecording(!isRecording);
+  };
+
+  const handleResult = (event) => {
+    const result = event.results[0][0].transcript;
+    setTranscript(result);
+    handleSendPayload(result);
+    setIsRecording(false)
+  };
+
+  const handleSendPayload = (text) => {
+    // Replace this with your code to send the payload
+    window.botpressWebChat.sendPayload({ type: 'text', text });
+  };
+
   return (
-    <div>
-      <h1>Recording: {isRecording.toString()}</h1>
-      <button onClick={isRecording ? stopSpeechToText : startSpeechToText}>
-        {isRecording ? 'Stop Recording' : 'Start Recording'}
-      </button>
-      <ul>
-        {/* {results.map((result) => (
-          <li key={result.timestamp}>{result.transcript}</li>
-        ))} */}
-        {interimResult && <li>{interimResult}</li>}
-      </ul>
+    <div className='flex fixed z-[9999] right-10 bottom-10 '>
+      
+      <button onClick={handleToggleRecording}>{!isRecording ? <Icon icon={'material-symbols:mic'} className='w-8 h-8' /> : <Icon icon={'ph:waveform'} className='w-8 h-8' /> }</button>
     </div>
   );
-}
+};
+
+export default SpeechToText;

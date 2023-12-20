@@ -5,6 +5,7 @@ const lawyerSchema = new Schema(
     emailID: { type: String, required: true, unique: true },
     username: { type: String, required: true },
     password: { type: String, required: true },
+    phoneNo: {type:String, required: true},
     name: { type: String, required: true },
     expertise: { type: String, required: true },
     experience: { type: String, required: true },

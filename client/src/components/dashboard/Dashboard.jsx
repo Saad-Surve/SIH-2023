@@ -7,6 +7,7 @@ import CustTable from "../UI/CustTable";
 import { jwtDecode } from "jwt-decode";
 import ServerUrl from "../../constants";
 import axios from "axios";
+import './pendingRequests.css'
 
 const Dashboard = () => {
   //add custom user data here
@@ -15,7 +16,7 @@ const Dashboard = () => {
     emailID: "",
   });
 
-  const token = document.cookie.split("token=")[1];
+  const token = document.cookie.split("token=")[1].split(';')[0];
   const username = jwtDecode(token).id.username;
   const role = jwtDecode(token).id.role;
 
@@ -45,17 +46,17 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="w-full ">
+    <div className="w-full">
       <Navbar user={user} role={role} />
-      <div className="lg:flex flex-col w-full h-fit text-base text-text-black mt-2 lg:pl-6">
+      <div className="lg:flex  w-full h-screen text-base text-text-black mt-2 lg:pl-6 random overflow-y-scroll">
         <div className="lg:w-4/6 lg:h-full">
           <PostMaker user={user} />
-          <div className="w-full flex  lg:pr-4">
+          <div className="w-full flex lg:pr-4">
             <Posts user={user} />
           </div>
         </div>
 
-        <div className="w-2/5 px-8 ">
+        <div className="w-auto px-4 lg:w-2/5 lg:px-8 ">
           <PendingRequests user={user} />
         </div>
       </div>

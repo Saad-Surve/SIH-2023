@@ -4,8 +4,22 @@
   display: none;
 }
 .skiptranslate {
-  visibility: hidden;
+  visibility:visible ;
+  display: flex;
 }
-.skiptranslate:first-child:first-child {
-  visibility: visible;
+.skiptranslate>*{
+  display:none;
+}
+div#\:0\.targetLanguage {
+  display: flex;
+}
+
+/* Change the styles of the "Powered by Google Translate" text */
+.goog-te-combo {
+  /* Your styles here */
+  /* font-size: 14px; */
+  color: #333 !important;
+  opacity: 1 !important;
+  /* margin-right: 2px !important; */
+  /* Add any other styles you want to customize */
 }

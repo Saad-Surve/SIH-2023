@@ -4,7 +4,8 @@ import cities from "./cities";
 import axios from "axios";
 import ServerUrl from "../../constants";
 
-const Consult = ({ user, role }) => {
+
+const Consult = ({ user, role, lawyers}) => {
   const problems = [
     "Legal Notices",
     "Employment Issues",
@@ -243,7 +244,7 @@ const Consult = ({ user, role }) => {
       // let response = await axios.post(`${ServerUrl}/api/client/addHelp`, help);
 
       try {
-        const token = document.cookie.split("token=")[1];
+        const token = document.cookie.split("token=")[1].split(';')[0];
         // console.log(help);
         const response = await axios.post(
           `${ServerUrl}/api/client/addHelp`,

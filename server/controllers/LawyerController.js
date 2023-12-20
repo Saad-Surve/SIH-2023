@@ -39,6 +39,35 @@ const getArticles = asyncHandler(async (req, res) => {
   res.status(200).json(articlesWithLawyers);
 });
 
+// const getLawyerPosts = asyncHandler(async (req, res) => {
+//   const lawyerUsername = req.query.lawyerUsername;
+//   const lawyer = await Lawyer.findOne({ username: lawyerUsername });
+//   console.log(lawyer)
+//   if (!lawyer) {
+//     res.status(400).json({ message: "No lawyer found" });
+//     return;
+//   }
+//   const rows = [];
+
+//   for (const articleId of lawyer.articles) {
+//     const article = await Article.findOne({ _id: articleId });
+//     rows.push({ ...article.toObject(), type: "Article" });
+//   }
+
+//   for (const videoId of lawyer.videos) {
+//     const video = await Video.findOne({ _id: videoId });
+//     rows.push({ ...video.toObject(), type: "Video" });
+//   }
+//   rows.sort((a, b) => {
+//     const dateA = new Date(a.postedOn);
+//     const dateB = new Date(b.postedOn);
+
+//     // Compare the dates
+//     return dateB - dateA;
+//   });
+//   res.status(200).json(rows);
+// });
+
 const getLawyerPosts = asyncHandler(async (req, res) => {
   const lawyerUsername = req.query.lawyerUsername;
   const lawyer = await Lawyer.findOne({ username: lawyerUsername });
@@ -47,23 +76,34 @@ const getLawyerPosts = asyncHandler(async (req, res) => {
     res.status(400).json({ message: "No lawyer found" });
     return;
   }
+
   const rows = [];
 
-  for (const articleId of lawyer.articles) {
-    const article = await Article.findOne({ _id: articleId });
-    rows.push({ ...article.toObject(), type: "Article" });
+  if (lawyer.articles && lawyer.articles.length > 0) {
+    for (const articleId of lawyer.articles) {
+      if (articleId) {
+        const article = await Article.findOne({ _id: articleId });
+        if (article) {
+          rows.push({ ...article.toObject(), type: "Article" });
+        }
+      }
+    }
   }
-
-  for (const videoId of lawyer.videos) {
-    const video = await Video.findOne({ _id: videoId });
-    rows.push({ ...video.toObject(), type: "Video" });
+  if (lawyer.videos && lawyer.videos.length > 0) {
+    for (const videoId of lawyer.videos) {
+      if (videoId) {
+        const video = await Video.findOne({ _id: videoId });
+        if (video) {
+          rows.push({ ...video.toObject(), type: "Video" });
+        }
+      }
+    }
   }
 
   rows.sort((a, b) => {
     const dateA = new Date(a.postedOn);
     const dateB = new Date(b.postedOn);
 
-    // Compare the dates
     return dateB - dateA;
   });
 

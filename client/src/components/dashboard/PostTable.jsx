@@ -12,7 +12,7 @@ import axios from "axios";
 
 const PostTable = ({ username, rows }) => {
   const deleteArticle = async (rowId, rowType) => {
-    const token = document.cookie.split("token=")[1];
+    const token = document.cookie.split("token=")[1].split(';')[0];
 
     if (rowType === "Article") {
       const article = {
@@ -87,7 +87,7 @@ const PostTable = ({ username, rows }) => {
         </tr>
       </thead>
       <tbody>
-        {console.log(rows)}
+        {/* {console.log(rows)} */}
         {rows.length > 0 ? (
           rows.map((row, index) => {
             // console.log(row);

@@ -24,34 +24,35 @@ const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
   const isMobile = useMediaQuery({ maxWidth: 1000 });
+  const token = document?.cookie?.split("token=")[1]?.split(";")[0];
   const location = useLocation();
   const role =
-    document.cookie.split("token=")[1] &&
-    jwtDecode(document.cookie.split("token=")[1]).id.role;
+    token &&
+    jwtDecode(document?.cookie?.split("token=")[1]?.split(";")[0]).id.role;
   const sidebarItems = [
-    {
-      name: "Home",
-      icon: <Icon className="w-8 h-8" icon="majesticons:home-line" />,
-      path: "/",
-    },
+    // {
+    //   name: "Home",
+    //   icon: <Icon className="w-8 h-8" icon="majesticons:home-line" />,
+    //   path: "/",
+    // },
 
     {
-      name: "Legal News",
+      name: "Law News",
       icon: <Icon className="w-8 h-8" icon="fluent:news-28-regular" />,
       path: "/news",
     },
     {
-      name: "Legal Directory",
+      name: "Lawyer Contacts",
       icon: <Icon className="w-8 h-8" icon="clarity:directory-line" />,
       path: "/directory",
     },
     {
-      name: "Community Connect",
+      name: "Lawyer Blogs",
       icon: <Icon className="w-8 h-8" icon="iconoir:community" />,
       path: "/community",
     },
     {
-      name: "Legal Junction",
+      name: "Legal Resources",
       icon: <Icon className="w-8 h-8" icon="system-uicons:message-writing" />,
       path: "/documents",
     },
@@ -65,7 +66,7 @@ const Sidebar = () => {
               icon="material-symbols-light:dashboard-outline"
             />
           ),
-          path: `${role.toLowerCase()}Dashboard`,
+          path: `/${role.toLowerCase()}Dashboard`,
         }
       : {},
   ];
@@ -87,12 +88,14 @@ const Sidebar = () => {
   useEffect(() => {
     // Extract the path from the URL and find the corresponding index in sidebarItems
     let currentPath = `/${location.pathname.slice(1)}`;
+    // console.log(currentPath);
     if (currentPath === "") currentPath = "/";
     if (currentPath === "pendingRequests" || currentPath === "updateContent")
       currentPath = "adminDashboard";
     const selectedIndex = sidebarItems.findIndex(
       (item) => item.path === currentPath
     );
+    // console.log(selectedIndex);
 
     // Update the selected item only if a match is found
     if (selectedIndex !== -1) {
@@ -105,6 +108,7 @@ const Sidebar = () => {
   };
 
   const handleItemClick = (index) => {
+    // console.log("Item clicked:", index);
     setSelectedItem(index);
   };
   return (
@@ -180,7 +184,7 @@ const Sidebar = () => {
         <Link href="/">
           <NavbarBrand>
             <img src={logo} width={50} height={50} />
-            <p className="font-bold text-inherit">Nyaydoot</p>
+            <p className="font-bold text-inherit font-saira">Nyaydoot</p>
           </NavbarBrand>
         </Link>
       </NavbarContent>
@@ -189,20 +193,21 @@ const Sidebar = () => {
         {sidebarItems.map((item, index) => (
           <Link
             className={classNames("rounded-2xl", {
-              "bg-light-blue p-2  text-primary": selectedItem === index,
+              "bg-light-blue p-2 -m-2  text-primary": selectedItem === index,
             })}
             href={`${item.path}`}
             // size="lg"
             onClick={() => handleItemClick(index)}
             key={index}
           >
+            {/* {console.log(item)} */}
             <div
               className={classNames("flex text-center text-icon-gray", {
                 "text-primary": selectedItem === index,
               })}
             >
               <span
-                className={classNames("ml-2 text-primary", {
+                className={classNames("mx-2 text-primary", {
                   "text-text-gray": selectedItem != index,
                 })}
               >
@@ -215,25 +220,30 @@ const Sidebar = () => {
       <NavbarContent>
         <GoogleTranslate className="p-3" />
       </NavbarContent>
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link
-            href="/registerUser"
-            className="bg-white text-primary py-2 px-6 rounded-lg"
-          >
-            Register
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link
-            href="/loginUser"
-            className="bg-primary text-white py-2 px-6 rounded-lg"
-          >
-            Login
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
-
+      {token ? (
+        // If user is logged in, render nothing
+        <></>
+      ) : (
+        // If user is not logged in, render Register and Login buttons
+        <NavbarContent justify="end">
+          <NavbarItem className="hidden lg:flex">
+            <Link
+              href="/registerUser"
+              className="bg-white text-primary py-2 px-6 rounded-lg"
+            >
+              Register
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link
+              href="/loginUser"
+              className="bg-primary text-white py-2 px-6 rounded-lg"
+            >
+              Login
+            </Link>
+          </NavbarItem>
+        </NavbarContent>
+      )}
       <NavbarMenu className="mt-4 pt-4">
         {sidebarItems.map((item, index) => (
           <NavbarMenuItem key={`${item.name}-${index}`}>

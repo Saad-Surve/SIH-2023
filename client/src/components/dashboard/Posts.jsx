@@ -44,9 +44,9 @@ const Posts = ({ user }) => {
 export default Posts;
 
 export async function loader() {
-  const token = document.cookie.split("token=")[1];
+  const token = document.cookie.split("token=")[1].split(';')[0];
   const username = jwtDecode(token).id.username;
-
+  console.log(token)
   const options = {
     method: "GET",
     url: `${ServerUrl}/api/lawyer/getLawyerPosts`,
@@ -60,6 +60,7 @@ export async function loader() {
   // let response;
   try {
     const response = await axios.request(options);
+    // console.log(response.data)
     return response.data; // Return the fetched data
   } catch (error) {
     console.error(error);

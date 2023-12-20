@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/User.model");
 const Lawyer = require("../models/Lawyer.model");
 const Admin = require("../models/Admin.model");
-const { generateToken } = require("../utils/utils");
+const { generatetoken } = require("../utils/utils");
 const Requests = require("../models/Requests.model");
 
 const checkUsernameUser = asyncHandler(async (req, res) => {
@@ -62,7 +62,7 @@ const registerUser = asyncHandler(async (req, res) => {
       _id: user.id,
       username: user.username,
       emailID: user.emailID,
-      token: generateToken({
+      token: generatetoken({
         id: user._id,
         role: "User",
         username: user.username,
@@ -79,6 +79,7 @@ const registerLawyer = asyncHandler(async (req, res) => {
     emailID,
     username,
     password,
+    phoneNo,
     name,
     location,
     expertise,
@@ -101,6 +102,7 @@ const registerLawyer = asyncHandler(async (req, res) => {
     username,
     password: hashedPassword,
     name,
+    phoneNo,
     location,
     expertise,
     experience,
@@ -113,7 +115,7 @@ const registerLawyer = asyncHandler(async (req, res) => {
       _id: user.id,
       username: user.username,
       emailID: user.emailID,
-      token: generateToken({
+      token: generatetoken({
         id: user._id,
         role: "Lawyer",
         username: user.username,
@@ -136,7 +138,7 @@ const loginUser = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.username,
       email: user.emailID,
-      token: generateToken({
+      token: generatetoken({
         id: user._id,
         role: "User",
         username: user.username,
@@ -159,7 +161,7 @@ const loginLawyer = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.username,
       email: user.emailID,
-      token: generateToken({
+      token: generatetoken({
         id: user._id,
         role: "Lawyer",
         username: user.username,
@@ -181,7 +183,7 @@ const loginAdmin = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.username,
       email: user.emailID,
-      token: generateToken({
+      token: generatetoken({
         id: user._id,
         role: "Admin",
         username: user.username,
@@ -215,7 +217,7 @@ const registerAdmin = asyncHandler(async (req, res) => {
     res.status(201).json({
       _id: user.id,
       emailID: user.emailID,
-      token: generateToken({
+      token: generatetoken({
         id: user._id,
         role: "Admin",
         username: user.username,

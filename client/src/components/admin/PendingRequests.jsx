@@ -19,7 +19,7 @@ const PendingRequests = () => {
   const allRequests = useLoaderData();
 
   const handleAccept = async (lawyer) => {
-    const token = document.cookie.split("token=")[1];
+    const token = document.cookie.split("token=")[1].split(';')[0];
     let response = await axios
       .post(`${ServerUrl}/api/admin/acceptLawyer`, lawyer, {
         headers: {
@@ -143,7 +143,7 @@ const PendingRequests = () => {
 export default PendingRequests;
 
 export async function loader() {
-  const token = document.cookie.split("token=")[1];
+  const token = document.cookie.split("token=")[1].split(';')[0];
   const options = {
     method: "GET",
     url: `${ServerUrl}/api/admin/getRequests`,
@@ -154,6 +154,7 @@ export async function loader() {
   let response;
   try {
     response = await axios.request(options);
+    // console.log(response.data)
   } catch (error) {
     response = { data: null };
     console.error(error);

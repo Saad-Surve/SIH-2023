@@ -87,7 +87,7 @@ const protectAdmin = asyncHandler(async (req, res, next) => {
   }
 
   if (!token) {
-    console.error("No Token Found");
+    console.error("No token Found");
     res.status(401).json({ message: "Not authorized, no token" });
   }
 });
