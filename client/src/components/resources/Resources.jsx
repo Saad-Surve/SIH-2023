@@ -10,14 +10,14 @@ import {
 } from "@nextui-org/react";
 import "./resources.css";
 import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/react";
-import rti_logo from '../../assets/rti_logo.png';
-import crpc_logo from '../../assets/crpc_logo.png';
-import cyber_logo from '../../assets/cyber_logo.png';
+import rti_logo from "../../assets/rti_logo.png";
+import crpc_logo from "../../assets/crpc_logo.png";
+import cyber_logo from "../../assets/cyber_logo.png";
 
 function CustCard({ logo, title, link, description }) {
   return (
     <Card className="max-w-[500px] border ">
-      <CardHeader className="flex gap-3 h-[100px]"> 
+      <CardHeader className="flex gap-3 h-[100px]">
         <Image
           alt="nextui logo"
           height={60}
@@ -56,7 +56,7 @@ function CustNav() {
         </NavbarItem>
         <NavbarItem isActive>
           <Link href="/resources" aria-current="page">
-            Legal Resources
+            Legal Links
           </Link>
         </NavbarItem>
       </NavbarContent>
@@ -82,7 +82,7 @@ const Resources = () => {
       logo: "https://ncsc.nic.in/upload/logo/logo.png",
       title: "First Information Report",
       link: "https://ncsc.nic.in/pages/display/135-how-to-file-a-police-fir-complaint-online",
-      description:`FIR is a complaint lodged with the police by the victim of a cognizable offence or by someone on his or her behalf, but anyone can make such a report either orally or in writing to the police.`,
+      description: `FIR is a complaint lodged with the police by the victim of a cognizable offence or by someone on his or her behalf, but anyone can make such a report either orally or in writing to the police.`,
     },
     {
       logo: "https://www.indiacode.nic.in/image/final-logo_update.jpg",

@@ -4,7 +4,8 @@ import cities from "./cities";
 import axios from "axios";
 import ServerUrl from "../../constants";
 
-const Consult = ({ user, role }) => {
+
+const Consult = ({ user, role, lawyers}) => {
   const problems = [
     "Legal Notices",
     "Employment Issues",

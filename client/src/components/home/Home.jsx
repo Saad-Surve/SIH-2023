@@ -7,6 +7,7 @@ import Page5 from "./Page5";
 import Header from "./Header";
 import Page3 from "./Page3";
 import Page4 from "./Page4";
+import "./Arrow.css";
 
 const Home = () => {
   return (
@@ -16,11 +17,12 @@ const Home = () => {
         style={{ backgroundImage: `url(${home1})` }}
       ></div>
       {/* <Header /> */}
+
       <Page1 />
       {/*  {/* <div className='bg-cover bg-center top-[100vh]  w-full h-screen absolute opacity-90 bg-gradient-to-t brightness-[25%] saturate-150' style={{backgroundImage:`url(${home2})`}}></div> */}
-      <Page5 />
+      {/* <Page5 /> */}
       <Page3 />
-      <Page4 /> 
+      <Page4 />
     </section>
   );
 };

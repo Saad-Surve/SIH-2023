@@ -1,4 +1,10 @@
 /* GoogleTranslate.css */
+.google-translate-container{
+  @media (max-width: 600px) {
+    /* display: none; */
+    /* margin-left: 100% !important; */
+  }
+}
 
 .VIpgJd-ZVi9od-l4eHX-hSRGPd {
   display: none;
@@ -12,4 +18,14 @@
 }
 div#\:0\.targetLanguage {
   display: flex;
+}
+
+/* Change the styles of the "Powered by Google Translate" text */
+.goog-te-combo {
+  /* Your styles here */
+  /* font-size: 14px; */
+  color: #333 !important;
+  opacity: 1 !important;
+  /* margin-right: 2px !important; */
+  /* Add any other styles you want to customize */
 }

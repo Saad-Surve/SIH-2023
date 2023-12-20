@@ -5,7 +5,8 @@ import { Link } from "@nextui-org/react";
 
 function CustNav() {
   return (
-    <Navbar position="static"
+    <Navbar
+      position="static"
       style={{ width: "100%", backgroundColor: "lightblue", color: "#fff" }}
     >
       <NavbarContent style={{ display: "flex", justifyContent: "center" }}>
@@ -16,7 +17,7 @@ function CustNav() {
         </NavbarItem>
         <NavbarItem>
           <Link href="/resources" color="foreground">
-            Legal Resources
+            Legal Links
           </Link>
         </NavbarItem>
       </NavbarContent>

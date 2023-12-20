@@ -11,31 +11,30 @@ import { jwtDecode } from "jwt-decode";
 const Directory = () => {
   const [lawyers, setLawyers] = useState([
     {
-    name:'saad',
-    expertise:'cyber',
-    experience:'5',
-    location:'mumbai',
-    emailID:'saad.surve@spit.ac.in',
-    phoneNo:'8355989770'
-  },
+      name: "saad",
+      expertise: "cyber",
+      experience: "5",
+      location: "mumbai",
+      emailID: "saad.surve@spit.ac.in",
+      phoneNo: "8355989770",
+    },
     {
-    name:'saad',
-    expertise:'cyber',
-    experience:'5',
-    location:'mumbai',
-    emailID:'saad.surve@spit.ac.in',
-    phoneNo:'8355989770'
-  },
+      name: "saad",
+      expertise: "cyber",
+      experience: "5",
+      location: "mumbai",
+      emailID: "saad.surve@spit.ac.in",
+      phoneNo: "8355989770",
+    },
     {
-    name:'saad',
-    expertise:'cyber',
-    experience:'5',
-    location:'mumbai',
-    emailID:'saad.surve@spit.ac.in',
-    phoneNo:'8355989770'
-  },
-
-]);
+      name: "saad",
+      expertise: "cyber",
+      experience: "5",
+      location: "mumbai",
+      emailID: "saad.surve@spit.ac.in",
+      phoneNo: "8355989770",
+    },
+  ]);
   const [searchTerm, setSearchTerm] = useState("");
 
   const fetchLawyers = async () => {
@@ -72,40 +71,42 @@ const Directory = () => {
     emailID: "",
   });
 
-  const token = document.cookie.split("token=")[1].split(';')[0];
-  // console.log(token);
-
   let username = "",
-    role = "";
+    role = "",
+    token = "";
 
-  if (token) {
-    username = jwtDecode(token).id.username;
-    role = jwtDecode(token).id.role;
+  if (document.cookie) {
+    const token = document.cookie.split("token=")[1].split(";")[0];
+    // console.log(token);
+
+    if (token) {
+      username = jwtDecode(token).id.username;
+      role = jwtDecode(token).id.role;
+    }
+
+    // const role = jwtDecode(token).id.role;
+    // console.log(role);
   }
-
-  // const role = jwtDecode(token).id.role;
-  // console.log(role);
-
   useEffect(() => {
     const getUser = async () => {
       let url;
       if (role === "User") {
         url = `${ServerUrl}/api/user/getUser/?username=${username}`;
-      }
-      // else if (role === "Lawyer") {
-      //   url = `${ServerUrl}/api/lawyer/getLawyer/?username=${username}`;
-      // }
+        // else if (role === "Lawyer") {
+        //   url = `${ServerUrl}/api/lawyer/getLawyer/?username=${username}`;
+        // }
 
-      const response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setUser({
-        ...user,
-        username: response.data.username,
-        emailID: response.data.emailID,
-      });
+        const response = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUser({
+          ...user,
+          username: response.data.username,
+          emailID: response.data.emailID,
+        });
+      }
     };
     getUser();
   }, []);
@@ -130,8 +131,10 @@ const Directory = () => {
             <div className="lg:flex hidden flex-row justify-center items-center border rounded-full p-2 border-white bg-white">
               <Icon icon="tabler:phone" color="rgb(0,106,255)" fontSize={25} />
             </div>
-              <span className="lg:flex hidden text-center">Talk in your Language</span>
-              {/* for mobile only */}
+            <span className="lg:flex hidden text-center">
+              Talk in your Language
+            </span>
+            {/* for mobile only */}
             <div className="flex lg:hidden flex-row justify-center items-center border rounded-full p-2 border-white bg-white">
               <Icon
                 icon="mdi:encryption-check-outline"
@@ -148,8 +151,10 @@ const Directory = () => {
                 fontSize={25}
               />
             </div>
-              <span className="lg:flex hidden text-center">Secure and confidential</span>
-              {/* for mobile only */}
+            <span className="lg:flex hidden text-center">
+              Secure and confidential
+            </span>
+            {/* for mobile only */}
             <div className="flex lg:hidden flex-row justify-center items-center border rounded-full p-2 border-white bg-white">
               <Icon
                 icon="fluent:notepad-person-20-regular"
@@ -165,7 +170,9 @@ const Directory = () => {
                 fontSize={25}
               />
             </div>
-              <span className="lg:flex hidden text-center">Consult Multiple Lawyers</span>
+            <span className="lg:flex hidden text-center">
+              Consult Multiple Lawyers
+            </span>
           </div>
           <ScrollShadow
             size={10}
@@ -177,7 +184,7 @@ const Directory = () => {
           </ScrollShadow>
         </div>
         <div className="w-full lg:w-5/12 flex justify-center items-center">
-          <Consult user={user} role={role} />
+          <Consult user={user} role={role} lawyers={lawyers} />
         </div>
       </div>
     </div>
