@@ -52,19 +52,19 @@ const LoginAdmin = () => {
   };
 
   return (
-    <section className="w-full relative">
+    <section className="w-full h-[calc(100vh-5rem-3px)] relative ">
       <div
-        className="bg-cover bg-center w-full h-full absolute  opacity-10"
+        className="bg-cover bg-center w-full h-full absolute opacity-10 lg: "
         style={{ backgroundImage: `url(${registerUser})` }}
       ></div>
 
-      <div className="flex h-full justify-center">
-        <div className="w-[35%] gap-6 items-center justify-center h-full flex flex-col">
+      <div className="flex flex-col h-full justify-center items-center lg:pt-8 lg:flex-row lg:justify-center lg:items-center ">
+        <div className="lg:w-[35%] gap-6  items-center justify-center h-full flex flex-col">
           <span>Admin Login </span>
           <form
             autoComplete="off"
             onSubmit={handleSubmit}
-            className=" w-[80%] flex flex-col justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl"
+            className="lg:w-[80%] flex flex-col justify-center items-center  bg-[#C0DAFF] gap-6 p-6 rounded-2xl"
           >
             <Input
               type="email"
