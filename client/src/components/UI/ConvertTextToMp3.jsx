@@ -90,10 +90,10 @@ const ConvertTextToMp3 = () => {
   };
 
   return (
-    <div className="fixed  z-[9999] bottom-11 right-20">
+    <div className="fixed  z-[9999] bottom-20 right-10">
       <button onClick={handleGenerateSpeech}>Generate Speech</button>
 
-      {loading && <p>Please wait, generating speech...</p>}
+      {loading && <p>Speaking</p>}
     </div>
   );
 };
